@@ -7,7 +7,7 @@
 }
 
 .logo{
-    @apply mr-3
+    @apply -mr-3.5
 }
 
 .header{
