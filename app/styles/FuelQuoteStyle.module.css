@@ -1,5 +1,5 @@
 .container{
-    @apply flex flex-col w-96 bg-slate-500 text-lime-50 rounded-2xl shadow-lg m-auto gap-y-8 pb-16 pt-10 
+    @apply flex flex-col w-96 bg-slate-500 text-slate-50 rounded-2xl shadow-lg m-auto gap-y-8 pb-16 pt-10 
 }
 
 .branding{
