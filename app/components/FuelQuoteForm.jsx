@@ -12,45 +12,28 @@ const roboto = Roboto({
   
 
 const FuelQuoteForm = () => {
+
     return(
         <div className={roboto.className}>
             <form className={FuelQuoteStyle.container}>
-                <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"First Name"} name="first-name"/>
-                </div>  
-                <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Last Name"} name="last-name"/>
-                </div>  
-                <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"E-mail address"} name="email"/>
-                </div>  
-                <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 1"} name="delivery-address"/>
-                </div>
-            
-                <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 2 (Optional)"} name="delivery-address2"/>
-                </div>
-                
-                <div className={FuelQuoteStyle.splitContainer}>
-                        <input className={FuelQuoteStyle.smallInputBox} placeholder={"Zip Code"} name="zip-cpde"/>
-                        <input className={FuelQuoteStyle.smallInputBox} placeholder={"State"} name="state"/>
+                <div className={FuelQuoteStyle.branding}>
+                    <Image src={`fuel-tank.svg`} width={50} height={50} className={FuelQuoteStyle.logo} ></Image>
+                    <h1 className={FuelQuoteStyle.header}>Fuel Quote</h1>
                 </div>
                 <div className={FuelQuoteStyle.inputContainer}>
-                    <div className={FuelQuoteStyle.logoInputContainer}>
-                        <input type="date" className={FuelQuoteStyle.standardInputBox} placeholder={"Delivery Date"} name="delivery-date"/>
-                    </div>
+                    <label for="gallons-requested" className={FuelQuoteStyle.label}>Gallons:</label>
+                    <input className={FuelQuoteStyle.inputBox} placeholder={"Gallons"} name="gallons-requested"/>
+                </div>
 
-                
+                <div className={FuelQuoteStyle.inputContainer}>
+                    <label for="delivery-address" className={FuelQuoteStyle.label}>Address:</label>
+                    <input className={FuelQuoteStyle.inputBox} placeholder={"Delivery Address"} name="delivery-address"/>
                 </div>
-                <div className={FuelQuoteStyle.splitContainer}>
-                    <div className={FuelQuoteStyle.logoInputContainer}>
-                        <input className={FuelQuoteStyle.standardInputBox} placeholder={"Gallons"} name="gallons-requested"/>
-                        <Image src='/gallon.svg' width={28} height={28} className={FuelQuoteStyle.gallonLogo}></Image>
-                    </div>
+
+                <div className={FuelQuoteStyle.inputContainer}>
+                    <label for="delivery-date" className={FuelQuoteStyle.label}>Delivery Date:</label>
+                    <input className={FuelQuoteStyle.inputBox} placeholder={"Delivery Date"} name="delivery-date"/>
                 </div>
-                <buttton className={FuelQuoteStyle.calculateButton}>Calculate Your Fuel Quote!</buttton>
-                <buttton className={FuelQuoteStyle.calculateButton}>Calculate Your Fuel Quote!</buttton>
             </form>  
         </div>
     );
