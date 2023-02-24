@@ -16,7 +16,7 @@ const FuelQuoteForm = () => {
         <div className={roboto.className}>
             <form className={FuelQuoteStyle.container}>
                 <div className={FuelQuoteStyle.branding}>
-                    <Image src={`fuel-oil.svg`} width={72} height={72} className={FuelQuoteStyle.logo} ></Image>
+                    <Image src={`fuel-oil.svg`} width={90} height={90} className={FuelQuoteStyle.logo} ></Image>
                     <h1 className={FuelQuoteStyle.header}>Fuel Quote</h1>
                 </div>
                 <div className={FuelQuoteStyle.inputContainer}>
