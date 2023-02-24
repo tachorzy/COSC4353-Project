@@ -17,23 +17,13 @@
     @apply font-extrabold pt-5 justify-center text-center
 }
 
-.addressInputBox{
-    @apply h-12 w-full p-2 py-2 border-transparent rounded-xl font-medium;
-    font-size: 1.025rem
-}
-
-.locationInputBox{
+.standardInputBox{
     @apply h-12 w-full p-2 py-2 border-transparent rounded-xl font-medium;
     font-size: 1.025rem
 }
 
 .smallInputBox{
     @apply h-12 w-1/2 p-2 py-2 border-transparent rounded-xl font-medium;
-    font-size: 1.025rem
-}
-
-.deliveryInputBox{
-    @apply h-12 w-full p-2 py-2 border-transparent rounded-xl font-medium;
     font-size: 1.025rem
 }
 
