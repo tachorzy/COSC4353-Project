@@ -35,10 +35,10 @@
     @apply flex flex-row ml-3 gap-x-2 content-start
 }
 
-.deliveryDateContainer{
+.logoInputContainer{
     @apply relative
 }
 
-.calendarLogo{
+.calendarLogo, .gallonLogo{
     @apply absolute top-2 left-40 z-10
 }

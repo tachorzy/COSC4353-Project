@@ -34,7 +34,7 @@ const FuelQuoteForm = () => {
                         <input className={FuelQuoteStyle.smallInputBox} placeholder={"State"} name="state"/>
                 </div>
                 <div className={FuelQuoteStyle.inputContainer}>
-                    <div className={FuelQuoteStyle.deliveryDateContainer}>
+                    <div className={FuelQuoteStyle.logoInputContainer}>
                         <input className={FuelQuoteStyle.standardInputBox} placeholder={"Delivery Date"} name="delivery-date"/>
                         <Image src='/calendar.svg' width={28} height={28} className={FuelQuoteStyle.calendarLogo}></Image>
                     </div>
@@ -42,7 +42,10 @@ const FuelQuoteForm = () => {
                 
                 </div>
                 <div className={FuelQuoteStyle.splitContainer}>
-                    <input className={FuelQuoteStyle.smallInputBox} placeholder={"Gallons"} name="gallons-requested"/>
+                    <div className={FuelQuoteStyle.logoInputContainer}>
+                        <input className={FuelQuoteStyle.standardInputBox} placeholder={"Gallons"} name="gallons-requested"/>
+                        <Image src='/gallon.svg' width={28} height={28} className={FuelQuoteStyle.gallonLogo}></Image>
+                    </div>
                 </div>
             </form>  
         </div>
