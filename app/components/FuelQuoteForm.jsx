@@ -25,11 +25,11 @@ const FuelQuoteForm = () => {
                     <input className={FuelQuoteStyle.standardInputBox} placeholder={"E-mail address"} name="email"/>
                 </div>  
                 <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Delivery Address 1"} name="delivery-address"/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 1"} name="delivery-address"/>
                 </div>
             
                 <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Delivery Address 2 (Optional)"} name="delivery-address2"/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 2 (Optional)"} name="delivery-address2"/>
                 </div>
                 
                 <div className={FuelQuoteStyle.splitContainer}>
