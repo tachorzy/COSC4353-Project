@@ -47,6 +47,9 @@ const FuelQuoteForm = () => {
                         <Image src='/gallon.svg' width={28} height={28} className={FuelQuoteStyle.gallonLogo}></Image>
                     </div>
                 </div>
+                <div className={FuelQuoteStyle.inputContainer}>
+                    <buttton className={FuelQuoteStyle.calculateButton}>Calculate!</buttton>
+                </div>
             </form>  
         </div>
     );
