@@ -16,7 +16,10 @@ const FuelQuoteForm = () => {
         <div className={roboto.className}>
             <form className={FuelQuoteStyle.container}>
                 <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Full Name"} name="full-name"/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"First Name"} name="first-name"/>
+                </div>  
+                <div className={FuelQuoteStyle.inputContainer}>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Last Name"} name="last-name"/>
                 </div>  
                 <div className={FuelQuoteStyle.inputContainer}>
                     <input className={FuelQuoteStyle.standardInputBox} placeholder={"E-mail address"} name="email"/>
@@ -47,9 +50,7 @@ const FuelQuoteForm = () => {
                         <Image src='/gallon.svg' width={28} height={28} className={FuelQuoteStyle.gallonLogo}></Image>
                     </div>
                 </div>
-                <div className={FuelQuoteStyle.inputContainer}>
-                    <buttton className={FuelQuoteStyle.calculateButton}>Calculate!</buttton>
-                </div>
+                <buttton className={FuelQuoteStyle.calculateButton}>Calculate Your Fuel Quote!</buttton>
             </form>  
         </div>
     );
