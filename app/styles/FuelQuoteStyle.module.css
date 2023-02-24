@@ -42,3 +42,7 @@
 .calendarLogo, .gallonLogo{
     @apply absolute top-2 left-40 z-10
 }
+
+.calculateButton{
+    @apply bg-stone-200 text-neutral-500 text-center font-semibold h-12 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-300;
+}
