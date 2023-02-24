@@ -26,26 +26,26 @@ const FuelQuoteForm = () => {
 
                 <div className={FuelQuoteStyle.inputContainer}>
                     <label for="delivery-address" className={FuelQuoteStyle.label}>Address 1:</label>
-                    <input className={FuelQuoteStyle.addressInputBox} placeholder={"Delivery Address"} name="delivery-address"/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Delivery Address"} name="delivery-address"/>
                 </div>
             
                 <div className={FuelQuoteStyle.inputContainer}>
                     <label for="delivery-address" className={FuelQuoteStyle.label}>Address 2: {`(Optional)`}</label>
-                    <input className={FuelQuoteStyle.addressInputBox} placeholder={"Delivery Address"} name="delivery-address"/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Delivery Address"} name="delivery-address"/>
                 </div>
 
                 <div className={FuelQuoteStyle.inputContainer}>
                     <label for="delivery-date" className={FuelQuoteStyle.label}>Delivery Date:</label>
-                    <input className={FuelQuoteStyle.deliveryInputBox} placeholder={"Delivery Date"} name="delivery-date"/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Delivery Date"} name="delivery-date"/>
                 </div>
                 <div className={FuelQuoteStyle.splitContainer}>
                     <div className={FuelQuoteStyle.inputContainer}>
                         <label for="zip-code" className={FuelQuoteStyle.label}>Zip Code:</label>
-                        <input className={FuelQuoteStyle.deliveryInputBox} placeholder={"Zip Code"} name="zip-cpde"/>
+                        <input className={FuelQuoteStyle.standardInputBox} placeholder={"Zip Code"} name="zip-cpde"/>
                     </div>
                     <div className={FuelQuoteStyle.inputContainer}>
                         <label for="delivery-date" className={FuelQuoteStyle.label}>Delivery Date:</label>
-                        <input className={FuelQuoteStyle.deliveryInputBox} placeholder={"Delivery Date"} name="delivery-date"/>
+                        <input className={FuelQuoteStyle.standardInputBox} placeholder={"Delivery Date"} name="delivery-date"/>
                     </div>
                 </div>
                 <buttton className={FuelQuoteStyle.calculateButton}>Calculate Your Fuel Quote!</buttton>
