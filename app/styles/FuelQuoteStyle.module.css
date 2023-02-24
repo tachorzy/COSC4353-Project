@@ -1,20 +1,20 @@
 .container{
-    @apply grid grid-cols-2 grid-rows-3 bg-slate-500 text-slate-50 rounded-2xl shadow-lg m-auto gap-x-0 gap-y-8 pb-16 pt-10 pr-10
+    @apply grid grid-cols-2 grid-rows-3 bg-slate-500 text-slate-50 rounded-3xl shadow-lg m-auto gap-x-0 gap-y-8 pb-16 pt-10 pr-10
 }
 
 .branding{
-    @apply flex flex-row justify-center content-center text-center col-span-2
+    @apply flex flex-row justify-center content-center text-center col-span-2 text-3xl font-extrabold align-bottom
 }
 
 .logo{
-    @apply -mr-3.5
+    @apply -mr-4
 }
 .inputContainer{
     @apply ml-12 mb-auto font-medium col-span-1 flex flex-col;
 }
 
 .header{
-    @apply font-extrabold pt-5 justify-center text-center
+    @apply font-extrabold pt-5 justify-center text-center mt-4
 }
 
 .standardInputBox{
