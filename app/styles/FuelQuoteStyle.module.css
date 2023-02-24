@@ -1,0 +1,48 @@
+.container{
+    @apply grid grid-cols-2 grid-rows-3 gap-y-5 rounded-3xl m-auto gap-x-0 pb-16 pt-10 pr-10 text-sm
+}
+
+.branding{
+    @apply flex flex-row text-center col-span-2 text-3xl font-extrabold align-bottom
+}
+
+.logo{
+    @apply -mr-4
+}
+.inputContainer{
+    @apply mx-3 mb-auto font-medium col-span-1 flex flex-col;
+}
+
+.header{
+    @apply font-extrabold pt-5 justify-center text-center mt-4
+}
+
+.standardInputBox{
+    @apply h-12 w-full p-2 py-2 border-transparent rounded-xl font-medium;
+    font-size: 1.025rem
+}
+
+.smallInputBox{
+    @apply h-12 w-24 p-2 py-2 border-transparent rounded-xl font-medium;
+    font-size: 1.025rem
+}
+
+.label{
+    @apply ml-1.5 mb-1.5
+}
+
+.splitContainer{
+    @apply flex flex-row ml-3 gap-x-2 content-start
+}
+
+.logoInputContainer{
+    @apply relative
+}
+
+.calendarLogo, .gallonLogo{
+    @apply absolute top-2 left-40 z-10
+}
+
+.calculateButton{
+    @apply bg-stone-200 text-neutral-500 text-center font-semibold h-12 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-300;
+}
