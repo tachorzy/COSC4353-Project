@@ -1,5 +1,5 @@
 .container{
-    @apply bg-stone-200 grid grid-cols-2 grid-rows-3 gap-y-5 rounded-3xl m-auto gap-x-0 pb-16 pt-10 px-5 text-sm
+    @apply bg-stone-200 grid grid-cols-2 grid-rows-3 gap-y-5 rounded-3xl m-auto gap-x-0 pb-11 pt-10 px-5 text-sm shadow-lg
 }
 
 .branding{
