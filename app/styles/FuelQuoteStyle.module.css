@@ -1,9 +1,5 @@
 .container{
-<<<<<<< HEAD
-    @apply grid grid-cols-2 grid-rows-3 gap-y-5 rounded-3xl m-auto gap-x-0 pb-16 pt-10 pr-10 text-sm
-=======
     @apply bg-stone-200 grid grid-cols-2 grid-rows-3 gap-y-5 rounded-3xl m-auto gap-x-0 pb-11 pt-10 px-5 text-sm shadow-lg
->>>>>>> 1dfcfe51b4fa7883e8eb7265876eaba64c3306c2
 }
 
 .branding{
@@ -47,15 +43,10 @@
     @apply absolute top-2 left-40 z-10
 }
 
-<<<<<<< HEAD
-.calculateButton{
-    @apply bg-stone-200 text-neutral-500 text-center font-semibold h-12 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-300;
-=======
 .buttonContainer{
     @apply justify-center content-center
 }
 
 .calculateButton{
     @apply bg-stone-300 text-neutral-500 text-center col-span-2 font-semibold h-12 w-10/12 p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 mx-9;
->>>>>>> 1dfcfe51b4fa7883e8eb7265876eaba64c3306c2
 }

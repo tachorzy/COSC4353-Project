@@ -5,13 +5,9 @@ import CalculationsBox from '../components/CalculationsBox.jsx'
 import { Inter } from '@next/font/google'
 import { Combo, Roboto, Rubik } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-<<<<<<< HEAD
-import FuelQuoteStyle from '../styles/FuelQuoteStyle.module.css'
-=======
 import localFont from '@next/font/local'
 import FuelQuoteStyle from '../styles/FuelQuoteStyle.module.css'
 import FuelQuoteHistory from '../components/FuelQuoteHistory.jsx'
->>>>>>> 1dfcfe51b4fa7883e8eb7265876eaba64c3306c2
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,14 +16,11 @@ const roboto = Roboto({
   weight: '400' 
 })
 
-<<<<<<< HEAD
-=======
 const satoshi = localFont({
   src: '../fonts/Satoshi-Regular.otf',
   weight: '200'
 })
 
->>>>>>> 1dfcfe51b4fa7883e8eb7265876eaba64c3306c2
 export default function FuelQuote() {
   return (
     <>
@@ -38,17 +31,10 @@ export default function FuelQuote() {
         <link rel="icon" href="/favicon.ico"/>
       </Head>
       <main className={styles.main}>
-<<<<<<< HEAD
-        <FuelQuoteForm></FuelQuoteForm>
-=======
         <div className={satoshi.className}>
-          <div>
-            <FuelQuoteForm/>
-            <CalculationsBox/>
-          </div>
-
+          <FuelQuoteForm/>
+          <h1 className="text-9xl">Calculate your Fuel Quotes</h1>
         </div>
->>>>>>> 1dfcfe51b4fa7883e8eb7265876eaba64c3306c2
       </main>
     </>
   )

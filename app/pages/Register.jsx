@@ -58,12 +58,14 @@ export default function Register() {
                   </div>
                 </div>
                 <div className="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
+                  <Link href ="/Login">
                   <button
                     type="submit"
                     className="w-full bg-stone-400 hover:bg-stone-500 text-white py-3 rounded-md transition duration-150 ease-in-out sm:py-4 sm:text-sm sm:leading-5"
                   >
                     Sign Up
                   </button>
+                  </Link>
                 </div>
                 <div className="text-sm leading-5 pt-6">
                   Already have an account?{' '}

@@ -1,9 +1,5 @@
 .main {
-<<<<<<< HEAD
-  @apply bg-cambridgeBlue;
-=======
   @apply bg-cambridgeBlue text-stone-100;
->>>>>>> 1dfcfe51b4fa7883e8eb7265876eaba64c3306c2
   display: flex;
   flex-direction: column;
   justify-content: space-between;
