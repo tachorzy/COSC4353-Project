@@ -4,7 +4,7 @@ import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 
-export default function Register() {
+export default function ProfileManagement() {
     return (
       <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12">
         <Head>
