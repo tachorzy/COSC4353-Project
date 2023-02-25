@@ -1,5 +1,5 @@
 .main {
-  @apply bg-cambridgeBlue;
+  @apply bg-cambridgeBlue text-stone-100;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
