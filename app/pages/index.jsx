@@ -37,6 +37,7 @@ export default function Home() {
             </span>
             <h1 className="text-9xl mt-24 mx-auto font-extrabold">Calculate your<br/>Fuel Quotes</h1>
           </div>
+          
       </main>
     </>
   )
