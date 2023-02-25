@@ -32,7 +32,6 @@ export default function FuelQuote() {
       <main className={styles.main}>
         <div className={satoshi.className}>
           <FuelQuoteForm/>
-          <h1 className="text-9xl">Calculate your Fuel Quotes</h1>
         </div>
       </main>
     </>

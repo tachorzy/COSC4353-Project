@@ -6,7 +6,7 @@ import Link from 'next/link'
 import FuelQuoteHistory from '../components/FuelQuoteHistory'
 
 
-export default function Login() {
+export default function History() {
     return (
       <div className="bg-cambridgeBlue h-screen m-auto justify-center content-center flex flex-col">
         <FuelQuoteHistory/>
