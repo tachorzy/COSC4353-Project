@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 export default function Login() {
     return (
-      <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12"> 
+      <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12"> 
             <Head>
                 <title>Login</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -16,7 +16,7 @@ export default function Login() {
           <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow-lg rounded-3xl sm:p-10">
             <div className="max-w-md mx-auto">
               <div>
-                <img src="/logo.svg" className="h-7 sm:h-8" />
+                <img src="/fuel-oil.svg" className="h-7 sm:h-8" />
               </div>
               <div className="divide-y divide-gray-200">
                 <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">

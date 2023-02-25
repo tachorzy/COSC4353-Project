@@ -6,9 +6,19 @@ import FuelQuoteForm from '../components/FuelQuoteForm.jsx'
 import FuelQuoteHistory from '../components/FuelQuoteHistory.jsx'
 import LoginButton from '../components/LoginButton.jsx'
 import RegisterButton from '../components/RegisterButton.jsx'
-
+import localFont from '@next/font/local'
 
 const inter = Inter({ subsets: ['latin'] })
+
+const satoshi = localFont({
+  src: '../fonts/Satoshi-Regular.otf',
+  weight: '200'
+})
+
+const satoshiBold = localFont({
+  src: '../fonts/Satoshi-Bold.otf',
+  weight: '200'
+})
 
 export default function Home() {
   return (
@@ -20,10 +30,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className="ml-28">
-          <LoginButton/>
-          <RegisterButton/>
-        </div>
+          <div className={satoshiBold.className}>
+            <span className="font-semibold">
+              <LoginButton/>
+              <RegisterButton/>
+            </span>
+            <h1 className="text-9xl mt-24 mx-auto font-extrabold">Calculate your<br/>Fuel Quotes</h1>
+          </div>
       </main>
     </>
   )
