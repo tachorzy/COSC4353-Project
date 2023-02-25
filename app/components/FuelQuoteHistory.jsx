@@ -13,12 +13,6 @@ const roboto = Roboto({
 const FuelQuoteHistory = () => {
     return (
         <div className={FuelQuoteHistoryStyle.container}>
-            <div className={FuelQuoteHistoryStyle.header}>
-                <h1 className={FuelQuoteHistoryStyle.branding}>
-                    Fuel Quote History
-                </h1>
-            </div>
-
             <table className={FuelQuoteHistoryStyle.table}>
                 <thead>
                     <tr>
