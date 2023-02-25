@@ -6,6 +6,7 @@ import { Combo, Roboto, Rubik } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import localFont from '@next/font/local'
 import FuelQuoteStyle from '../styles/FuelQuoteStyle.module.css'
+import FuelQuoteHistory from '../components/FuelQuoteHistory.jsx'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -32,6 +33,7 @@ export default function FuelQuote() {
         <div className={satoshi.className}>
           <FuelQuoteForm></FuelQuoteForm>
         </div>
+        <FuelQuoteHistory/>
       </main>
     </>
   )

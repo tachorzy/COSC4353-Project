@@ -3,6 +3,10 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import FuelQuoteForm from '../components/FuelQuoteForm.jsx'
+import FuelQuoteHistory from '../components/FuelQuoteHistory.jsx'
+import LoginButton from '../components/LoginButton.jsx'
+import RegisterButton from '../components/RegisterButton.jsx'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,6 +20,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <LoginButton/>
+        <RegisterButton/>
       </main>
     </>
   )
