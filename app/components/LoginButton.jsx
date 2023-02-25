@@ -11,7 +11,7 @@ const RegisterButton = () => {
     return(
         <div className={styles.grid}>
             <Link
-                href="/login"
+                href="/Login"
                 className={styles.card}
             >
                 <h2 className={inter.className}>

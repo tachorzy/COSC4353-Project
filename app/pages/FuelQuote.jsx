@@ -31,9 +31,11 @@ export default function FuelQuote() {
       </Head>
       <main className={styles.main}>
         <div className={satoshi.className}>
-          <FuelQuoteForm></FuelQuoteForm>
+          <FuelQuoteForm/>
         </div>
-        <FuelQuoteHistory/>
+        <div className={satoshi.className}>
+          <FuelQuoteHistory/>
+        </div>
       </main>
     </>
   )
