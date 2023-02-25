@@ -19,7 +19,7 @@ export default function Login() {
                 <h1 className="text-2xl font-semibold text-stone-600">Sign in</h1>
               </div>
               <div className="divide-y divide-gray-200">
-                <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                <div className="py-8 text-base leading-6 space-y-4 text-stone-700 sm:text-lg sm:leading-7">
                   <div className="relative">
                     <input
                       type="email"
@@ -63,7 +63,7 @@ export default function Login() {
                 <div className="text-sm leading-5 pt-6">
                   Dont have an account?{' '}
                   <Link href="/register">
-                    <h3 className="font-medium text-stone-500 hover:text-stone-600 focus:outline-none focus:underline transition ease-in-out duration-150">
+                    <h3 className="font-medium text-stone-600 hover:text-stone-700 focus:outline-none focus:underline transition ease-in-out duration-150">
                       Sign up instead
                     </h3>
                   </Link>

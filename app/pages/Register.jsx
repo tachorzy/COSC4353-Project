@@ -6,20 +6,20 @@ import Link from 'next/link'
 
 export default function Register() {
     return (
-      <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+      <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12">
         <Head>
           <title>Sign Up</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
   
         <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-          <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow-lg rounded-3xl sm:p-10">
+          <div className="relative px-4 py-10 bg-stone-200 mx-8 md:mx-0 shadow-lg rounded-3xl sm:p-10">
             <div className="max-w-md mx-auto">
               <div>
-                <img src="/logo.svg" className="h-7 sm:h-8" />
+                <h1 className="text-2xl font-semibold text-stone-600">Register</h1>
               </div>
               <div className="divide-y divide-gray-200">
-                <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                <div className="py-8 text-base leading-6 space-y-4 text-stone-700 sm:text-lg sm:leading-7">
                   <div className="relative">
                     <input
                       type="text"
@@ -60,7 +60,7 @@ export default function Register() {
                 <div className="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
                   <button
                     type="submit"
-                    className="w-full bg-indigo-600 hover:bg-indigo-500 text-white py-3 rounded-md transition duration-150 ease-in-out sm:py-4 sm:text-sm sm:leading-5"
+                    className="w-full bg-stone-400 hover:bg-stone-500 text-white py-3 rounded-md transition duration-150 ease-in-out sm:py-4 sm:text-sm sm:leading-5"
                   >
                     Sign Up
                   </button>
@@ -68,7 +68,7 @@ export default function Register() {
                 <div className="text-sm leading-5 pt-6">
                   Already have an account?{' '}
                   <Link href="/login">
-                    <h3 className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                    <h3 className="font-medium text-stone-600 hover:text-stone-700 focus:outline-none focus:underline transition ease-in-out duration-150">
                       Sign in instead
                     </h3>
                   </Link>
