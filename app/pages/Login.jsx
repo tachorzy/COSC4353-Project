@@ -13,10 +13,10 @@ export default function Login() {
                 <link rel="icon" href="/favicon.ico" />
             </Head> 
         <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-          <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow-lg rounded-3xl sm:p-10">
+          <div className="relative px-4 py-10 bg-stone-200 mx-8 md:mx-0 shadow-lg rounded-3xl sm:p-10">
             <div className="max-w-md mx-auto">
               <div>
-                <img src="/fuel-oil.svg" className="h-7 sm:h-8" />
+                <h1 className="text-2xl font-semibold text-stone-600">Sign in</h1>
               </div>
               <div className="divide-y divide-gray-200">
                 <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
@@ -43,7 +43,7 @@ export default function Login() {
                       type="checkbox"
                       id="remember_me"
                       name="remember_me"
-                      className="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                      className="form-checkbox h-4 w-4 text-stone-400 transition duration-150 ease-in-out"
                     />
                     <label htmlFor="remember_me" className="ml-2 block text-sm leading-5 text-gray-900">
                       Remember me
@@ -55,7 +55,7 @@ export default function Login() {
                 <div className="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
                   <button
                     type="submit"
-                    className="w-full bg-indigo-600 hover:bg-indigo-500 text-white py-3 rounded-md transition duration-150 ease-in-out sm:py-4 sm:text-sm sm:leading-5"
+                    className="w-full bg-stone-400 hover:bg-stone-500 text-white py-3 rounded-md transition duration-150 ease-in-out sm:py-4 sm:text-sm sm:leading-5"
                   >
                     Sign in
                   </button>
@@ -63,7 +63,7 @@ export default function Login() {
                 <div className="text-sm leading-5 pt-6">
                   Dont have an account?{' '}
                   <Link href="/register">
-                    <h3 className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                    <h3 className="font-medium text-stone-500 hover:text-stone-600 focus:outline-none focus:underline transition ease-in-out duration-150">
                       Sign up instead
                     </h3>
                   </Link>
