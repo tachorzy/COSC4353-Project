@@ -67,7 +67,7 @@ export default function Register() {
                 </div>
                 <div className="text-sm leading-5 pt-6">
                   Already have an account?{' '}
-                  <Link href="/login">
+                  <Link href="/Login">
                     <h3 className="font-medium text-stone-600 hover:text-stone-700 focus:outline-none focus:underline transition ease-in-out duration-150">
                       Sign in instead
                     </h3>
