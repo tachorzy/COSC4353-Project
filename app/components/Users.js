@@ -19,43 +19,43 @@ class User {
       this.password = password;
     }
     
-    get street() {
+    get getStreet() {
         return this.street();
       }
 
-    set street(street){
+    set setStreet(street){
         this.street= street;
     }
 
-    get zip() {
+    get getZip() {
         return this.zip;
     }
 
-    set zip(zip) {
+    set setZip(zip) {
         this.zip = zip;
     }
 
-    get state(){
+    get getState(){
         return this.state;
     }
 
-    set state(state){
+    set setState(state){
         this.state = state;
     }
 
-    get city(){
+    get getCity(){
         return this.city;
     }
 
-    set city(city){
+    set setCity(city){
         this.city = city;
     }
 
-    get name(){
+    get getName(){
         return this.name;
     }
 
-    set name(name){
+    set setName(name){
         this.name = name;
     }
   }
