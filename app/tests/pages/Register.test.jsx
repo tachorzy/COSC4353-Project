@@ -25,7 +25,7 @@ describe('Register component', () => {
 
     it('Disable the submit button if either field is left empty', () => {
         render(<Register/>);
-        const submitButton = screen.getByRole('button', { name: "Sign in"});
+        const submitButton = screen.getByRole('button', { name: "Sign Up"});
         
         expect(submitButton).toBeDisabled();
 
