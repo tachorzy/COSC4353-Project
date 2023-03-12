@@ -37,7 +37,7 @@ describe('Login component', () => {
         expect(passwordInput).toHaveValue("testpassword")
     })
 
-    it('Input should not contain any invalid characters e.g. whitespace', () => {
+    it('Input for email and password should not contain any invalid characters e.g. whitespace', () => {
         render(<Login/>);
 
         const emailInput = screen.getByPlaceholderText("Email address");
