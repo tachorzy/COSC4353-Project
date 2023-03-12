@@ -61,7 +61,7 @@ describe('Register component', () => {
         expect(passwordInput).toBe("testpassword");
     })
     
-    it('Must validate and the user does not already exist under the same credentials', () => {
+    it('Must validate and confirm that the user does not already exist under the same credentials', () => {
         const users = new Map([
             ["test@gmail.com", "test"], 
             ["tachorzyad@gmail.com", "fakepassword"], 
