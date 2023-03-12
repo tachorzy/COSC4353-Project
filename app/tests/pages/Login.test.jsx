@@ -32,7 +32,10 @@ describe('Login component', () => {
 
         fireEvent.change(emailInput, { target: { value: "testemail@gmail.com" }});
         fireEvent.change(passwordInput, { target: { value: "testpassword"}});
+        fireEvent.click(submitButton);
 
+        expect(emailInput).toHaveValue("testemail@gamil.com");
+        expect(passwordInput).toHaveValue("testpassword")
         
     })
 })
