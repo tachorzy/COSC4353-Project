@@ -1,19 +1,17 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter, Over_the_Rainbow } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
-import Link from 'next/link'
 import Login from '../../pages/Login.jsx'
-import { render, screen } from '@testing-library/react'
-// import "@testing-library/jest-dom"
+import { render, screen, fireEvent } from '@testing-library/react'
+import '@testing-library/jest-dom'
 
-//tests for Landing Page
+//tests for Login Page
 describe('Login component', () => {
-    it('All components should render appropriately', () =>{
+    it('All components should render properly', () =>{
         render(<Login/>);
-        const emailInput = screen.getByPlaceholderText;('Email address');
-        const passwordInput = screen.getByPlaceholderText;
-        const submitButton = screen.getByRole('button', { name: "Sign in"});
+    })
+
+    it('Submits the form with email and password', () => {
+        render(<Login/>);
+        const emailInput = screen.getByPlaceholderText("Email address");
+        const passwordInput = screen.getByPlaceholderText("Password");
 
         fireEvent.change(emailInput, { target: { value: "testemail@gmail.com" }});
         fireEvent.change(passwordInput, { target: { value: "testpassword"}});
@@ -21,9 +19,22 @@ describe('Login component', () => {
         expect(emailInput).toHaveValue("testemail@gmail.com");
         expect(passwordInput).toHaveValue("testpassword")
     })
-    // it('Input fields should not be left empty', () =>{
-    
-    // })
+
+    it('Disable the submit button if either field is left empty', () => {
+        render(<Login/>);
+
+        const submitButton = screen.getByRole('button', { name: "Sign in"});
+        
+        expect(submitButton).toBeDisabled();
+
+        const emailInput = screen.getByPlaceholderText("Email address");
+        const passwordInput = screen.getByPlaceholderText("Password");
+
+        fireEvent.change(emailInput, { target: { value: "testemail@gmail.com" }});
+        fireEvent.change(passwordInput, { target: { value: "testpassword"}});
+
+        
+    })
 })
 
 
