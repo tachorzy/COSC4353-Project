@@ -8,7 +8,7 @@ describe('Login component', () => {
         render(<Login/>);
     })
 
-    it('Submits the form with email and password', () => {
+    it('Submits the form and stores the values of the email and password', () => {
         render(<Login/>);
         const emailInput = screen.getByPlaceholderText("Email address");
         const passwordInput = screen.getByPlaceholderText("Password");
