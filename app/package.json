@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --watchAll --verbose"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.11",
@@ -17,7 +18,13 @@
     "yarn": "^1.22.19"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "github:testing-library/jest-dom",
+    "@testing-library/react": "^14.0.0",
+    "@types/jest": "^29.4.0",
     "autoprefixer": "^10.4.13",
+    "jest": "^29.5.0",
+    "jest-dom": "^4.0.0",
+    "jest-environment-jsdom": "^29.5.0",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.6"
   }
