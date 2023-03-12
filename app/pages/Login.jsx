@@ -8,10 +8,10 @@ import Link from 'next/link'
 export default function Login() {
     return (
       <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12"> 
-            <Head>
-                <title>Login</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head> 
+        <Head>
+            <title>Login</title>
+            <link rel="icon" href="/favicon.ico" />
+        </Head> 
         <div className="relative py-3 sm:max-w-xl sm:mx-auto">
           <div className="relative px-4 py-10 bg-stone-200 mx-8 md:mx-0 shadow-lg rounded-3xl sm:p-10">
             <div className="max-w-md mx-auto">
