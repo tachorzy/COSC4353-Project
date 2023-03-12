@@ -11,14 +11,11 @@ import { render, screen } from '@testing-library/react'
 describe('Home', () => {
     it('All components should render appropriately', () =>{
         render(<Home/>)
-
         // const header = screen.getByRole('heading')
         // const headerText = "Calculate your Fuel Quotes"
         // expect(header).toHaveTextContent('')
     })
 })
-
-
 
 it('Input fields should not be left empty', () =>{
     
