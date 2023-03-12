@@ -62,22 +62,46 @@ describe('Login component', () => {
             ["YetAnotherFakeUser@gmail.com", "testtestest"]
         ])
 
-        const userEmail = "test@gmail.com";
-        const userPassword = "test";
+        const userEmail = "bademail@gmail.com";
+        const userPassword = "badpassword";
+        const sendMockMessage = jest.fn()  
+        // const routerPushMock = jest.fn()
 
         const userExists = users.has(userEmail) && users.get(userEmail) === userPassword;
         
         if(!userExists)
-            sendMessageMock('Invalid email or password!')
+            sendMessageMock("Invalid email or password.")
 
-        expect(userExists).toBe(true);
+        expect(sendMockMessage).toHaveBeenCalledWith("Invalid email or password.");
+        // expect(routerPushMock).toHaveBeenCalledWith("../../pages/FuelQuote")
     })
 
-})
+    it('Must reroute to FuelQuote page if given a valid email and password', () => {
+        const users = new Map([
+            ["test@gmail.com", "test"], 
+            ["tachorzyad@gmail.com", "fakepassword"], 
+            ["randomuser@yahoo.com", "fakepassword2"], 
+            ["jest@gmail.com", "totallyArealPassword444"], 
+            ["gabenewell@valvesoftware.com", "test"], 
+            ["YetAnotherFakeUser@gmail.com", "testtestest"]
+        ])
 
+        //valid email and password that's found in map
+        const userEmail = "test@gmail.com";
+        const userPassword = "test";
 
+        const sendMockMessage = jest.fn()  
+        const routerPushMock = jest.fn()
 
-it('The entered user information should exist in our database', () => {
+        const userExists = users.has(userEmail) && users.get(userEmail) === userPassword;
+        
+        if(!userExists)
+            sendMessageMock("Invalid email or password.")
+        else
+            routerPushMock('../../pages/FuelQuote')
 
+        expect(sendMockMessage).toHaveBeenCalledWith("Invalid email or password.");
+        expect(routerPushMock).toHaveBeenCalledWith("../../pages/FuelQuote")
+    })
 })
 
