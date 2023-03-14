@@ -50,7 +50,7 @@ const FuelQuoteForm = () => {
                         <Image src='/gallon.svg' width={28} height={28} className={FuelQuoteStyle.gallonLogo}></Image>
                     </div>
                 </div>
-                <buttton className={FuelQuoteStyle.calculateButton}>Calculate Your Fuel Quote!</buttton>
+                <buttton className={FuelQuoteStyle.calculateButton}>{"Calculate Your Fuel Quote!"}</buttton>
             </form>  
         </div>
     );
