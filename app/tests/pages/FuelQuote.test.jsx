@@ -43,7 +43,7 @@ it('Input fields should not be left empty', () =>{
     // fireEvent.click(submitButton);
 })
 
-it('The entered user information should exist in our database', () => {
+it('', () => {
 
 })
 

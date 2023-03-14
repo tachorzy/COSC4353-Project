@@ -21,9 +21,7 @@ const satoshi = localFont({
   weight: '200'
 })
 
-export default function FuelQuote() {
-  const pricePerGallon = 2.958
-
+export default function ProfileForm() {
   return (
     <>
       <Head>
@@ -37,12 +35,34 @@ export default function FuelQuote() {
           <div>
             <div className={roboto.className}>
               <form className={FuelQuoteStyle.container}>
-                  <h2 className=" text-stone-700 font-semibold col-span-2 text-3xl text-center">The Current rate is <b>{pricePerGallon}</b></h2>
                   <div className={FuelQuoteStyle.inputContainer}>
+                      <input className={FuelQuoteStyle.standardInputBox} placeholder={"First Name"} name="first-name"/>
+                  </div>  
+                  <div className={FuelQuoteStyle.inputContainer}>
+                      <input className={FuelQuoteStyle.standardInputBox} placeholder={"Last Name"} name="last-name"/>
+                  </div>  
+                  <div className={FuelQuoteStyle.inputContainer}>
+                      <input className={FuelQuoteStyle.standardInputBox} placeholder={"E-mail address"} name="email"/>
+                  </div>  
+                  <div className={FuelQuoteStyle.inputContainer}>
+                      <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 1"} name="delivery-address"/>
+                  </div>
+              
+                  <div className={FuelQuoteStyle.inputContainer}>
+                      <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 2 (Optional)"} name="delivery-address2"/>
+                  </div>
+                  
+                  <div className={FuelQuoteStyle.splitContainer}>
+                          <input className={FuelQuoteStyle.smallInputBox} placeholder={"Zip Code"} name="zip-cpde"/>
+                          <input className={FuelQuoteStyle.smallInputBox} placeholder={"State"} name="state"/>
+                  </div>
+                  {/* <div className={FuelQuoteStyle.inputContainer}>
                       <div className={FuelQuoteStyle.logoInputContainer}>
                           <input className={FuelQuoteStyle.standardInputBox} placeholder={"Delivery Date"} name="delivery-date"/>
                           <Image src='/calendar.svg' width={28} height={28} className={FuelQuoteStyle.calendarLogo}></Image>
                       </div>
+
+                  
                   </div>
                   <div className={FuelQuoteStyle.splitContainer}>
                       <div className={FuelQuoteStyle.logoInputContainer}>
@@ -50,10 +70,9 @@ export default function FuelQuote() {
                           <Image src='/gallon.svg' width={28} height={28} className={FuelQuoteStyle.gallonLogo} alt="gallon"></Image>
                       </div>
                   </div>
-                  <buttton className={FuelQuoteStyle.calculateButton} name="calculate">{"Calculate Your Fuel Quote!"}</buttton>
+                  <buttton className={FuelQuoteStyle.calculateButton} name="calculate">{"Calculate Your Fuel Quote!"}</buttton> */}
               </form>  
             </div>
-            <CalculationsBox/>
           </div>
 
         </div>
