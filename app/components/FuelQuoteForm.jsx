@@ -56,6 +56,7 @@ const FuelQuoteForm = () => {
                     </div>
                 </div>
                 <buttton className={FuelQuoteStyle.calculateButton}>Calculate Your Fuel Quote!</buttton>
+                <buttton className={FuelQuoteStyle.calculateButton}>Calculate Your Fuel Quote!</buttton>
             </form>  
         </div>
     );

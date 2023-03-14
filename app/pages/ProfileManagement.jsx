@@ -4,7 +4,7 @@ import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 
-export default function Register() {
+export default function ProfileManagement() {
     return (
       <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12">
         <Head>
@@ -16,7 +16,7 @@ export default function Register() {
           <div className="relative px-4 py-10 bg-stone-200 mx-8 md:mx-0 shadow-lg rounded-3xl sm:p-10">
             <div className="max-w-md mx-auto">
               <div>
-                <h1 className="text-2xl font-semibold text-stone-600">Register</h1>
+                <h1 className="text-2xl font-semibold text-stone-600">Profile Management</h1>
               </div>
               <div className="divide-y divide-gray-200">
                 <div className="py-8 text-base leading-6 space-y-4 text-stone-700 sm:text-lg sm:leading-7">
@@ -25,55 +25,79 @@ export default function Register() {
                       type="text"
                       id="name"
                       name="name"
-                      placeholder="Name"
+                      placeholder="Full Name"
+                      maxLength= "50"
+                      className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                      required
+                    />
+                  </div>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      id="address1"
+                      name="address1"
+                      placeholder="Address 1"
+                      className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                      maxLength ="100"
+                      required
+                    />
+                  </div>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      id="address2"
+                      name="address2"
+                      placeholder="Address 2"
+                      maxLength ="100"
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                     />
                   </div>
                   <div className="relative">
                     <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      placeholder="Email address"
+                      type="text"
+                      id="city"
+                      name="city"
+                      placeholder="City"
+                      maxLength="100"
+                      required
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                     />
                   </div>
                   <div className="relative">
-                    <input
-                      type="password"
-                      id="password"
-                      name="password"
-                      placeholder="Password"
+                    <select
+                      id="state"
+                      name="state"
+                      placeholder="State"
+                      required
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                    />
+                    >
+                        <option value="">Choose one...</option>
+                        <option>AL</option>
+			            <option>CA</option>
+                        <option>TX</option>
+                    </select>
                   </div>
                   <div className="relative">
                     <input
-                      type="password"
-                      id="confirm_password"
-                      name="confirm_password"
-                      placeholder="Confirm Password"
+                      type="text"
+                      id="zip"
+                      name="zip"
+                      placeholder="Zip code"
+                      maxLength="9"
+                      minLength="5"
+                      required
+                      pattern="[0-9]*"
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                     />
                   </div>
                 </div>
                 <div className="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
-                  <Link href ="/Login">
                   <button
                     type="submit"
                     className="w-full bg-stone-400 hover:bg-stone-500 text-white py-3 rounded-md transition duration-150 ease-in-out sm:py-4 sm:text-sm sm:leading-5"
                   >
-                    Sign Up
+                    Submit
                   </button>
-                  </Link>
-                </div>
-                <div className="text-sm leading-5 pt-6">
-                  Already have an account?{' '}
-                  <Link href="/Login">
-                    <h3 className="font-medium text-stone-600 hover:text-stone-700 focus:outline-none focus:underline transition ease-in-out duration-150">
-                      Sign in instead
-                    </h3>
-                  </Link>
                 </div>
               </div>
             </div>
