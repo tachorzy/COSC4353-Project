@@ -4,7 +4,9 @@ import localFont from '@next/font/local'
 import { Inter } from '@next/font/google'
 import { Combo, Roboto, Rubik } from '@next/font/google'
 import FuelQuoteStyle from '../styles/FuelQuoteStyle.module.css'
-
+var UsaStates = require('usa-states').UsaStates;
+var usStates = new UsaStates();
+var statesAbrev = usStates.arrayOf('abbreviations');
 const roboto = Roboto({ 
     subsets: ['latin'], 
     weight: '400' 
@@ -33,8 +35,13 @@ const FuelQuoteForm = () => {
                 </div>
                 
                 <div className={FuelQuoteStyle.splitContainer}>
-                        <input className={FuelQuoteStyle.smallInputBox} placeholder={"Zip Code"} name="zip-cpde"/>
-                        <input className={FuelQuoteStyle.smallInputBox} placeholder={"State"} name="state"/>
+                        <input  className={FuelQuoteStyle.smallInputBox} placeholder={"Zip Code"} name="zip-code" min ="5" max = "9" required />
+                        <select className={FuelQuoteStyle.smallInputBox} placeholder={"State"} name="state" id = "state"/>
+                            {statesAbrev.map((state) => (
+                            <option key={state} value={state}>
+                            {state}
+                            </option>
+                            ))}
                 </div>
                 <div className={FuelQuoteStyle.inputContainer}>
                     <div className={FuelQuoteStyle.logoInputContainer}>
