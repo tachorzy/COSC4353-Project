@@ -11,23 +11,24 @@ const roboto = Roboto({
     subsets: ['latin'], 
     weight: '400' 
 })
-  
-
+var UsaStates = require('usa-states').UsaStates;
+var usStates = new UsaStates();
+var statesAbrev = usStates.arrayOf('abbreviations');
 const FuelQuoteForm = () => {
     return(
         <div className={roboto.className}>
             <form className={FuelQuoteStyle.container}>
                 <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"First Name"} name="first-name"/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"First Name"} name="first-name" required/>
                 </div>  
                 <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Last Name"} name="last-name"/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Last Name"} name="last-name" required/>
                 </div>  
                 <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"E-mail address"} name="email"/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"E-mail address"} name="email" required/>
                 </div>  
                 <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 1"} name="delivery-address"/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 1"} name="delivery-address"required/>
                 </div>
             
                 <div className={FuelQuoteStyle.inputContainer}>
@@ -56,6 +57,7 @@ const FuelQuoteForm = () => {
                         <Image src='/gallon.svg' width={28} height={28} className={FuelQuoteStyle.gallonLogo}></Image>
                     </div>
                 </div>
+                <buttton className={FuelQuoteStyle.calculateButton}>Calculate Your Fuel Quote!</buttton>
                 <buttton className={FuelQuoteStyle.calculateButton}>Calculate Your Fuel Quote!</buttton>
             </form>  
         </div>
