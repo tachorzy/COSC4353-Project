@@ -3,9 +3,24 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
+import React, { useState } from 'react';
 
-
-export default function Login() {
+function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      var temp = false;
+      // Do login logic here
+      if (email == "test@gmail.com" && password == "test2") {
+        window.location.href = '/Profile';
+      } else {
+        return alert('Invalid username or password');
+      }
+      // Navigate to the desired page
+      
+    };
+  
     return (
       <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12"> 
         <Head>
@@ -14,10 +29,12 @@ export default function Login() {
         </Head> 
         <div className="relative py-3 sm:max-w-xl sm:mx-auto">
           <div className="relative px-4 py-10 bg-stone-200 mx-8 md:mx-0 shadow-lg rounded-3xl sm:p-10">
+
             <div className="max-w-md mx-auto">
               <div>
                 <h1 className="text-2xl font-semibold text-stone-600">Sign in</h1>
               </div>
+              <form onSubmit={handleSubmit}>
               <div className="divide-y divide-gray-200">
                 <div className="py-8 text-base leading-6 space-y-4 text-stone-700 sm:text-lg sm:leading-7">
                   <div className="relative">
@@ -26,7 +43,10 @@ export default function Login() {
                       id="email"
                       name="email"
                       placeholder="Email address"
+                      value={email}
+                      onChange={event => setEmail(event.target.value)}
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                      required
                     />
                   </div>
                   <div className="relative">
@@ -35,7 +55,10 @@ export default function Login() {
                       id="password"
                       name="password"
                       placeholder="Password"
+                      value={password}
+                      onChange={event => setPassword(event.target.value)}
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                      required
                     />
                   </div>
                   <div className="relative flex items-center">
@@ -53,12 +76,12 @@ export default function Login() {
                   </div>
                 </div>
                 <div className="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
-                  <button
+                <button
                     type="submit"
                     className="w-full bg-stone-400 hover:bg-stone-500 text-white py-3 rounded-md transition duration-150 ease-in-out sm:py-4 sm:text-sm sm:leading-5"
                   >
                     Sign in
-                  </button>
+                </button>
                 </div>
                 <div className="text-sm leading-5 pt-6">
                   Dont have an account?{' '}
@@ -69,10 +92,12 @@ export default function Login() {
                   </Link>
                 </div>
               </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
     )
+    
   }
-  
+  export default Login;

@@ -3,8 +3,19 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
+import React, { useState } from 'react';
 
 export default function Register() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      // Do login logic here
+      window.location.href = '/Login';
+      
+      // Navigate to the desired page
+      
+    };
     return (
       <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12">
         <Head>
@@ -19,6 +30,7 @@ export default function Register() {
                 <h1 className="text-2xl font-semibold text-stone-600">Register</h1>
               </div>
               <div className="divide-y divide-gray-200">
+              <form onSubmit={handleSubmit}>
                 <div className="py-8 text-base leading-6 space-y-4 text-stone-700 sm:text-lg sm:leading-7">
                   <div className="relative">
                     <input
@@ -27,6 +39,7 @@ export default function Register() {
                       name="name"
                       placeholder="Name"
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                      required
                     />
                   </div>
                   <div className="relative">
@@ -36,6 +49,7 @@ export default function Register() {
                       name="email"
                       placeholder="Email address"
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                      required
                     />
                   </div>
                   <div className="relative">
@@ -45,6 +59,7 @@ export default function Register() {
                       name="password"
                       placeholder="Password"
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                      required
                     />
                   </div>
                   <div className="relative">
@@ -54,16 +69,17 @@ export default function Register() {
                       name="confirm_password"
                       placeholder="Confirm Password"
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                      required
                     />
                   </div>
                 </div>
                 <div className="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
-                  <button
+                <button
                     type="submit"
                     className="w-full bg-stone-400 hover:bg-stone-500 text-white py-3 rounded-md transition duration-150 ease-in-out sm:py-4 sm:text-sm sm:leading-5"
-                  >
+                >
                     Sign Up
-                  </button>
+                </button>
                 </div>
                 <div className="text-sm leading-5 pt-6">
                   Already have an account?{' '}
@@ -73,6 +89,7 @@ export default function Register() {
                     </h3>
                   </Link>
                 </div>
+              </form>
               </div>
             </div>
           </div>
