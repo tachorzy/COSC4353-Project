@@ -4,6 +4,8 @@ import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 import React, { useState } from 'react';
+import { tempUserBase } from '@/utils/tempUserBase'
+
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -12,13 +14,13 @@ function Login() {
       event.preventDefault();
       var temp = false;
       // Do login logic here
-      if (email == "test@gmail.com" && password == "test2") {
-        window.location.href = '/Profile';
-      } else {
-        return alert('Invalid username or password');
-      }
-      // Navigate to the desired page
-      
+      tempUserBase.forEach((user) => {
+        if (user.email === email && user.password === password) {
+          window.location.href = '/Profile';
+        } else {
+          return alert('Invalid username or password');
+        }
+      })      
     };
   
     return (

@@ -6,16 +6,17 @@ import Link from 'next/link'
 import React, { useState } from 'react';
 
 export default function Register() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const handleSubmit = (event) => {
       event.preventDefault();
       // Do login logic here
       window.location.href = '/Login';
-      
+        
       // Navigate to the desired page
-      
+        
     };
+
     return (
       <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12">
         <Head>
