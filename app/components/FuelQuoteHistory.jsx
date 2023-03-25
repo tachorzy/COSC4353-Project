@@ -1,56 +1,87 @@
-import styles from '../styles/Home.module.css'
-import Image from 'next/image'
-import localFont from '@next/font/local'
-import { Inter } from '@next/font/google'
-import { Combo, Roboto, Rubik } from '@next/font/google'
-import FuelQuoteHistoryStyle from '../styles/FuelQuoteHistoryStyle.module.css'
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import React from 'react';
 
-const roboto = Roboto({ 
-    subsets: ['latin'], 
-    weight: '400' 
-})
+export default function FuelQuoteHistory() {
+  const [quoteData, setQuoteData] = useState([]);
 
-const FuelQuoteHistory = () => {
-    return (
-        <div className={FuelQuoteHistoryStyle.container}>
-            <div className={FuelQuoteHistoryStyle.header}>
-                <h1 className={FuelQuoteHistoryStyle.branding}>
-                    Fuel Quote History
-                </h1>
-            </div>
+  useEffect(() => {
+    fetch('http://localhost:3000/api/getQuoteHistory')
+      .then((response) => response.json())
+      .then((data) => {
+        setQuoteData(data);
+      });
+  }, []);
 
-            <table className={FuelQuoteHistoryStyle.table}>
+  return (
+    <div className="container">
+      <header>
+        <nav className="navbar">
+          <div className="navbar-brand">Fuel Quote</div>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link href="/home">
+                <a>Home</a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link href="/quote">
+                <a>Quote</a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link href="/profile">
+                <a>Profile</a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link href="/logout">
+                <a>Logout</a>
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <main className="content">
+        <div className="card">
+          <h3 className="card-title">Fuel Quote History</h3>
+          <div className="card-body">
+            <div className="table-container">
+              <table className="table">
                 <thead>
-                    <tr>
-                        <th className={FuelQuoteHistoryStyle.th}>Delivery Address</th>
-                        <th className={FuelQuoteHistoryStyle.th}>Delivery Date</th>
-                        <th className={FuelQuoteHistoryStyle.th}>Gallons Requested</th>
-                        <th className={FuelQuoteHistoryStyle.th}>Total Amount</th>
-                    </tr>
+                  <tr>
+                    <th scope="col">Delivery Date</th>
+                    <th scope="col">Address 1</th>
+                    <th scope="col">Address 2</th>
+                    <th scope="col">City</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Zip Code</th>
+                    <th scope="col">Gallons</th>
+                    <th scope="col">Price/Gal</th>
+                    <th scope="col">Total Cost</th>
+                  </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className={FuelQuoteHistoryStyle.td}>123 Main St, Houston, TX 77001</td>
-                        <td className={FuelQuoteHistoryStyle.td}>01/01/2023</td>
-                        <td className={FuelQuoteHistoryStyle.td}>500</td>
-                        <td className={FuelQuoteHistoryStyle.td}>$2,500.00</td>
+                  {quoteData.map((quote) => (
+                    <tr key={quote.id}>
+                      <td>{quote.date}</td>
+                      <td>{quote.address1}</td>
+                      <td>{quote.address2}</td>
+                      <td>{quote.city}</td>
+                      <td>{quote.state}</td>
+                      <td>{quote.zipCode}</td>
+                      <td>{quote.gallons.toFixed(2)}</td>
+                      <td>${quote.pricePerGallon.toFixed(2)}</td>
+                      <td>${quote.totalCost.toFixed(2)}</td>
                     </tr>
-                    <tr>
-                        <td className={FuelQuoteHistoryStyle.td}>456 Oak Ave, Dallas, TX 75201</td>
-                        <td className={FuelQuoteHistoryStyle.td}>12/15/2022</td>
-                        <td className={FuelQuoteHistoryStyle.td}>250</td>
-                        <td className={FuelQuoteHistoryStyle.td}>$1,375.00</td>
-                    </tr>
-                    <tr>
-                        <td className={FuelQuoteHistoryStyle.td}>789 Pine Blvd, San Antonio, TX 78201</td>
-                        <td className={FuelQuoteHistoryStyle.td}>11/28/2022</td>
-                        <td className={FuelQuoteHistoryStyle.td}>750</td>
-                        <td className={FuelQuoteHistoryStyle.td}>$3,750.00</td>
-                    </tr>
+                  ))}
                 </tbody>
-            </table>
+              </table>
+            </div>
+          </div>
         </div>
-    );
+      </main>
+    </div>
+  );
 }
-
-export default FuelQuoteHistory;
