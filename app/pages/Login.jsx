@@ -21,11 +21,7 @@ function Login() {
         } else {
           return alert('Invalid username or password');
         }
-      })
-
-
-      // Navigate to the desired page
-      
+      })      
     };
   
     return (
