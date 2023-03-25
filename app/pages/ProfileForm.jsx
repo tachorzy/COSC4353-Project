@@ -9,6 +9,11 @@ import localFont from '@next/font/local'
 import FuelQuoteStyle from '../styles/FuelQuoteStyle.module.css'
 import FuelQuoteHistory from '../components/FuelQuoteHistory.jsx'
 
+var UsaStates = require('usa-states').UsaStates;
+var usStates = new UsaStates();
+var statesAbrev = usStates.arrayOf('abbreviations');
+
+
 const inter = Inter({ subsets: ['latin'] })
 
 const roboto = Roboto({ 
@@ -35,27 +40,32 @@ export default function ProfileForm() {
           <div>
             <div className={roboto.className}>
               <form className={FuelQuoteStyle.container}>
-                  <div className={FuelQuoteStyle.inputContainer}>
-                      <input className={FuelQuoteStyle.standardInputBox} placeholder={"First Name"} name="first-name"/>
-                  </div>  
-                  <div className={FuelQuoteStyle.inputContainer}>
-                      <input className={FuelQuoteStyle.standardInputBox} placeholder={"Last Name"} name="last-name"/>
-                  </div>  
-                  <div className={FuelQuoteStyle.inputContainer}>
-                      <input className={FuelQuoteStyle.standardInputBox} placeholder={"E-mail address"} name="email"/>
-                  </div>  
-                  <div className={FuelQuoteStyle.inputContainer}>
-                      <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 1"} name="delivery-address"/>
-                  </div>
-              
-                  <div className={FuelQuoteStyle.inputContainer}>
-                      <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 2 (Optional)"} name="delivery-address2"/>
-                  </div>
-                  
-                  <div className={FuelQuoteStyle.splitContainer}>
-                          <input className={FuelQuoteStyle.smallInputBox} placeholder={"Zip Code"} name="zip-cpde"/>
-                          <input className={FuelQuoteStyle.smallInputBox} placeholder={"State"} name="state"/>
-                  </div>
+              <div className={FuelQuoteStyle.inputContainer}>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"First Name"} name="first-name" required/>
+                </div>  
+                <div className={FuelQuoteStyle.inputContainer}>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Last Name"} name="last-name" required/>
+                </div>  
+                <div className={FuelQuoteStyle.inputContainer}>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"E-mail address"} name="email" required/>
+                </div>  
+                <div className={FuelQuoteStyle.inputContainer}>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 1"} name="delivery-address"required/>
+                </div>
+            
+                <div className={FuelQuoteStyle.inputContainer}>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 2 (Optional)"} name="delivery-address2"/>
+                </div>
+                
+                <div className={FuelQuoteStyle.splitContainer}>
+                        <input  className={FuelQuoteStyle.smallInputBox} placeholder={"Zip Code"} name="zip-code" min ="5" max = "9" required />
+                        <select className={FuelQuoteStyle.smallInputBox} placeholder={"State"} name="state" id = "state"/>
+                            {statesAbrev.map((state) => (
+                            <option key={state} value={state}>
+                            {state}
+                            </option>
+                            ))}
+                </div>
                   {/* <div className={FuelQuoteStyle.inputContainer}>
                       <div className={FuelQuoteStyle.logoInputContainer}>
                           <input className={FuelQuoteStyle.standardInputBox} placeholder={"Delivery Date"} name="delivery-date"/>

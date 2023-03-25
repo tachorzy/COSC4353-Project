@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import FuelQuoteForm from '../components/FuelQuoteForm.jsx'
-import CalculationsBox from '../components/CalculationsBox.jsx'
 import { Inter } from '@next/font/google'
 import { Combo, Roboto, Rubik } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
@@ -33,12 +32,8 @@ export default function FuelQuote() {
         <link rel="icon" href="/favicon.ico"/>
       </Head>
       <main className={styles.main}>
-      <div className={satoshi.className}>
-          <div>
-              <FuelQuoteForm/>
-              <CalculationsBox/>
-          </div>
-
+        <div className={satoshi.className}>
+          <FuelQuoteForm></FuelQuoteForm>
         </div>
       </main>
     </>
