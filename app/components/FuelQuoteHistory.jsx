@@ -5,50 +5,19 @@ import React from 'react';
 export default function FuelQuoteHistory() {
   const [quoteData, setQuoteData] = useState([]);
 
-  useEffect(() => {
-    fetch('http://localhost:3000/api/getQuoteHistory')
-      .then((response) => response.json())
-      .then((data) => {
-        setQuoteData(data);
-      });
-  }, []);
+useEffect(() => {
+  fetch('http://localhost:3000/api/getHistoryData')
+    .then((response) => response.json())
+    .then((data) => {
+      setQuoteData(data);
+    });
+}, []);
 
-  return (
-    <div className="container">
-      <header>
-        <nav className="navbar">
-          <div className="navbar-brand">Fuel Quote</div>
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link href="/home">
-                <a>Home</a>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link href="/quote">
-                <a>Quote</a>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link href="/profile">
-                <a>Profile</a>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link href="/logout">
-                <a>Logout</a>
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+const FuelQuoteHistory = () => {
+    return (
+        <div className={FuelQuoteHistoryStyle.container}>
+            <table className={FuelQuoteHistoryStyle.table}>
 
-      <main className="content">
-        <div className="card">
-          <h3 className="card-title">Fuel Quote History</h3>
-          <div className="card-body">
-            <div className="table-container">
-              <table className="table">
                 <thead>
                   <tr>
                     <th scope="col">Delivery Date</th>
@@ -78,10 +47,6 @@ export default function FuelQuoteHistory() {
                   ))}
                 </tbody>
               </table>
-            </div>
-          </div>
         </div>
-      </main>
-    </div>
   );
 }

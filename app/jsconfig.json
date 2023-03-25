@@ -4,5 +4,10 @@
     "paths": {
       "@/*": ["./*"]
     }
+  },
+  "typeAcquisition": {
+    "include": [
+      "jest"
+    ]
   }
 }
