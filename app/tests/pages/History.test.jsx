@@ -3,11 +3,11 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
-import FuelQuoteHistory from '../components/FuelQuoteHistory'
+import FuelQuoteHistory from '../../components/FuelQuoteHistory'
 
 describe('History', () => {
     it('All components should render appropriately', () =>{
-        render(<FuelQuoteHistory/>)
+        render(<History/>)
     })
 })
 
@@ -20,6 +20,6 @@ it('All inserted data from Profile Form must appear on the history form', async 
         state: 'TX',
         zipCode: '77098'
     }))
-    render(<FuelQuoteHistory/>)
+    render(<History/>)
     await waitFor(() => screen.getByText('Fuel Quote History'))
 })
