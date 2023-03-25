@@ -18,12 +18,12 @@
 }
 
 .standardInputBox{
-    @apply h-12 w-full p-2 py-2 border-transparent rounded-xl font-medium;
+    @apply h-12 w-full p-2 py-2 border-transparent rounded-xl font-medium text-stone-400; 
     font-size: 1.025rem
 }
 
 .smallInputBox{
-    @apply h-12 w-24 p-2 py-2 border-transparent rounded-xl font-medium;
+    @apply h-12 w-24 p-2 py-2 border-transparent rounded-xl font-medium text-stone-400;
     font-size: 1.025rem
 }
 
