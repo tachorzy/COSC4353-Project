@@ -15,7 +15,6 @@ function Login() {
       var temp = false;
       // Do login logic here
       tempUserBase.forEach((user) => {
-        console.log(`user email: ${user.email} and password ${user.password}`)
         if (user.email === email && user.password === password) {
           window.location.href = '/Profile';
         } else {
