@@ -33,27 +33,10 @@ export default function FuelQuote() {
         <link rel="icon" href="/favicon.ico"/>
       </Head>
       <main className={styles.main}>
-        <div className={satoshi.className}>
+      <div className={satoshi.className}>
           <div>
-            <div className={roboto.className}>
-              <form className={FuelQuoteStyle.container}>
-                  <h2 className=" text-stone-700 font-semibold col-span-2 text-3xl text-center">The Current rate is <b>{pricePerGallon}</b></h2>
-                  <div className={FuelQuoteStyle.inputContainer}>
-                      <div className={FuelQuoteStyle.logoInputContainer}>
-                          <input className={FuelQuoteStyle.standardInputBox} placeholder={"Delivery Date"} name="delivery-date"/>
-                          <Image src='/calendar.svg' width={28} height={28} className={FuelQuoteStyle.calendarLogo}></Image>
-                      </div>
-                  </div>
-                  <div className={FuelQuoteStyle.splitContainer}>
-                      <div className={FuelQuoteStyle.logoInputContainer}>
-                          <input className={FuelQuoteStyle.standardInputBox} placeholder={"Gallons"} name="gallons-requested"/>
-                          <Image src='/gallon.svg' width={28} height={28} className={FuelQuoteStyle.gallonLogo} alt="gallon"></Image>
-                      </div>
-                  </div>
-                  <buttton className={FuelQuoteStyle.calculateButton} name="calculate">{"Calculate Your Fuel Quote!"}</buttton>
-              </form>  
-            </div>
-            <CalculationsBox/>
+              <FuelQuoteForm/>
+              <CalculationsBox/>
           </div>
 
         </div>
