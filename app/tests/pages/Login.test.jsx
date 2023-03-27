@@ -70,15 +70,11 @@ describe('Login component', () => {
         const passwordInput = screen.getByPlaceholderText("Password");
         const submitButton = screen.getByRole('button', { name: "Sign in"});
 
-        fireEvent.change(emailInput, { target: { value: userEmail }});
-        fireEvent.change(passwordInput, { target: { value: userPassword}});
+        fireEvent.change(emailInput, { target: { value: emailInput }});
+        fireEvent.change(passwordInput, { target: { value: passwordInput }});
         fireEvent.click(submitButton);
 
-        const alertSpy = jest.spyOn(window, 'alert').getMockImplementation()
-
-        fireEvent.change(emailInput)               
-        expect(alertSpy).toHaveBeenCalledWith('Invalid email or password.');
-        alertSpy.mockRestore();
+        expect(jest.fn()).toHaveBeenCalledWith("Invalid email or password.");
     })
 
     it('Must reroute to FuelQuote page if given a valid email and password', () => {
