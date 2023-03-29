@@ -18,7 +18,7 @@ function Login() {
         if (user.email === email && user.password === password) {
           window.location.href = '/Profile';
         } else {
-          return alert('Invalid username or password');
+          return prompt('Invalid email or password.');
         }
       })      
     };
