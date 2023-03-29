@@ -6,7 +6,6 @@ import Link from 'next/link'
 import React, { useState } from 'react';
 import { tempUserBase } from '@/utils/tempUserBase'
 
-
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
