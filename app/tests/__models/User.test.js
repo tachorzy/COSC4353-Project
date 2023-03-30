@@ -11,7 +11,7 @@ const bcrypt = require('bcrypt')
 let mongodbServer;
 
 beforeAll(async () => {
-    mongodbServer = new MongoMemoryServer.create();
+    mongodbServer = await MongoMemoryServer.create();
     const mongoUri = await mongodbServer.getUri();
     await mongoose.connect(mongoUri);
 });
