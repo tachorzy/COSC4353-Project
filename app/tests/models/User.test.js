@@ -1,3 +1,8 @@
+//code to fix RefereneError with TextEncoder
+const { TextEncoder, TextDecoder } = require('text-encoding');
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
+
 const mongoose = require('mongoose')
 const MongoMemoryServer = require('mongodb-memory-server')
 const User = require('../models/user')
