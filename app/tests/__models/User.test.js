@@ -4,14 +4,14 @@ global.TextEncoder = TextEncoder;
 global.TextDecoder = TextDecoder;
 
 const mongoose = require('mongoose')
-const MongoMemoryServer = require('mongodb-memory-server')
-const User = require('../models/user')
+const { MongoMemoryServer } = require('mongodb-memory-server');
+const User = require('../../__models/User.js')
 const bcrypt = require('bcrypt')
 
 let mongodbServer;
 
 beforeAll(async () => {
-    mongodbServer = new MongoMemoryServer();
+    mongodbServer = new MongoMemoryServer.create();
     const mongoUri = await mongodbServer.getUri();
     await mongoose.connect(mongoUri);
 });
