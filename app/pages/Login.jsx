@@ -4,23 +4,34 @@ import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 import React, { useState } from 'react';
-import { tempUserBase } from '@/utils/tempUserBase'
+import { tempUserBase } from '@/Utils/tempUserBase'
 
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
     const handleSubmit = (event) => {
       event.preventDefault();
-      var temp = false;
+      let temp = false;
       // Do login logic here
       tempUserBase.forEach((user) => {
-        if (user.email === email && user.password === password) {
-          window.location.href = '/Profile';
-        } else {
-          return prompt('Invalid email or password.');
+        if (user.email === email) {
+          temp = true;
+          if (user.password === password) {
+            window.location.href = '/Profile';
+          } else {
+            setPasswordError('Invalid password');
+          }
         }
-      })      
+      });
+      if (!temp) {
+        setEmailError('Invalid email');
+      }
+      else {
+        setEmailError(''); // reset emailError state to an empty string
+      }
     };
   
     return (
@@ -50,6 +61,7 @@ function Login() {
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                       required
                     />
+                    {emailError && <p className="text-red-500">{emailError}</p>}
                   </div>
                   <div className="relative">
                     <input
@@ -62,6 +74,7 @@ function Login() {
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                       required
                     />
+                    {passwordError && <p className="text-red-500">{passwordError}</p>}
                   </div>
                   <div className="relative flex items-center">
                     <input
