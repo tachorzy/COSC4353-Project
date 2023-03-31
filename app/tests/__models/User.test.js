@@ -23,7 +23,7 @@ afterAll(async () => {
 
 describe('User model', () => {
     it('New users should be saved into the database following the schema', async () => {
-        const user = new User({
+        const user = new User({ //this is the user model not to be confused with the User class
             name: 'John Doe',
             email: 'john.doe@gmail.com',
             password: 'example password'          

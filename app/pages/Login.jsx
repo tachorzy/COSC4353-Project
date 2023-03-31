@@ -11,13 +11,20 @@ function Login() {
   const [password, setPassword] = useState('');
     const handleSubmit = (event) => {
       event.preventDefault();
+      const passwordBox = document.getElementById('password')
+      const errorMessage = document.getElementById('error')
+      passwordBox.style.border = ""
+      errorMessage.innerHTML = ""
       var temp = false;
       // Do login logic here
+      
       tempUserBase.forEach((user) => {
         if (user.email === email && user.password === password) {
           window.location.href = '/Profile';
         } else {
-          return prompt('Invalid email or password.');
+          passwordBox.style.border = "2px solid red"
+          errorMessage.innerHTML = "Invalid e-mail or password"
+          return;
         }
       })      
     };
@@ -62,6 +69,7 @@ function Login() {
                       required
                     />
                   </div>
+                  <span id="error" className="text-red-600 text-sm"></span>
                   <div className="relative flex items-center">
                     <input
                       type="checkbox"
@@ -73,8 +81,7 @@ function Login() {
                       Remember me
                     </label>
                   </div>
-                  <div className="text-sm leading-5">
-                  </div>
+                  <div className="text-sm leading-5">                  </div>
                 </div>
                 <div className="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
                 <button
