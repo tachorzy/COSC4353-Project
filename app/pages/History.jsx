@@ -13,7 +13,6 @@ export default function History() {
       setQuoteData(data);
       console.log(data.gallonsRequest)
       console.log(data)
-
       });
   }, []);
 
@@ -36,6 +35,7 @@ export default function History() {
                   <th scope="col">Total Cost</th>
                 </tr>
               </thead>
+              {/**/}
               <tbody>
                 {quoteData.map((quote) => (
                   <tr>
