@@ -1,10 +1,5 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
-import FuelQuoteHistory from '../components/FuelQuoteHistory'
-import Link from 'next/link';
+import FuelQuoteHistoryStyle from '../styles/FuelQuoteHistoryStyle.module.css'
 import { useState, useEffect } from 'react';
 import React from 'react';
 
@@ -16,6 +11,8 @@ export default function History() {
       .then((response) => response.json())
       .then((data) => {
       setQuoteData(data);
+      console.log(data.gallonsRequest)
+      console.log(data)
       });
   }, []);
 
@@ -38,18 +35,19 @@ export default function History() {
                   <th scope="col">Total Cost</th>
                 </tr>
               </thead>
+              {/**/}
               <tbody>
                 {quoteData.map((quote) => (
-                  <tr key={quote.id}>
+                  <tr>
                     <td>{quote.date}</td>
                     <td>{quote.address1}</td>
                     <td>{quote.address2}</td>
                     <td>{quote.city}</td>
                     <td>{quote.state}</td>
                     <td>{quote.zipCode}</td>
-                    <td>{quote.gallons.toFixed(2)}</td>
-                    <td>${quote.pricePerGallon.toFixed(2)}</td>
-                    <td>${quote.totalCost.toFixed(2)}</td>
+                    <td>{quote.gallonsRequest.toFixed(2)}</td>
+                    <td>{quote.pricePerGallon}</td>
+                    <td>${quote.totalAmount.toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>
