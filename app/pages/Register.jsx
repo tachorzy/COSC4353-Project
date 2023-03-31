@@ -4,6 +4,9 @@ import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 import React, { useState } from 'react';
+import bcrypt from 'bcryptjs';
+
+
 
 export default function Register() {
     const [email, setEmail] = useState('');
@@ -14,7 +17,9 @@ export default function Register() {
       window.location.href = '/Login';
         
       // Navigate to the desired page
-        
+      const salt = bcrypt.genSaltSync(10);
+      const hashedPassword = bcrypt.hashSync(password, salt);
+      password.setPassword(hashedPassword)
     };
 
     return (
