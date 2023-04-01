@@ -11,11 +11,11 @@ export default async function updateUser(req, res){
         email: email
     })
 
-    result.address1 = address1;
-    result.address2 = address2;
-    result.state = state;
-    result.city = city;
-    result.zip = zip;
+    result.personalDetails[0] = address1;
+    result.personalDetails[1] = address2;
+    result.personalDetails[2] = state;
+    result.personalDetails[3] = city;
+    result.personalDetails[4] = zip;
 
     if(req.method === 'GET') {
         res.status(200).json(result)
