@@ -1,4 +1,5 @@
 import { pricePerGallon } from '../FuelQuote.jsx' //change this to the pricing module later on
+import dbConnect from '../__database/dbConnect.js'
 
 export default function getHistoryData(req, res){
     //hardcoded array of data before we implement our database    
@@ -22,6 +23,8 @@ export default function getHistoryData(req, res){
             date: '01-01-2023', address1: '789 Pine Blvd', address2: 'N/A', city: 'San Antonio', state: 'TX', zipCode: '78201', gallonsRequest: 900, totalAmount: 2662.2
         }
     ]
+
+    dbConnect().catch(err => console.log(err));
 
     tempData.sort((dataPoint1, dataPoint2) => (dataPoint1.date < dataPoint2.date) ? 1: -1)
 

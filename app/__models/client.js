@@ -8,6 +8,6 @@ const clientSchema = new Schema({
     profileSet: Boolean
 })
 
-const Client = models.Client || model('Client', clientSchema);
+const Client = models.Client || model('client', clientSchema);
 
 export default Client;
