@@ -5,6 +5,7 @@ import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 import React, { useState } from 'react';
 import { tempUserBase } from '@/utils/tempUserBase'
+import bcrypt from 'bcryptjs';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -18,8 +19,12 @@ function Login() {
       var temp = false;
       // Do login logic here
       
+      const salt = bcrypt.genSaltSync(10);
+      const encryptedPassword = bcrypt.hashSync(password, salt);
+      password.setPassword(encryptedPassword)
+
       tempUserBase.forEach((user) => {
-        if (user.email === email && user.password === password) {
+        if (user.email === email && bcrypt.compare(user.password, password)) {
           window.location.href = '/Profile';
         } else {
           passwordBox.style.border = "2px solid red"
