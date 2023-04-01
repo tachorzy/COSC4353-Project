@@ -48,5 +48,5 @@
 }
 
 .calculateButton{
-    @apply bg-stone-300 text-neutral-500 text-center col-span-2 font-semibold h-12 w-10/12 p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 mx-9;
+    @apply bg-stone-300 text-neutral-500 text-center col-span-2 font-semibold h-12 w-10/12 p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 mx-9 hover:cursor-pointer;
 }
