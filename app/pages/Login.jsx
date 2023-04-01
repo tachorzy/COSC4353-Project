@@ -5,32 +5,29 @@ import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 import React, { useState } from 'react';
 import { tempUserBase } from '@/utils/tempUserBase'
-
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
       event.preventDefault();
-      let temp = false;
-      // Do login logic here
-      tempUserBase.forEach((user) => {
-        if (user.email === email) {
-          temp = true;
-          if (user.password === password) {
-            window.location.href = '/Profile';
-          } else {
-            setPasswordError('Invalid password');
-          }
-        }
+      const result = await signIn('credentials', {
+        redirect: false,
+        email,
+        password,
       });
-      if (!temp) {
-        setEmailError('Invalid email');
-      }
-      else {
-        setEmailError(''); // reset emailError state to an empty string
+      if (!result.error) {
+        router.push('/Profile');
+      } else {
+        if (result.error === 'CredentialsSignin' && result.status === 401) {
+          setPasswordError('Invalid password');
+        } else if (result.error === 'NoUserFound' && result.status === 404) {
+          setEmailError('Invalid email');
+        }
       }
     };
   
