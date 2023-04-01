@@ -59,12 +59,13 @@ export default function ProfileForm() {
                 
                 <div className={FuelQuoteStyle.splitContainer}>
                         <input  className={FuelQuoteStyle.smallInputBox} placeholder={"Zip Code"} name="zip-code" min ="5" max = "9" required />
-                        <select className={FuelQuoteStyle.smallInputBox} placeholder={"State"} name="state" id = "state"/>
+                        <select className={FuelQuoteStyle.smallInputBox} placeholder={"State"} name="state" id = "state">
                             {statesAbrev.map((state) => (
                             <option key={state} value={state}>
                             {state}
                             </option>
                             ))}
+                        </select>       
                 </div>
                   {/* <div className={FuelQuoteStyle.inputContainer}>
                       <div className={FuelQuoteStyle.logoInputContainer}>
