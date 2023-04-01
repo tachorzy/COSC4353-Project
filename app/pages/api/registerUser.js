@@ -1,5 +1,6 @@
 import { User } from '../../utils/Users.js'
 import Client from '../__models/client.js'
+import bcrypt from 'bcryptjs';
 
 export default async function registerUser(req, res){  
     
@@ -16,7 +17,8 @@ export default async function registerUser(req, res){
     }
     
     //add encryption/hashing here before we push the password into the database
-    const encryptedPassword = '';
+    const salt = bcrypt.genSaltSync(10);
+    const encryptedPassword = bcrypt.hashSync(password, salt);
 
     const newUser = await Client.create({
         email: email,
