@@ -21,7 +21,8 @@ export default async function registerUser(req, res){
     const newUser = await Client.create({
         email: email,
         password: encryptedPassword,
-        profilSet: true
+        profilSet: true,
+        personalDetails: []
     })
 
     if(req.method === 'GET') {
