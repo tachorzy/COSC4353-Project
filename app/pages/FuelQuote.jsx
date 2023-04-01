@@ -33,8 +33,24 @@ export default function FuelQuote() {
       </Head>
       <main className={styles.main}>
         <div className={satoshi.className}>
-          <FuelQuoteForm></FuelQuoteForm>
-        </div>
+            <form className={FuelQuoteStyle.container}>
+                <h2 className=" text-stone-700 font-semibold col-span-2 text-3xl text-center">The Current rate is <b>{pricePerGallon}</b></h2>
+
+                <div className={FuelQuoteStyle.inputContainer}>
+                    <div className={FuelQuoteStyle.logoInputContainer}>
+                        <input type="date" className={FuelQuoteStyle.standardInputBox} placeholder={"Delivery Date"} name="delivery-date"/>
+                    </div>
+                </div>
+                <div className={FuelQuoteStyle.splitContainer}>
+                    <div className={FuelQuoteStyle.logoInputContainer}>
+                        <input className={FuelQuoteStyle.standardInputBox} placeholder={"Gallons"} name="gallons-requested"/>
+                        <Image src='/gallon.svg' width={28} height={28} className={FuelQuoteStyle.gallonLogo} alt="gallon"></Image>
+                    </div>
+                </div>
+                <buttton className={FuelQuoteStyle.calculateButton}>Calculate Your Quote!</buttton>  
+
+            </form>
+          </div>
       </main>
     </>
   )
