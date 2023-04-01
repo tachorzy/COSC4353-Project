@@ -5,7 +5,7 @@ global.TextDecoder = TextDecoder;
 
 const mongoose = require('mongoose')
 const { MongoMemoryServer } = require('mongodb-memory-server');
-const User = require('../../__models/User.js')
+const User = require('../../__models/client.js')
 const bcrypt = require('bcrypt')
 
 let mongodbServer;
