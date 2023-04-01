@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 //import { User } from '../../Utils/Users.js'
+=======
+import { User } from '../../Utils/Users.js'
+>>>>>>> Stashed changes
 import Client from '../__models/client.js'
 
 export default async function updateUser(req, res){  
