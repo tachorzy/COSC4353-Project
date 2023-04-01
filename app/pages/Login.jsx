@@ -4,7 +4,7 @@ import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 import React, { useState } from 'react';
-import { tempUserBase } from '@/utils/tempUserBase'
+import { tempUserBase } from '@/Utils/tempUserBase'
 import bcrypt from 'bcryptjs';
 
 function Login() {
