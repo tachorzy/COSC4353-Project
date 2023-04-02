@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Router from 'next/router'
+import { useState, useEffect } from 'react'
 import FuelQuoteForm from '../components/FuelQuoteForm.jsx'
 import CalculationsBox from '../components/CalculationsBox.jsx'
 import { Inter } from '@next/font/google'
@@ -27,6 +29,45 @@ const satoshi = localFont({
 })
 
 export default function ProfileForm() {
+  const [selectFirstName, setSelectedFirstName] = useState('');
+  const [selectLastName, setSelectedLastName] = useState('');
+  const [selectEmail, setSelectedEmail] = useState('');
+  const [selectAddress1, setSelectedAddress1] = useState('');
+  const [selectAddress2, setSelectedAddress2] = useState('');
+  const [selectZip, setSelectedZip] = useState('');
+  const [selectCity, setSelectedCity] = useState('');
+  const [selectState, setSelectedState] = useState('');
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    console.log('handling field submissions...')
+
+    if (selectFirstName === "" || selectLastName === "" || selectEmail === "" || selectAddress1 === "" || selectZip === "" || selectCity === "" || selectState === ""){
+      console.log(`something is an empty string`)
+      return;
+    }
+
+    try{
+      const userQuery = new URLSearchParams({
+        firstName: selectFirstName,
+        lastName: selectLastName,
+        email: selectEmail,
+        address1: selectAddress1,
+        address2: selectAddress2,
+        zipCode: selectZip,
+        city: selectCity,
+        state: selectState
+      })
+
+      response = await router.push({
+        pathname: `/api/updateUser?${userQuery}`, //rename this to whatever actual api endpoint we'll end up having
+      })
+    } catch(error){
+      console.error(error)
+    }
+  };
+  
   return (
     <>
       <Head>
@@ -35,56 +76,44 @@ export default function ProfileForm() {
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="icon" href="/favicon.ico"/>
       </Head>
+
       <main className={styles.main}>
         <div className={satoshi.className}>
-          <div>
+          <div className="mr-3">
             <div className={roboto.className}>
-              <form className={FuelQuoteStyle.container}>
+              <form className={FuelQuoteStyle.container} onSubmit={handleFormSubmit}>
               <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"First Name"} name="first-name" required/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"First Name"} name="first-name" required onSubmit={(event) => setSelectedFirstName(event.target.value)}/>
                 </div>  
                 <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Last Name"} name="last-name" required/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Last Name"} name="last-name" required onChange={(event) => setSelectedLastName(event.target.value)}/>
                 </div>  
                 <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"E-mail address"} name="email" required/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"E-mail address"} name="email" required onChange={(event) => setSelectedEmail(event.target.value)}/>
                 </div>  
                 <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 1"} name="delivery-address"required/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 1"} name="delivery-address"required onChange={(event) => setSelectedAddress1(event.target.value)}/>
                 </div>
             
                 <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 2 (Optional)"} name="delivery-address2"/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 2 (Optional)"} name="delivery-address2" onChange={(event) => setSelectedAddress2(event.target.value)}/>
                 </div>
                 
                 <div className={FuelQuoteStyle.splitContainer}>
-                        <input  className={FuelQuoteStyle.smallInputBox} placeholder={"Zip Code"} name="zip-code" min ="5" max = "9" required />
-                        <select className={FuelQuoteStyle.smallInputBox} placeholder={"State"} name="state" id = "state"/>
+                        <input  className={FuelQuoteStyle.smallInputBox} placeholder={"Zip Code"} name="zip-code" min ="5" max = "9" required onChange={(event) => setSelectedZip(event.target.value)}/>
+                        <input  className={FuelQuoteStyle.smallInputBox} placeholder={"City"} name="city" min ="5" max = "9" required onChange={(event) => setSelectedCity(event)}/>
+                        <select className={FuelQuoteStyle.xsmallInputBox} placeholder={"State"} name="state" id = "state" onChange={(event) => setSelectedState(event.target.value)}>
                             {statesAbrev.map((state) => (
                             <option key={state} value={state}>
                             {state}
                             </option>
                             ))}
+                        </select>       
                 </div>
-                  {/* <div className={FuelQuoteStyle.inputContainer}>
-                      <div className={FuelQuoteStyle.logoInputContainer}>
-                          <input className={FuelQuoteStyle.standardInputBox} placeholder={"Delivery Date"} name="delivery-date"/>
-                          <Image src='/calendar.svg' width={28} height={28} className={FuelQuoteStyle.calendarLogo}></Image>
-                      </div>
-
-                  
-                  </div>
-                  <div className={FuelQuoteStyle.splitContainer}>
-                      <div className={FuelQuoteStyle.logoInputContainer}>
-                          <input className={FuelQuoteStyle.standardInputBox} placeholder={"Gallons"} name="gallons-requested"/>
-                          <Image src='/gallon.svg' width={28} height={28} className={FuelQuoteStyle.gallonLogo} alt="gallon"></Image>
-                      </div>
-                  </div>
-                  <buttton className={FuelQuoteStyle.calculateButton} name="calculate">{"Calculate Your Fuel Quote!"}</buttton> */}
+                  <buttton type="submit" className={FuelQuoteStyle.calculateButton} name="calculate">{"Register Your Details!"}</buttton>
               </form>  
             </div>
           </div>
-
         </div>
       </main>
     </>

@@ -16,7 +16,6 @@ export default async function registerUser(req, res){
         res.status(500).json('User already exists under this email.')
     }
     
-    //add encryption/hashing here before we push the password into the database
     const salt = bcrypt.genSaltSync(10);
     const encryptedPassword = bcrypt.hashSync(password, salt);
 

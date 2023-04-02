@@ -5,6 +5,7 @@ import React from 'react';
 
 export default function History() {
   const [quoteData, setQuoteData] = useState([]);
+  //we need hooks from useSession() for the user session in NextAuth
 
   useEffect(() => {
   fetch('http://localhost:3000/api/getHistoryData')

@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
 import FuelQuoteForm from '../components/FuelQuoteForm.jsx'
 import { Inter } from '@next/font/google'
 import { Combo, Roboto, Rubik } from '@next/font/google'
@@ -20,6 +22,8 @@ const satoshi = localFont({
   weight: '200'
 })
 
+
+
 export default function FuelQuote() {
   var locationFactor = 0.04
   var rateHistory = .01
@@ -32,6 +36,27 @@ export default function FuelQuote() {
   const PPG = 1.5
   const fuelMultiplier = locationFactor - rateHistory + requestFactor + CPF
   const totPrice = (fuelMultiplier + PPG) * gallonsRequested 
+  const [selectDate, setSelectedDate] = useState('')
+  const [selectGallons, setSelectedGallons] = useState('')
+
+  const router = useRouter();
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    if (selectDate === "mm/dd/yyy" || selectGallons === "")
+      return;
+
+    try{
+      router.push({
+        pathname: '/api/calculate', //rename this to whatever actual api endpoint we'll end up having
+        query: { date: selectDate, numOfGallons: selectGallons }, 
+      })
+    } catch(error){
+      console.error(error)
+    }
+  };
+
   return (
     <>
       <Head>
@@ -42,8 +67,23 @@ export default function FuelQuote() {
       </Head>
       <main className={styles.main}>
         <div className={satoshi.className}>
-          <FuelQuoteForm></FuelQuoteForm>
-        </div>
+            <form className={FuelQuoteStyle.container} onSubmit={handleFormSubmit}>
+                <h2 className=" text-stone-700 font-semibold col-span-2 text-3xl text-center">The Current rate is <b>{pricePerGallon}</b></h2>
+
+                <div className={FuelQuoteStyle.inputContainer}>
+                    <div className={FuelQuoteStyle.logoInputContainer}>
+                        <input type="date" className={FuelQuoteStyle.standardInputBox} placeholder={"Delivery Date"} name="delivery-date" onChange={(event) => setSelectedDate(event.target.value)}/>
+                    </div>
+                </div>
+                <div className={FuelQuoteStyle.splitContainer}>
+                    <div className={FuelQuoteStyle.logoInputContainer}>
+                        <input className={FuelQuoteStyle.standardInputBox} placeholder={"Gallons"} name="gallons-requested" onChange={(event) => setSelectedGallons(event.target.value)}/>
+                        <Image src='/gallon.svg' width={28} height={28} className={FuelQuoteStyle.gallonLogo} alt="gallon"></Image>
+                    </div>
+                </div>
+                <buttton className={FuelQuoteStyle.calculateButton}>Calculate Your Quote!</buttton>  
+            </form>
+          </div>
       </main>
     </>
   )
