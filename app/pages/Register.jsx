@@ -16,9 +16,6 @@ export default function Register() {
       window.location.href = '/Login';
         
       // Navigate to the desired page
-      const salt = bcrypt.genSaltSync(10);
-      const hashedPassword = bcrypt.hashSync(password, salt);
-      password.setPassword(hashedPassword)
     };
 
     return (
