@@ -6,20 +6,16 @@ import Link from 'next/link'
 import React, { useState } from 'react';
 import bcrypt from 'bcryptjs';
 
-
-
 export default function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
     const handleSubmit = (event) => {
       event.preventDefault();
       // Do login logic here
       window.location.href = '/Login';
         
       // Navigate to the desired page
-      const salt = bcrypt.genSaltSync(10);
-      const hashedPassword = bcrypt.hashSync(password, salt);
-      password.setPassword(hashedPassword)
     };
 
     return (

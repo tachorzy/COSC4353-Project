@@ -7,29 +7,38 @@ import React, { useState } from 'react';
 import { tempUserBase } from '@/utils/tempUserBase'
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import bcrypt from 'bcryptjs';
+
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+    
     const handleSubmit = async (event) => {
       event.preventDefault();
+      const passwordBox = document.getElementById('password')
+      const errorMessage = document.getElementById('error')
+      passwordBox.style.border = ""
+      errorMessage.innerHTML = ""
+      var temp = false;
+      
       const result = await signIn('credentials', {
         redirect: false,
-        email,
-        password,
+        email: email,
+        passwor: password,
       });
+      
       if (!result.error) {
         router.push('/Profile');
       } else {
         if (result.error === 'CredentialsSignin' && result.status === 401) {
+          passwordBox.style.border = "2px solid red"
+          errorMessage.innerHTML = "Invalid e-mail or password"
           setPasswordError('Invalid password');
         } else if (result.error === 'NoUserFound' && result.status === 404) {
           setEmailError('Invalid email');
-        }
-      }
-    };
   
     return (
       <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12"> 
@@ -73,6 +82,7 @@ function Login() {
                     />
                     {passwordError && <p className="text-red-500">{passwordError}</p>}
                   </div>
+                  <span id="error" className="text-red-600 text-sm"></span>
                   <div className="relative flex items-center">
                     <input
                       type="checkbox"
@@ -84,8 +94,7 @@ function Login() {
                       Remember me
                     </label>
                   </div>
-                  <div className="text-sm leading-5">
-                  </div>
+                  <div className="text-sm leading-5">                  </div>
                 </div>
                 <div className="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
                 <button

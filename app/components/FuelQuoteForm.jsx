@@ -35,6 +35,9 @@ const FuelQuoteForm = () => {
                     <div className={FuelQuoteStyle.logoInputContainer}>
                         <input className={FuelQuoteStyle.standardInputBox} placeholder={"Gallons"} name="gallons-requested"/>
                         <Image src='/gallon.svg' width={28} height={28} className={FuelQuoteStyle.gallonLogo} alt="gallon"></Image>
+                        <div className={FuelQuoteStyle.inputContainer}>
+                            <buttton className={FuelQuoteStyle.calculateButton}>Calculate!</buttton>
+                        </div>
                     </div>
                 </div>
             </form>  
