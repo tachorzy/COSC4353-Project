@@ -13,10 +13,11 @@
     "@headlessui/react": "^1.7.11",
     "@next/font": "13.1.6",
     "bcrypt": "^5.1.0",
-    "mongodb-memory-server": "^8.12.1",
     "bcryptjs": "^2.4.3",
+    "mongodb-memory-server": "^8.12.1",
     "mongoose": "^7.0.3",
     "next": "^13.2.4",
+    "node-mocks-http": "^1.12.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "text-encoding": "^0.7.0",
@@ -24,6 +25,7 @@
     "yarn": "^1.22.19"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^4.1.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.4.0",
