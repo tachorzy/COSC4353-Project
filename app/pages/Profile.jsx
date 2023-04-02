@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
+import { useState, useEffect } from 'react'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 import FuelQuoteHistory from '../components/FuelQuoteHistory'
@@ -21,13 +22,23 @@ const satoshiBold = localFont({
 })
 
 export default function Login() {
-    const placeholderName = "Raj Singh"
-    const placeholderNumber = "+1 (713)-789-4353"
-    const placeholderAddress = "3551 Cullen Blvd"
-    const placeholderAddress2 = ""
-    const placeholderCity = "Houston"
-    const placeholderState = "Texas"
-    const placeholderZip = "77004"
+    // const placeholderName = "Raj Singh"
+    // const placeholderNumber = "+1 (713)-789-4353"
+    // const placeholderAddress = "3551 Cullen Blvd"
+    // const placeholderAddress2 = ""
+    // const placeholderCity = "Houston"
+    // const placeholderState = "Texas"
+    // const placeholderZip = "77004"
+    const [client, setClientData] = useState()
+    useEffect(() => {
+        fetch('https://localhost:3000/api/getClientData', {
+            method: 'GET'
+        })
+        .then(res => res.json())
+        .then(data => {
+            setClientData(data)
+        })
+    }, [])
 
     return (
       <div className="bg-cambridgeBlue h-screen content-center flex flex-col text-stone-200">
@@ -39,34 +50,33 @@ export default function Login() {
                 <div className={FuelQuoteStyle.container}>
                     <div className="flex flex-col">
                         <label className="text-lg mb-1.5 font-semibold">Full Name: </label>
-                        <h2 className="text-xl">{placeholderName}</h2>
+                        <h2 className="text-xl">{`${client.FirstName} ${client.LastName}`}</h2>
                     </div>
                     <div>
                         <label className="text-lg mb-1.5 font-semibold">Address 1: </label>
-                        <h2 className="text-xl">{placeholderAddress}</h2>
-                    </div>
+                        <h2 className="text-xl">{client.address1}</h2>
                     <div>
                         <label className="text-lg mb-1.5 font-semibold">Address 2: </label>
-                        <h2 className="text-xl">{placeholderAddress2 === "" ? "N/A" : placeholderAddress2}</h2>
+                        <h2 className="text-xl">{client.address2 === "" ? "N/A" : client.address2}</h2>
                     </div>
-
                     <div>
                         <label className="text-lg mb-1.5 font-semibold">City: </label>
-                        <h2 className="text-xl">{placeholderCity}</h2>
+                        <h2 className="text-xl">{client.city}</h2>
                     </div>
                     <div>
                         <label className="text-lg mb-1.5 font-semibold">State: </label>
-                        <h2 className="text-xl">{placeholderState}</h2>
+                        <h2 className="text-xl">{client.state}</h2>
                     </div>
                     <div>
                         <label className="text-lg mb-1.5 font-semibold">Zipcode: </label>
-                        <h2 className="text-xl">{placeholderZip}</h2>
+                        <h2 className="text-xl">{client.zipCode}</h2>
                     </div>
                 </div>
             </div>
 
         </div>
       </div>
+    </div>
     )
   }
   
