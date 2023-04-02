@@ -9,8 +9,13 @@
 .logo{
     @apply -mr-4
 }
+
 .inputContainer{
     @apply mx-3 mb-auto font-medium col-span-1 flex flex-col;
+}
+
+.inputContainerFullWidth{
+    @apply mx-3 mb-auto font-medium col-span-2 flex flex-col;
 }
 
 .header{
@@ -27,12 +32,18 @@
     font-size: 1.025rem
 }
 
+.xsmallInputBox{
+    @apply h-12 w-16 p-2 pl-2 border-transparent rounded-xl font-medium text-stone-400;
+    font-size: 1.025rem
+}
+
+
 .label{
     @apply ml-1.5 mb-1.5
 }
 
 .splitContainer{
-    @apply flex flex-row ml-3 gap-x-2 content-start
+    @apply flex flex-row mx-3 gap-x-2 content-start
 }
 
 .logoInputContainer{

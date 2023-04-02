@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Router from 'next/router'
+import { useState } from 'react'
 import FuelQuoteForm from '../components/FuelQuoteForm.jsx'
 import CalculationsBox from '../components/CalculationsBox.jsx'
 import { Inter } from '@next/font/google'
@@ -27,6 +29,31 @@ const satoshi = localFont({
 })
 
 export default function ProfileForm() {
+  const [selectFirstName, selectedFirstName] = useState('');
+  const [selectLastName, selectedLastName] = useState('');
+  const [selectEmail, selectedEmail] = useState('');
+  const [selectAddress1, selectedAddress1] = useState('');
+  const [selectAddress2, selectedAddress2] = useState('');
+  const [selectZip, selectedZip] = useState('');
+  const [selectCity, selectedCity] = useState('');
+  const [selectState, selectedState] = useState('');
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    if (selectDate === "mm/dd/yyy" || selectGallons === "")
+      return;
+
+    try{
+      router.push({
+        pathname: 'calculate', //rename this to whatever actual api endpoint we'll end up having
+        query: { date: selectDate, numOfGallons: selectGallons }, 
+      })
+    } catch(error){
+      console.error(error)
+    }
+  };
+  
   return (
     <>
       <Head>
@@ -37,7 +64,7 @@ export default function ProfileForm() {
       </Head>
       <main className={styles.main}>
         <div className={satoshi.className}>
-          <div>
+          <div className="mr-3">
             <div className={roboto.className}>
               <form className={FuelQuoteStyle.container}>
               <div className={FuelQuoteStyle.inputContainer}>
@@ -59,7 +86,8 @@ export default function ProfileForm() {
                 
                 <div className={FuelQuoteStyle.splitContainer}>
                         <input  className={FuelQuoteStyle.smallInputBox} placeholder={"Zip Code"} name="zip-code" min ="5" max = "9" required />
-                        <select className={FuelQuoteStyle.smallInputBox} placeholder={"State"} name="state" id = "state">
+                        <input  className={FuelQuoteStyle.smallInputBox} placeholder={"City"} name="city" min ="5" max = "9" required />
+                        <select className={FuelQuoteStyle.xsmallInputBox} placeholder={"State"} name="state" id = "state">
                             {statesAbrev.map((state) => (
                             <option key={state} value={state}>
                             {state}
