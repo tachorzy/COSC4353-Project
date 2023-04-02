@@ -49,7 +49,6 @@ export default function ProfileForm() {
     }
 
     try{
-
       const userQuery = new URLSearchParams({
         firstName: selectFirstName,
         lastName: selectLastName,
