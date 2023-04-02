@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Router from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import FuelQuoteForm from '../components/FuelQuoteForm.jsx'
 import CalculationsBox from '../components/CalculationsBox.jsx'
 import { Inter } from '@next/font/google'
@@ -67,7 +67,7 @@ export default function ProfileForm() {
         <div className={satoshi.className}>
           <div className="mr-3">
             <div className={roboto.className}>
-              <form className={FuelQuoteStyle.container}>
+              <form className={FuelQuoteStyle.container} onSubmit={handleFormSubmit}>
               <div className={FuelQuoteStyle.inputContainer}>
                     <input className={FuelQuoteStyle.standardInputBox} placeholder={"First Name"} name="first-name" required onSubmit={(event) => setSelectedFirstName(event.target.value)}/>
                 </div>  
@@ -96,7 +96,7 @@ export default function ProfileForm() {
                             ))}
                         </select>       
                 </div>
-                  <buttton className={FuelQuoteStyle.calculateButton} name="calculate">{"Register Your Details!"}</buttton>
+                  <buttton type="submit" className={FuelQuoteStyle.calculateButton} name="calculate">{"Register Your Details!"}</buttton>
               </form>  
             </div>
           </div>
