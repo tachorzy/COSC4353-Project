@@ -4,35 +4,41 @@ import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 import React, { useState } from 'react';
-import { tempUserBase } from '@/Utils/tempUserBase'
+import { tempUserBase } from '@/utils/tempUserBase'
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import bcrypt from 'bcryptjs';
+
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-    const handleSubmit = (event) => {
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+    
+    const handleSubmit = async (event) => {
       event.preventDefault();
       const passwordBox = document.getElementById('password')
       const errorMessage = document.getElementById('error')
       passwordBox.style.border = ""
       errorMessage.innerHTML = ""
       var temp = false;
-      // Do login logic here
       
-      const salt = bcrypt.genSaltSync(10);
-      const encryptedPassword = bcrypt.hashSync(password, salt);
-      password.setPassword(encryptedPassword)
-
-      tempUserBase.forEach((user) => {
-        if (user.email === email && bcrypt.compare(user.password, password)) {
-          window.location.href = '/Profile';
-        } else {
+      const result = await signIn('credentials', {
+        redirect: false,
+        email: email,
+        passwor: password,
+      });
+      
+      if (!result.error) {
+        router.push('/Profile');
+      } else {
+        if (result.error === 'CredentialsSignin' && result.status === 401) {
           passwordBox.style.border = "2px solid red"
           errorMessage.innerHTML = "Invalid e-mail or password"
-          return;
-        }
-      })      
-    };
+          setPasswordError('Invalid password');
+        } else if (result.error === 'NoUserFound' && result.status === 404) {
+          setEmailError('Invalid email');
   
     return (
       <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12"> 
@@ -61,6 +67,7 @@ function Login() {
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                       required
                     />
+                    {emailError && <p className="text-red-500">{emailError}</p>}
                   </div>
                   <div className="relative">
                     <input
@@ -73,6 +80,7 @@ function Login() {
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                       required
                     />
+                    {passwordError && <p className="text-red-500">{passwordError}</p>}
                   </div>
                   <span id="error" className="text-red-600 text-sm"></span>
                   <div className="relative flex items-center">
