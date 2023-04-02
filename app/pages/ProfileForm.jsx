@@ -41,13 +41,28 @@ export default function ProfileForm() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    if (selectFirstName === "" || selectLastName === "" || selectEmail === "" || selectAddress1 === "" || selectZip === "" || selectCity === "" || selectState === "")
+    console.log('handling field submissions...')
+
+    if (selectFirstName === "" || selectLastName === "" || selectEmail === "" || selectAddress1 === "" || selectZip === "" || selectCity === "" || selectState === ""){
+      console.log(`something is an empty string`)
       return;
+    }
 
     try{
-      router.push({
-        pathname: 'updateUser', //rename this to whatever actual api endpoint we'll end up having
-        query: { firstName: selectFirstName, lastName: selectLastName, email: selectEmail, address1: selectAddress1, address2: selectAddress2, zipCode: selectZip, city: selectCity, state: selectState }, 
+
+      const userQuery = new URLSearchParams({
+        firstName: selectFirstName,
+        lastName: selectLastName,
+        email: selectEmail,
+        address1: selectAddress1,
+        address2: selectAddress2,
+        zipCode: selectZip,
+        city: selectCity,
+        state: selectState
+      })
+
+      response = await router.push({
+        pathname: `/api/updateUser?${userQuery}`, //rename this to whatever actual api endpoint we'll end up having
       })
     } catch(error){
       console.error(error)
@@ -72,23 +87,23 @@ export default function ProfileForm() {
                     <input className={FuelQuoteStyle.standardInputBox} placeholder={"First Name"} name="first-name" required onSubmit={(event) => setSelectedFirstName(event.target.value)}/>
                 </div>  
                 <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Last Name"} name="last-name" required onSubmit={(event) => setSelectedLastName(event.target.value)}/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Last Name"} name="last-name" required onChange={(event) => setSelectedLastName(event.target.value)}/>
                 </div>  
                 <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"E-mail address"} name="email" required onSubmit={(event) => setSelectedEmail(event.target.value)}/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"E-mail address"} name="email" required onChange={(event) => setSelectedEmail(event.target.value)}/>
                 </div>  
                 <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 1"} name="delivery-address"required onSubmit={(event) => setSelectedAddress1(event.target.value)}/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 1"} name="delivery-address"required onChange={(event) => setSelectedAddress1(event.target.value)}/>
                 </div>
             
                 <div className={FuelQuoteStyle.inputContainer}>
-                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 2 (Optional)"} name="delivery-address2" onSubmit={(event) => setSelectedAddress2(event.target.value)}/>
+                    <input className={FuelQuoteStyle.standardInputBox} placeholder={"Address 2 (Optional)"} name="delivery-address2" onChange={(event) => setSelectedAddress2(event.target.value)}/>
                 </div>
                 
                 <div className={FuelQuoteStyle.splitContainer}>
-                        <input  className={FuelQuoteStyle.smallInputBox} placeholder={"Zip Code"} name="zip-code" min ="5" max = "9" required onSubmit={(event) => setSelectedZip(event.target.value)}/>
-                        <input  className={FuelQuoteStyle.smallInputBox} placeholder={"City"} name="city" min ="5" max = "9" required onSubmit={(event) => setSelectedCity(event)}/>
-                        <select className={FuelQuoteStyle.xsmallInputBox} placeholder={"State"} name="state" id = "state" onSubmit={(event) => setSelectedState(event.target.value)}>
+                        <input  className={FuelQuoteStyle.smallInputBox} placeholder={"Zip Code"} name="zip-code" min ="5" max = "9" required onChange={(event) => setSelectedZip(event.target.value)}/>
+                        <input  className={FuelQuoteStyle.smallInputBox} placeholder={"City"} name="city" min ="5" max = "9" required onChange={(event) => setSelectedCity(event)}/>
+                        <select className={FuelQuoteStyle.xsmallInputBox} placeholder={"State"} name="state" id = "state" onChange={(event) => setSelectedState(event.target.value)}>
                             {statesAbrev.map((state) => (
                             <option key={state} value={state}>
                             {state}
