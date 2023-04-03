@@ -2,8 +2,9 @@ import NextAuth from 'next-auth'
 import EmailProvider from 'next-auth/providers/email'
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 import bcrypt from 'bcryptjs'
-import { User } from "./lib/models/User"
+import { User } from "../../../lib/models/User"
 import CredentialsProvider from "next-auth/providers/credentials"
+import clientPromise from "../../../lib/mongodb"
 
 const signinUser = async ({ password, user }) => {
   if (!user.password) {
@@ -16,39 +17,60 @@ const signinUser = async ({ password, user }) => {
   return user;
 }
 
-export default NextAuth({
-  adapter: MongoDBAdapter(process.env.MONGODB_URI),
+module.exports = NextAuth({
   providers: [
-    // OAuth authentication providers...
-    // Passwordless / email sign in
+    // Email & Password
     CredentialsProvider({
+      id: "credentials",
       name: "Credentials",
       credentials: {
-        email: { label: "Username", type: "email", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" }
+        email: {
+          label: "Email",
+          type: "text",
+        },
+        password: {
+          label: "Password",
+          type: "password",
+        },
       },
-      async authorize(credentials, req) {
-        const email = credentials.email;
-        const password = credentials.password;
-        const user = await User.findOne({ email })
+      async authorize(credentials) {
+        await dbConnect();
+
+        // Find user with the email
+        const user = await User.findOne({
+          email: credentials?.email,
+        });
+
+        // Email Not found
         if (!user) {
-          throw new Error("You haven't registered yet")
+          throw new Error("Email is not registered");
         }
-        if (user) {
-          return signinUser({ password, user })
+
+        // Check hashed password with DB hashed password
+        const isPasswordCorrect = await compare(
+          credentials.password,
+          user.hashedPassword
+        );
+
+        // Incorrect password
+        if (!isPasswordCorrect) {
+          throw new Error("Password is incorrect");
         }
+
+        return user;
       },
-    }),
-    EmailProvider({
-      server: {
-        host: process.env.EMAIL_SERVER_HOST,
-        port: process.env.EMAIL_SERVER_PORT,
-        auth: {
-          user: process.env.EMAIL_SERVER_USER,
-          pass: process.env.EMAIL_SERVER_PASSWORD
-        }
-      },
-      from: process.env.EMAIL_FROM
     }),
   ],
-})
+  pages: {
+    signIn: "/auth",
+  },
+  debug: process.env.NODE_ENV === "development",
+  adapter: MongoDBAdapter(clientPromise),
+  session: {
+    strategy: "jwt",
+  },
+  jwt: {
+    secret: process.env.NEXTAUTH_JWT_SECRET,
+  },
+  secret: process.env.NEXTAUTH_SECRET,
+});

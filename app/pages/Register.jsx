@@ -5,26 +5,40 @@ import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 import React, { useState } from 'react';
 import bcrypt from 'bcryptjs';
-import User from './api/auth/lib/models/User'
+import User from '../lib/models/User'
 import { useRouter } from 'next/router';
+import axios from 'axios'
+
 
 
 export default function Register() {
-  const [name, setName] = useState('');
+  const[name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const router = useRouter();
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // Check if password and confirm password match
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
     }
+    try {
+      const { data } = await axios.post("/api/register", {
+        name,
+        email,
+        password,
+      });
 
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+    // Check if password and confirm password match
+    /*
 
+    
   const saltRounds = 10;
   const salt = await bcrypt.genSalt(saltRounds);
   const hashedPassword = await bcrypt.hash(password, salt);
@@ -43,8 +57,8 @@ export default function Register() {
     const data = await response.json();
     const message = data?.message || 'An error occurred';
     setErrorMsg(message);
-  }
-  };
+  }*/
+  
 
   return (
     <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12">
@@ -66,18 +80,16 @@ export default function Register() {
                     <input
                       type="text"
                       id="name"
-                      name="name"
                       placeholder="Name"
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                       required
-                      value={name} onChange={e => setName(e.target.value)}
+                      value = {name} onChange={e => setName(e.target.value)}
                     />
                   </div>
                   <div className="relative">
                     <input
                       type="email"
                       id="email"
-                      name="email"
                       placeholder="Email address"
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                       required
@@ -88,7 +100,6 @@ export default function Register() {
                     <input
                       type="password"
                       id="password"
-                      name="password"
                       placeholder="Password"
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                       required
@@ -99,7 +110,6 @@ export default function Register() {
                     <input
                       type="password"
                       id="confirm_password"
-                      name="confirm_password"
                       placeholder="Confirm Password"
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                       required
@@ -111,6 +121,7 @@ export default function Register() {
                   <button
                     type="submit"
                     className="w-full bg-stone-400 hover:bg-stone-500 text-white py-3 rounded-md transition duration-150 ease-in-out sm:py-4 sm:text-sm sm:leading-5"
+                    
                   >
                     Sign Up
                   </button>

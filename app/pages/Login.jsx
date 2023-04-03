@@ -13,21 +13,19 @@ function Login() {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const router = useRouter();
     const handleSubmit = async (event) => {
       event.preventDefault();
-      const result = await signIn('credentials', {
-        redirect: false,
-        email,
-        password,
-      });
-      if (!result.error) {
+      try {
+        const data = await signIn("credentials", {
+          redirect: false,
+          email,
+          password,
+        });
+        console.log(data);
         router.push('/Profile');
-      } else {
-        if (result.error === 'CredentialsSignin' && result.status === 401) {
-          setPasswordError('Invalid password');
-        } else if (result.error === 'NoUserFound' && result.status === 404) {
-          setEmailError('Invalid email');
-        }
+      } catch (error) {
+        console.log(error);
       }
     };
   
