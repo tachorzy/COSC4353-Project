@@ -1,10 +1,11 @@
 //import { User } from '../../utils/Users.js'
-import Client from '../__models/client.js'
+import dbConnect from '../../__database/dbConnect.js'
+import Client from '../../__models/client.js'
 import bcrypt from 'bcryptjs';
 
 export default async function registerUser(req, res){  
     
-    dbConnect().catch(err => console.log(err));
+    await dbConnect().catch(err => console.log(err));
 
     const { email, password } = req.body
 
@@ -22,7 +23,7 @@ export default async function registerUser(req, res){
     const newUser = await Client.create({
         email: email,
         password: encryptedPassword,
-        profilSet: true,
+        profileSet: true,
         personalDetails: []
     })
 
