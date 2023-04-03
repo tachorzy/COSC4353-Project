@@ -7,7 +7,7 @@ export default async function registerUser(req, res){
     
     await dbConnect().catch(err => console.log(err));
 
-    const { email, password } = req.body
+    const { email, password } = req.body;
 
     const result = await Client.findOne({
         email: email
