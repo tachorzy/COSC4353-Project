@@ -8,7 +8,7 @@ jest.mock('../../__models/client.js')
 
 describe('registerUser API endpoint', () => {
     it('Should register a new user with the correct login credentials', async () => {
-        const { request, response } = createMocks({
+        const { req, res } = createMocks({
             method: 'POST',
             body: {
                 email: 'test@gmail.com',
@@ -21,13 +21,13 @@ describe('registerUser API endpoint', () => {
         })
 
         dbConnect.mockResolvedValue(true);
-        await registerUser(request, response);
+        await registerUser(req, res);
 
-        expect(response._getStatusCode()).toBe(500);
+        expect(res._getStatusCode()).toBe(500);
         // expect(response._getData().email).toEqual('test@gmail.com');
         // expect(response._getData().password).not.toEqual('testpassword');
         // expect(response._getData().profileSet).toBe(true);
         // expect(response._getData().personalDetails).toEqual([]);
-        expect(response._getJSONData()).toEqual('User already exists under this email.')
+        expect(res._getJSONData()).toEqual('User already exists under this email.')
     });
 });
