@@ -14,35 +14,60 @@ function Login() {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const router = useRouter();
-    const handleSubmit = async (event) => {
-      event.preventDefault();
-      try {
-        const data = await signIn("credentials", {
-          redirect: false,
-          email,
-          password,
-        });
-        console.log(data);
-        router.push('/Profile');
-      } catch (error) {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setEmailError('');
+    if (!email || !password) {
+      if (!email) setEmailError('Email is required');
+      if (!password) setPasswordError('Password is required');
+      return;
+    }
+    try {
+      const response = await fetch('/api/check-email', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+      if (response.status == 404) {
+        throw new Error('Email not found');
+      }
+      if (response.status == 401) {
+        throw new Error('Incorrect password');
+      }
+
+      const signInResponse = await signIn('credentials', {
+        redirect: false,
+        email,
+        password,
+      });
+
+
+      router.push('/Profile');
+    } catch (error) {
+      if (error.message === 'Email not found') {
+        setEmailError('Email not found');
+      } else if (error.message === 'Incorrect password') {
+        setPasswordError('Incorrect password');
+      } else {
         console.log(error);
       }
-    };
-  
-    return (
-      <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12"> 
-        <Head>
-            <title>Login</title>
-            <link rel="icon" href="/favicon.ico" />
-        </Head> 
-        <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-          <div className="relative px-4 py-10 bg-stone-200 mx-8 md:mx-0 shadow-lg rounded-3xl sm:p-10">
+    }
+  };
 
-            <div className="max-w-md mx-auto">
-              <div>
-                <h1 className="text-2xl font-semibold text-stone-600">Sign in</h1>
-              </div>
-              <form onSubmit={handleSubmit}>
+  return (
+    <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12">
+      <Head>
+        <title>Login</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div className="relative py-3 sm:max-w-xl sm:mx-auto">
+        <div className="relative px-4 py-10 bg-stone-200 mx-8 md:mx-0 shadow-lg rounded-3xl sm:p-10">
+
+          <div className="max-w-md mx-auto">
+            <div>
+              <h1 className="text-2xl font-semibold text-stone-600">Sign in</h1>
+            </div>
+            <form onSubmit={handleSubmit}>
               <div className="divide-y divide-gray-200">
                 <div className="py-8 text-base leading-6 space-y-4 text-stone-700 sm:text-lg sm:leading-7">
                   <div className="relative">
@@ -86,12 +111,12 @@ function Login() {
                   </div>
                 </div>
                 <div className="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
-                <button
+                  <button
                     type="submit"
                     className="w-full bg-stone-400 hover:bg-stone-500 text-white py-3 rounded-md transition duration-150 ease-in-out sm:py-4 sm:text-sm sm:leading-5"
                   >
                     Sign in
-                </button>
+                  </button>
                 </div>
                 <div className="text-sm leading-5 pt-6">
                   Dont have an account?{' '}
@@ -102,12 +127,12 @@ function Login() {
                   </Link>
                 </div>
               </div>
-              </form>
-            </div>
+            </form>
           </div>
         </div>
       </div>
-    )
-    
-  }
-  export default Login;
+    </div>
+  )
+
+}
+export default Login;

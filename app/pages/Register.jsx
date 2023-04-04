@@ -16,6 +16,7 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
   const router = useRouter();
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -29,7 +30,7 @@ export default function Register() {
         email,
         password,
       });
-
+      router.push('/Login');
       console.log(data);
     } catch (error) {
       console.log(error);
