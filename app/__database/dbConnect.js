@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export const dbConnect = async () => {
+const dbConnect = async () => {
     try{
         const {connection} = await mongoose.connect(process.env.MONGO_URI);
         if(connection.readyState == 1){
@@ -12,3 +12,5 @@ export const dbConnect = async () => {
         return Promise.reject(err);
     }
 }
+
+export default dbConnect;
