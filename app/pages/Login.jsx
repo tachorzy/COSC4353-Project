@@ -7,6 +7,8 @@ import React, { useState } from 'react';
 import { tempUserBase } from '@/utils/tempUserBase'
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import bcrypt from 'bcryptjs';
+
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -37,8 +39,8 @@ function Login() {
 
       const signInResponse = await signIn('credentials', {
         redirect: false,
-        email,
-        password,
+        email: email,
+        passwor: password,
       });
 
 
@@ -96,6 +98,7 @@ function Login() {
                     />
                     {passwordError && <p className="text-red-500">{passwordError}</p>}
                   </div>
+                  <span id="error" className="text-red-600 text-sm"></span>
                   <div className="relative flex items-center">
                     <input
                       type="checkbox"
@@ -107,8 +110,7 @@ function Login() {
                       Remember me
                     </label>
                   </div>
-                  <div className="text-sm leading-5">
-                  </div>
+                  <div className="text-sm leading-5">                  </div>
                 </div>
                 <div className="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
                   <button
