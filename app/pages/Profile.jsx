@@ -69,4 +69,8 @@ export default function Login() {
       </div>
     )
   }
-  
+  Login.getInitialProps = async (ctx) => {
+    const res = await axios.get('/api/user');
+    const user = res.data;
+    return { user };
+  };
