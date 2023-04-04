@@ -5,7 +5,6 @@ import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 import React, { useState } from 'react';
 import bcrypt from 'bcryptjs';
-import User from '../lib/models/User'
 import { useRouter } from 'next/router';
 import axios from 'axios'
 
@@ -25,7 +24,7 @@ export default function Register() {
       return;
     }
     try {
-      const { data } = await axios.post("/api/register", {
+      const { data } = await axios.post("/api/registerUser", {
         name,
         email,
         password,

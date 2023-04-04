@@ -1,21 +1,8 @@
 import NextAuth from 'next-auth'
-import EmailProvider from 'next-auth/providers/email'
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
-import bcrypt from 'bcryptjs'
-import { User } from "../../../lib/models/User"
 import CredentialsProvider from "next-auth/providers/credentials"
-import clientPromise from "../../../lib/mongodb"
-
-const signinUser = async ({ password, user }) => {
-  if (!user.password) {
-    throw new Error("Please enter password")
-  }
-  const isMatch = await bcrypt.compare(password, user.password)
-  if (!isMatch) {
-    throw new Error("Password Incorrect.")
-  }
-  return user;
-}
+import clientPromise from "../../../__database/mongodb"
+import Client from '@/__models/client.js'
 
 module.exports = NextAuth({
   providers: [
@@ -37,7 +24,7 @@ module.exports = NextAuth({
         await dbConnect();
 
         // Find user with the email
-        const user = await User.findOne({
+        const user = await Client.findOne({
           email: credentials?.email,
         });
 
@@ -67,8 +54,15 @@ module.exports = NextAuth({
   debug: process.env.NODE_ENV === "development",
   adapter: MongoDBAdapter(clientPromise),
   session: {
-    strategy: "jwt",
-  },
+     jwt: true,
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+    updateAge: 24 * 60 * 60, // 24 hours
+    callback: async (session, user) => {
+      // Set the jwt token in the cookie
+      session.id = user.id
+      return Promise.resolve(session)
+  }
+},
   jwt: {
     secret: process.env.NEXTAUTH_JWT_SECRET,
   },

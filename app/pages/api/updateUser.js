@@ -1,4 +1,4 @@
-import { User } from '../../Utils/Users.js'
+
 import Client from '../__models/client.js'
 
 export default async function updateUser(req, res){  

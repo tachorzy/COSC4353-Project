@@ -50,7 +50,14 @@ function Login() {
         setEmailError('Email not found');
       } else if (error.message === 'Incorrect password') {
         setPasswordError('Incorrect password');
-      } else {
+      } else if (error.message === 'Email is required') {
+        setPasswordError('Email is required');
+      } 
+      else if (error.message === 'Password is required') {
+        setPasswordError('Password is required');
+      } 
+      
+      else {
         console.log(error);
       }
     }
@@ -81,7 +88,6 @@ function Login() {
                       value={email}
                       onChange={event => setEmail(event.target.value)}
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                      required
                     />
                     {emailError && <p className="text-red-500">{emailError}</p>}
                   </div>
@@ -94,7 +100,6 @@ function Login() {
                       value={password}
                       onChange={event => setPassword(event.target.value)}
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                      required
                     />
                     {passwordError && <p className="text-red-500">{passwordError}</p>}
                   </div>

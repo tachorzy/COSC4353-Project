@@ -1,5 +1,6 @@
-import dbConnect from '@/lib/dbConnect';
-import User from '@/lib/models/User';
+import dbConnect from '@/__database/dbConnect.js';
+import Client from '@/__models/client.js'
+import bcrypt from 'bcryptjs';
 
 export default async function handler(req, res) {
   const { email, password } = req.body;
@@ -7,10 +8,10 @@ export default async function handler(req, res) {
   try {
     await dbConnect();
 
-    const user = await User.findOne({ email });
-    if (user) {
-      //const passwordMatch = await user.comparePassword(password);
-      if (password == user.password) {
+    const client = await Client.findOne({ email });
+    if (client) {
+      const passwordMatch = await bcrypt.compareSync(password, client.password);
+      if (password == client.password) {
         res.status(200).json({ message: 'Email and password correct' });
       } else {
         res.status(401).json({ message: 'Incorrect password' });
