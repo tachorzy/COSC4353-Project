@@ -1,26 +1,44 @@
-import Client from '../../__models/client.js'
+import updateUser from "../../pages/api/updateUser";
 import dbConnect from '../../__database/dbConnect.js'
+import Client from '../../__models/client.js'
+import { createMocks } from 'node-mocks-http';
+jest.mock("../../__database/dbConnect.js");
+jest.mock("../../__models/client.js");
 
-export default async function updateUser(req, res){  
-    
-    dbConnect().catch(err => console.log(err));
-    console.log('connected to database')
+describe("updateUser", () => {
+   it("should update user", async () => {
+        const { req, res } = createMocks({
+            method: "GET",
+            body: {
+                firstName: "test",
+                lastName: "test",
+                email: "test@gmail.com",
+                address1: "test",
+                address2: "test",
+                zipCode: "test",
+                city: "test",
+                state: "test"
+            },
+        });
 
-    const { firstName, lastName, email, address1, address2, zipCode, city, state } = req.body;
+        Client.findOne.mockResolvedValue({
+            email: "test123@gmail.com",
+            password: "testpassword",
+            profileSet: true,
+            personalDetails: [{
+                address1: "test",
+                address2: "test",
+                state: "test",
+                city: "test",
+                zip: "test"
+            }]
+        });
+        
+        dbConnect.mockResolvedValue(true);
 
-    const result = await Client.findOne({
-        email: email
-    })
+        await updateUser(req, res);
 
-    console.log(`logging user with email: ${email}`)
+        expect(res._getStatusCode()).toBe(200);
 
-    result.personalDetails[0] = address1;
-    result.personalDetails[1] = address2;
-    result.personalDetails[2] = state;
-    result.personalDetails[3] = city;
-    result.personalDetails[4] = zipCode;
-
-    if(req.method === 'GET') {
-        res.status(200).json(result)
-    }
-}
+   });
+});
