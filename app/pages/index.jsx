@@ -7,6 +7,7 @@ import FuelQuoteHistory from '../components/FuelQuoteHistory.jsx'
 import LoginButton from '../components/LoginButton.jsx'
 import RegisterButton from '../components/RegisterButton.jsx'
 import localFont from '@next/font/local'
+import { useSession, signIn, signOut } from "next-auth/react"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,6 +22,7 @@ const satoshiBold = localFont({
 })
 
 export default function Home() {
+
   return (
     <>
       <Head>

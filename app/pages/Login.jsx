@@ -9,58 +9,42 @@ import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import bcrypt from 'bcryptjs';
 
-
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [error, setError] = useState('');
   const router = useRouter();
+
+
   const handleSubmit = async (event) => {
+    console.log('form submitted');
     event.preventDefault();
     setEmailError('');
+    setPasswordError('');
     if (!email || !password) {
       if (!email) setEmailError('Email is required');
       if (!password) setPasswordError('Password is required');
       return;
     }
-    try {
-      const response = await fetch('/api/check-email', {
-        method: 'POST',
-        body: JSON.stringify({ email, password }),
-        headers: { 'Content-Type': 'application/json' },
-      });
-      if (response.status == 404) {
-        throw new Error('Email not found');
-      }
-      if (response.status == 401) {
-        throw new Error('Incorrect password');
-      }
-
-      const signInResponse = await signIn('credentials', {
-        redirect: false,
-        email: email,
-        passwor: password,
-      });
-
-
-      router.push('/Profile');
-    } catch (error) {
-      if (error.message === 'Email not found') {
-        setEmailError('Email not found');
-      } else if (error.message === 'Incorrect password') {
-        setPasswordError('Incorrect password');
-      } else if (error.message === 'Email is required') {
-        setPasswordError('Email is required');
-      } 
-      else if (error.message === 'Password is required') {
-        setPasswordError('Password is required');
-      } 
-      
-      else {
-        console.log(error);
-      }
+    const result = await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+    });
+    if (result.error) {
+      console.log(result.error);
     }
+    if(result.error == "Email not found"){
+      setEmailError('Email not found');
+    }
+    else if(result.error == "Incorrect Password"){
+      setPasswordError('Incorrect Password')
+    }
+    console.log("result?")
+    console.log(result);
+    router.push('/Profile');
   };
 
   return (
