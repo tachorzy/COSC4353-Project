@@ -1,23 +1,27 @@
 import NextAuth from 'next-auth'
 import EmailProvider from 'next-auth/providers/email'
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
-import clientPromise from "pages/api/auth/lib/mongodb"
+import CredentialsProvider from 'next-auth/providers/credentials'
+import dbConnect from '../../__database/dbConnect'
+import Client from '../../__models/client'
+
 export default NextAuth({
-  adapter: MongoDBAdapter(clientPromise),
   providers: [
-    // OAuth authentication providers...
-    // Passwordless / email sign in
-    
-    EmailProvider({
-      server: {
-        host: process.env.EMAIL_SERVER_HOST,
-        port: process.env.EMAIL_SERVER_PORT,
-        auth: {
-          user: process.env.EMAIL_SERVER_USER,
-          pass: process.env.EMAIL_SERVER_PASSWORD
+    CredentialsProvider({
+      name: "Credentials",
+      // credentials: {
+      //   username: {label: "Username", type: "text", placeholder: "Test" },
+      //   password: { label: "Password", type: "password" }
+      // }, 
+      async authorize(credentials, req){
+        dbConnect().catch(err => console.log(err));
+        const userFound = await clientSchema.findOne({
+          email: credentials.email
+        })
+        
+        if(userFound){
+
         }
-      },
-      from: process.env.EMAIL_FROM
-    }),
+      }
+    })    
   ]
 })
