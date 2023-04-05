@@ -7,7 +7,7 @@ export default async function registerUser(req, res){
     
     await dbConnect().catch(err => console.log(err));
 
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
 
     const result = await Client.findOne({
         email: email
@@ -19,15 +19,23 @@ export default async function registerUser(req, res){
     
     const salt = bcrypt.genSaltSync(10);
     const encryptedPassword = bcrypt.hashSync(password, salt);
-
+    const nameArr = name.split(' ');
+    const firstName = nameArr[0];
+    const lastName = nameArr[nameArr.length - 1];
     const newUser = await Client.create({
         email: email,
         password: encryptedPassword,
         profileSet: true,
-        personalDetails: []
+        personalDetails: [{
+            FirstName: firstName,
+            LastName: lastName,
+            address1: "",
+            address2: "",
+            state: "",
+            city: "",
+            zip: "",
+        }
+        ]
     })
-
-    if(req.method === 'GET') {
-        res.status(200).json(newUser)
-    }
+    res.status(200).json(newUser)
 }

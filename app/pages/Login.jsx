@@ -15,45 +15,68 @@ function Login() {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-    
-    const handleSubmit = async (event) => {
-      event.preventDefault();
-      const passwordBox = document.getElementById('password')
-      const errorMessage = document.getElementById('error')
-      passwordBox.style.border = ""
-      errorMessage.innerHTML = ""
-      var temp = false;
-      
-      const result = await signIn('credentials', {
+  const router = useRouter();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setEmailError('');
+    if (!email || !password) {
+      if (!email) setEmailError('Email is required');
+      if (!password) setPasswordError('Password is required');
+      return;
+    }
+    try {
+      const response = await fetch('/api/check-email', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+      if (response.status == 404) {
+        throw new Error('Email not found');
+      }
+      if (response.status == 401) {
+        throw new Error('Incorrect password');
+      }
+
+      const signInResponse = await signIn('credentials', {
         redirect: false,
         email: email,
         passwor: password,
       });
-      
-      if (!result.error) {
-        router.push('/Profile');
-      } else {
-        if (result.error === 'CredentialsSignin' && result.status === 401) {
-          passwordBox.style.border = "2px solid red"
-          errorMessage.innerHTML = "Invalid e-mail or password"
-          setPasswordError('Invalid password');
-        } else if (result.error === 'NoUserFound' && result.status === 404) {
-          setEmailError('Invalid email');
-  
-    return (
-      <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12"> 
-        <Head>
-            <title>Login</title>
-            <link rel="icon" href="/favicon.ico" />
-        </Head> 
-        <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-          <div className="relative px-4 py-10 bg-stone-200 mx-8 md:mx-0 shadow-lg rounded-3xl sm:p-10">
 
-            <div className="max-w-md mx-auto">
-              <div>
-                <h1 className="text-2xl font-semibold text-stone-600">Sign in</h1>
-              </div>
-              <form onSubmit={handleSubmit}>
+
+      router.push('/Profile');
+    } catch (error) {
+      if (error.message === 'Email not found') {
+        setEmailError('Email not found');
+      } else if (error.message === 'Incorrect password') {
+        setPasswordError('Incorrect password');
+      } else if (error.message === 'Email is required') {
+        setPasswordError('Email is required');
+      } 
+      else if (error.message === 'Password is required') {
+        setPasswordError('Password is required');
+      } 
+      
+      else {
+        console.log(error);
+      }
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12">
+      <Head>
+        <title>Login</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div className="relative py-3 sm:max-w-xl sm:mx-auto">
+        <div className="relative px-4 py-10 bg-stone-200 mx-8 md:mx-0 shadow-lg rounded-3xl sm:p-10">
+
+          <div className="max-w-md mx-auto">
+            <div>
+              <h1 className="text-2xl font-semibold text-stone-600">Sign in</h1>
+            </div>
+            <form onSubmit={handleSubmit}>
               <div className="divide-y divide-gray-200">
                 <div className="py-8 text-base leading-6 space-y-4 text-stone-700 sm:text-lg sm:leading-7">
                   <div className="relative">
@@ -65,7 +88,6 @@ function Login() {
                       value={email}
                       onChange={event => setEmail(event.target.value)}
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                      required
                     />
                     {emailError && <p className="text-red-500">{emailError}</p>}
                   </div>
@@ -78,7 +100,6 @@ function Login() {
                       value={password}
                       onChange={event => setPassword(event.target.value)}
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                      required
                     />
                     {passwordError && <p className="text-red-500">{passwordError}</p>}
                   </div>
@@ -97,12 +118,12 @@ function Login() {
                   <div className="text-sm leading-5">                  </div>
                 </div>
                 <div className="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
-                <button
+                  <button
                     type="submit"
                     className="w-full bg-stone-400 hover:bg-stone-500 text-white py-3 rounded-md transition duration-150 ease-in-out sm:py-4 sm:text-sm sm:leading-5"
                   >
                     Sign in
-                </button>
+                  </button>
                 </div>
                 <div className="text-sm leading-5 pt-6">
                   Dont have an account?{' '}
@@ -113,12 +134,12 @@ function Login() {
                   </Link>
                 </div>
               </div>
-              </form>
-            </div>
+            </form>
           </div>
         </div>
       </div>
-    )
-    
-  }
-  export default Login;
+    </div>
+  )
+
+}
+export default Login;
