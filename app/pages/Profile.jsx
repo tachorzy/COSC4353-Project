@@ -1,3 +1,4 @@
+
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
@@ -11,8 +12,9 @@ import FuelQuoteStyle from '../styles/FuelQuoteStyle.module.css'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-
+import { getSession } from "next-auth/react"
 const inter = Inter({ subsets: ['latin'] })
+
 
 const satoshi = localFont({
     src: '../fonts/Satoshi-Regular.otf',
@@ -32,26 +34,8 @@ export default function Profile() {
     // const placeholderCity = "Houston"
     // const placeholderState = "Texas"
     // const placeholderZip = "77004"
-    const [client, setClientData] = useState()
-    const { data: session, status } = useSession()
-    const router = useRouter()
-    useEffect(() => {
-        if (status === 'authenticated' && session?.user?.id) {
-          fetch(`/api/getClientData?id=${session.user.id}`, {
-            method: 'GET',
-            headers: {
-                "Authorization": `Bearer ${session.accessToken}`
-            }
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              console.log('Client data fetched successfully:', data)
-              setClientData(data)
-            })
-            .catch((err) => console.error(err))
-        }
-      }, [status, session])
-
+    const {data} = useSession();
+    const router = useRouter();
     return (
         <div className="bg-cambridgeBlue h-screen content-center flex flex-col text-stone-200">
             <div className="ml-24 mt-32">
@@ -60,35 +44,35 @@ export default function Profile() {
                 </div>
                 <div className="w-1/2 text-stone-600">
                     <div className={FuelQuoteStyle.container}>
-                         {client ? (
+                         {data? (
                             <div>
                                 <div className="flex flex-col">
                                     <label className="text-lg mb-1.5 font-semibold">Full Name: </label>
-                                    <h2 className="text-xl">{`${client.FirstName} ${client.LastName}`}</h2>
+                                    <h2 className="text-xl">{`${data.user.personalDetails[0].FirstName} ${data.user.personalDetails[0].LastName}`}</h2>
                                 </div>
                                 <div>
                                     <label className="text-lg mb-1.5 font-semibold">Address 1: </label>
-                                    <h2 className="text-xl">{client.address1}</h2>
+                                    <h2 className="text-xl">{data.user.personalDetails[0].address1}</h2>
                                     <div>
                                         <label className="text-lg mb-1.5 font-semibold">Address 2: </label>
-                                        <h2 className="text-xl">{client.address2 === "" ? "N/A" : client.address2}</h2>
+                                        <h2 className="text-xl">{data.user.personalDetails[0].address2 === "" ? "N/A" : data.user.personalDetails[0].address2}</h2>
                                     </div>
                                     <div>
                                         <label className="text-lg mb-1.5 font-semibold">City: </label>
-                                        <h2 className="text-xl">{client.city}</h2>
+                                        <h2 className="text-xl">{data.user.personalDetails[0].city}</h2>
                                     </div>
                                     <div>
                                         <label className="text-lg mb-1.5 font-semibold">State: </label>
-                                        <h2 className="text-xl">{client.state}</h2>
+                                        <h2 className="text-xl">{data.user.personalDetails[0].state}</h2>
                                     </div>
                                     <div>
                                         <label className="text-lg mb-1.5 font-semibold">Zipcode: </label>
-                                        <h2 className="text-xl">{client.zipCode}</h2>
+                                        <h2 className="text-xl">{data.user.personalDetails[0].zipCode}</h2>
                                     </div>
                                 </div>
                             </div>
                         ) : (
-                            <p>Loading client <data className="client"></data></p>
+                            <p>Loading data <data className="data"></data></p>
                           )}  
                     </div>
 
