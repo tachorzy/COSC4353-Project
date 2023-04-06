@@ -23,7 +23,7 @@ export default async function registerUser(req, res) {
         const newUser = await Client.create({
             email: email,
             password: password,
-            profileSet: true,
+            profileSet: false,
             personalDetails: [{
                 FirstName: firstName,
                 LastName: lastName,

@@ -5,7 +5,7 @@ import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 import React, { useState } from 'react';
 import { tempUserBase } from '@/utils/tempUserBase'
-import { signIn } from 'next-auth/react';
+import { getSession,signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import bcrypt from 'bcryptjs';
 
@@ -14,7 +14,6 @@ function Login() {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [error, setError] = useState('');
   const router = useRouter();
 
 
@@ -46,7 +45,14 @@ function Login() {
     }
     console.log("result?")
     console.log(result);
-    router.push('/Profile');
+    const data = await getSession();
+    if (data) {
+      if (!data.user.profileSet) {
+        router.push('/ProfileForm');
+      } else {
+        router.push('/Profile');
+      }
+    }
   };
 
   return (
