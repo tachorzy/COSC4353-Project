@@ -38,9 +38,11 @@ function Login() {
     }
     if(result.error == "Email not found"){
       setEmailError('Email not found');
+      return;
     }
     else if(result.error == "Incorrect Password"){
-      setPasswordError('Incorrect Password')
+      setPasswordError('Incorrect Password');
+      return;
     }
     console.log("result?")
     console.log(result);

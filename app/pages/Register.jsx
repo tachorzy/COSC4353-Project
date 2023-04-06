@@ -15,12 +15,26 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const [nameError, setNameError] = useState('');
   const router = useRouter();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
+    setNameError('');
+    setPasswordError('');
+    setEmailError('');
+    setConfirmPasswordError('');
+    if (!email || !password || !name || (password != confirmPassword)) {
+      if (!email) setEmailError('Email is required');
+      if (!password) setPasswordError('Password is required');
+      if (!name) setNameError('Name is required');
+      if(password != confirmPassword) setConfirmPasswordError('Passwords do not match');
+      return;
+    }
+    if (password.length < 5) {
+      setPasswordError('Password is need at least 5 character');
       return;
     }
     try {
@@ -29,10 +43,17 @@ export default function Register() {
         email,
         password,
       });
+      if(data.status === 409){
+        setErrorEmail('User already exists under this email.');
+        return;
+      }
       router.push('/Login');
       console.log(data);
     } catch (error) {
-      console.log(error);
+      if(error.response.status ==409){
+        setEmailError('User already exists under this email.');
+        return;
+      }
     }
   };
     // Check if password and confirm password match
@@ -82,9 +103,9 @@ export default function Register() {
                       id="name"
                       placeholder="Name"
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                      required
                       value = {name} onChange={e => setName(e.target.value)}
                     />
+                    {nameError && <p className="text-red-500">{nameError}</p>}
                   </div>
                   <div className="relative">
                     <input
@@ -92,9 +113,9 @@ export default function Register() {
                       id="email"
                       placeholder="Email address"
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                      required
                       value={email} onChange={e => setEmail(e.target.value)}
                     />
+                    {emailError && <p className="text-red-500">{emailError}</p>}
                   </div>
                   <div className="relative">
                     <input
@@ -102,9 +123,9 @@ export default function Register() {
                       id="password"
                       placeholder="Password"
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                      required
                       value={password} onChange={e => setPassword(e.target.value)}
                     />
+                    {passwordError && <p className="text-red-500">{passwordError}</p>}
                   </div>
                   <div className="relative">
                     <input
@@ -112,9 +133,9 @@ export default function Register() {
                       id="confirm_password"
                       placeholder="Confirm Password"
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                      required
                       value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)}
                     />
+                    {confirmPasswordError && <p className="text-red-500">{confirmPasswordError}</p>}
                   </div>
                 </div>
                 <div className="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
