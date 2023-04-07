@@ -39,14 +39,14 @@ export default function Profile() {
     // const placeholderState = "Texas"
     // const placeholderZip = "77004"
 
-    const popupedit = useRef(null);
+    const [hiddenclass, sethiddenclass] = useState("hidden");
 
     function editmenu(){
-        popupedit.current.style.display = "flex";
+        sethiddenclass("");
     }
 
     function canceleditmenu(){
-        popupedit.current.style.display = "none";
+        sethiddenclass("hidden");
     }
 
    
@@ -81,9 +81,7 @@ export default function Profile() {
         
         console.log(res);
 
-        popupedit.current.style.display = "none";
-        
-
+        sethiddenclass("hidden");
     }
 
 
@@ -93,84 +91,56 @@ export default function Profile() {
             <div className="ml-24 mt-32">
                 <div className={satoshiBold.className}>
                     <h1 className="text-7xl mb-6 font-extrabold">Profile</h1>
-                    <button onClick={editmenu} style={{}} >Edit</button>
+                    <button className='mb-2 font-semibold' onClick={editmenu} >Edit</button>
                 </div>
                 
-                {/* a popup div in center for edit menu */}
-                <div className="popup-editmenu" id="editmenu" ref={popupedit}
-                style={
-                    {background: "rgb(209 219 255)", 
-                    border: "2px solid black",
-                    color: "black",
-                    minWidth: "400px", 
-                    minHeight: "400px", 
-                    position: "absolute", 
-                    top: "50%", left: "50%", transform: "translate(-50%, -50%)",
-                    borderRadius: "20px",
-                    display: "none", flexDirection: "column", justifyContent: "center", alignItems: "center"}}
+                {/* a popup div for edit menu */}
+                <div className={`${hiddenclass} w-60 bg-blue-200 border-2 border-black text-black   
+                                absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+                                rounded-lg flex flex-col justify-center items-center`}
                 >
-                    <h1>Edit Menu</h1>
+                    
+                    <h1 className="text-lg mb-5 font-bold">Edit Menu</h1>
                 
 
-                    <div>
-                        <h1>First Name</h1>
-                        <input type="text" name="firstname" id="firstname" placeholder="First Name" 
-                        style={{
-                            background: "#FFFFFF", border: "1px solid #000000"
-                        }}/>
+                    <div className='mb-1.5'>
+                        <h1 className="font-semibold">First Name</h1>
+                        <input className="bg-white border border-black pl-2" type="text" name="firstname" id="firstname" placeholder="First Name" />
                     </div>
 
-                    <div>
-                        <h1>Last Name</h1>
-                        <input type="text" name="lastname" id="lastname" placeholder="Last Name" 
-                        style={{
-                            background: "#FFFFFF", border: "1px solid #000000"
-                        }}/>
+                    <div className='mb-1.5'>
+                        <h1 className="font-semibold">Last Name</h1>
+                        <input className="bg-white border border-black pl-2" type="text" name="lastname" id="lastname" placeholder="Last Name" />
                     </div>
 
-                    <div>
-                        <h1>Address 1</h1>
-                        <input type="text" name="address1" id="address1" placeholder="Address 1" 
-                        style={{
-                            background: "#FFFFFF", border: "1px solid #000000"
-                        }}/>
+                    <div className='mb-1.5'>
+                        <h1 className="font-semibold">Address 1</h1>
+                        <input className="bg-white border border-black pl-2" type="text" name="address1" id="address1" placeholder="Address 1" />
                     </div>
 
-                    <div>
-                        <h1>Address 2</h1>
-                        <input type="text" name="address2" id="address2" placeholder="Address 2"
-                        style={{
-                            background: "#FFFFFF", border: "1px solid #000000"
-                        }}/>
+                    <div className='mb-1.5'>
+                        <h1 className="font-semibold">Address 2</h1>
+                        <input className="bg-white border border-black pl-2" type="text" name="address2" id="address2" placeholder="Address 2" />
                     </div>
 
-                    <div>
-                        <h1>City</h1>
-                        <input type="text" name="city" id="city" placeholder="City" 
-                        style={{
-                            background: "#FFFFFF", border: "1px solid #000000"
-                        }}/>
+                    <div className='mb-1.5'>
+                        <h1 className="font-semibold">City</h1>
+                        <input className="bg-white border border-black pl-2" type="text" name="city" id="city" placeholder="City" />
                     </div>
 
-                    <div>
-                        <h1>State</h1>
-                        <input type="text" name="state" id="state" placeholder="State" 
-                        style={{
-                            background: "#FFFFFF", border: "1px solid #000000"
-                        }}/>
+                    <div className='mb-1.5'>
+                        <h1 className="font-semibold">State</h1>
+                        <input className="bg-white border border-black pl-2" type="text" name="state" id="state" placeholder="State" />
                     </div>
 
-                    <div>
-                        <h1>Zipcode</h1>
-                        <input type="text" name="zipcode" id="zipcode" placeholder="Zipcode" 
-                        style={{
-                            background: "#FFFFFF", border: "1px solid #000000"
-                        }}/>
+                    <div className='mb-1.5'>
+                        <h1 className="font-semibold">Zipcode</h1>
+                        <input className="bg-white border border-black pl-2" type="text" name="zipcode" id="zipcode" placeholder="Zipcode" />
                     </div>
                     
-                    <div style={{display:"flex" , gap:"20px" , margin:"20px"}}>
-                        <button onClick={save_editmenu}>Save</button>
-                        <button onClick={canceleditmenu}>Cancel</button>
+                    <div className='flex gap-10 m-5'>
+                        <button className='font-bold' onClick={save_editmenu}>Save</button>
+                        <button className='font-bold' onClick={canceleditmenu}>Cancel</button>
                     </div>
                     
                     
