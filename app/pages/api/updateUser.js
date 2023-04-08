@@ -7,7 +7,7 @@ export default async function updateUser(req, res){
     console.log('connected to database')
 
     const { FirstName, LastName, Email, address1, address2, zipCode, city, state } = req.body
-
+    
     const result = await Client.findOne({Email})
 
     console.log(`logging user with email: ${Email}`)
@@ -23,8 +23,11 @@ export default async function updateUser(req, res){
     if(req.method === 'GET') {
         res.status(200).json(result)
     }
+
+    /*
     if(req.method === 'POST') {
         result.save()
         res.status(200).json(result)
-    }
+    }*/
 }
+
