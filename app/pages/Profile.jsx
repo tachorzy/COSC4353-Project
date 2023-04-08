@@ -1,4 +1,3 @@
-
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
@@ -38,7 +37,7 @@ export default function Profile() {
     // const placeholderCity = "Houston"
     // const placeholderState = "Texas"
     // const placeholderZip = "77004"
-
+    
     const [hiddenclass, sethiddenclass] = useState("hidden");
 
     function editmenu(){
@@ -80,7 +79,7 @@ export default function Profile() {
         const res = await axios.post('/api/updateUser', data);
         
         console.log(res);
-
+        
         sethiddenclass("hidden");
     }
 
