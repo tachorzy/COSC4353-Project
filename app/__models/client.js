@@ -1,4 +1,7 @@
-import {Schema, model, models} from 'mongoose';
+const mongoose = require("mongoose");
+
+const Schema = mongoose.Schema;
+
 
 const clientSchema = new Schema({
     id: Number,
@@ -6,6 +9,8 @@ const clientSchema = new Schema({
     password: String,
     profileSet: Boolean,
     personalDetails: [{
+        FirstName: String,
+        LastName: String,
         address1: String,
         address2: String,
         state: String,
@@ -14,6 +19,14 @@ const clientSchema = new Schema({
     }]
 })
 
-const Client = models.Client || model('client', clientSchema);
 
-export default Client;
+
+let Client;
+try {
+  Client = mongoose.model('Client');
+} catch (e) {
+  Client = mongoose.model('Client', clientSchema);
+}
+
+module.exports = Client;
+//export default Client;
