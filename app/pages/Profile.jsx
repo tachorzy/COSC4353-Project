@@ -1,4 +1,3 @@
-
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
@@ -93,7 +92,7 @@ function Profile() {
         const res = await axios.post('/api/updateUser', data);
         
         console.log(res);
-
+        
         sethiddenclass("hidden");
     }
 

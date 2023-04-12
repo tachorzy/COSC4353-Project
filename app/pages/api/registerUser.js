@@ -9,14 +9,12 @@ export default async function registerUser(req, res) {
 
         const { name, email, password } = req.body;
 
-        const result = await Client.findOne({
-            email: email
-        })
+        const result = await Client.findOne({email})
 
         if (result) {
-            res.status(500).json('User already exists under this email.')
+            res.status(409).json('User already exists under this email.');
         }
-
+        else{
         const salt = bcrypt.genSaltSync(10);
         const encryptedPassword = bcrypt.hashSync(password, salt);
         const nameArr = name.split(' ');
@@ -25,7 +23,7 @@ export default async function registerUser(req, res) {
         const newUser = await Client.create({
             email: email,
             password: password,
-            profileSet: true,
+            profileSet: false,
             personalDetails: [{
                 FirstName: firstName,
                 LastName: lastName,
@@ -39,4 +37,5 @@ export default async function registerUser(req, res) {
         })
         res.status(200).json(newUser)
     }
+}
 }
