@@ -8,8 +8,17 @@ import { tempUserBase } from '@/utils/tempUserBase'
 import { getSession,signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import bcrypt from 'bcryptjs';
+import { useSession } from "next-auth/react"
 
 function Login() {
+
+  const {data} = useSession();
+  const router = useRouter();
+
+  if(data){
+    router.push('/Profile');
+  }
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -32,28 +41,29 @@ function Login() {
       password,
       redirect: false,
     });
+
     if (result.error) {
       console.log(result.error);
-    }
-    if(result.error == "Email not found"){
-      setEmailError('Email not found');
-      return;
-    }
-    else if(result.error == "Incorrect Password"){
-      setPasswordError('Incorrect Password');
-      return;
-    }
-    console.log("result?")
-    console.log(result);
-    const data = await getSession();
-    if (data) {
-      if (!data.user.profileSet) {
-        router.push('/ProfileForm');
-      } else {
-        router.push('/Profile');
+
+      if(result.error == "Email not found"){
+        setEmailError('Email not found');
       }
+      else if(result.error == "Incorrect Password"){
+        setPasswordError('Incorrect Password')
+      }
+
+    }else{
+      const data = await getSession();
+      if (data) {
+        if (!data.user.profileSet) {
+          router.push('/ProfileForm');
+        } else {
+          router.push('/Profile');
+        }
+      } 
     }
-  };
+
+};
 
   return (
     <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12">
