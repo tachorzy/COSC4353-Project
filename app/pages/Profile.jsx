@@ -30,7 +30,7 @@ const satoshiBold = localFont({
     weight: '200'
 })
 
-export default function Profile() {
+function Profile() {
     // const placeholderName = "Raj Singh"
     // const placeholderNumber = "+1 (713)-789-4353"
     // const placeholderAddress = "3551 Cullen Blvd"
@@ -38,9 +38,20 @@ export default function Profile() {
     // const placeholderCity = "Houston"
     // const placeholderState = "Texas"
     // const placeholderZip = "77004"
-
+    
     const [hiddenclass, sethiddenclass] = useState("hidden");
+    const {data} = useSession();
 
+    const router = useRouter();
+
+    useEffect(() => {
+        if(!data){  
+        if (typeof window !== 'undefined') {
+            router.push('/Login');
+        }}
+    }, []);
+
+    
     function editmenu(){
         sethiddenclass("");
     }
@@ -50,11 +61,12 @@ export default function Profile() {
     }
 
    
-    const {data} = useSession();
+
+    
+   
 
     var email = "";
 
-    const router = useRouter();
 
     const save_editmenu = async (event) =>{
     
@@ -76,6 +88,7 @@ export default function Profile() {
             state: State,
             zipcode: Zipcode
         }
+        
 
         const res = await axios.post('/api/updateUser', data);
         
@@ -87,6 +100,7 @@ export default function Profile() {
 
 
     return (
+       
         <div className="bg-cambridgeBlue h-screen content-center flex flex-col text-stone-200">
             <div className="ml-24 mt-32">
                 <div className={satoshiBold.className}>
@@ -187,6 +201,8 @@ export default function Profile() {
         </div>
     )
 }
+
+export default Profile;
 /*Login.getInitialProps = async (ctx) => {
     const res = await axios.get('/api/user');
     const user = res.data;
