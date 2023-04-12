@@ -8,14 +8,22 @@ import { tempUserBase } from '@/utils/tempUserBase'
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import bcrypt from 'bcryptjs';
+import { useSession } from "next-auth/react"
 
 function Login() {
+
+  const {data} = useSession();
+  const router = useRouter();
+
+  if(data){
+    router.push('/Profile');
+  }
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [error, setError] = useState('');
-  const router = useRouter();
 
 
   const handleSubmit = async (event) => {
@@ -33,18 +41,26 @@ function Login() {
       password,
       redirect: false,
     });
+
     if (result.error) {
       console.log(result.error);
+
+      if(result.error == "Email not found"){
+        setEmailError('Email not found');
+      }
+      else if(result.error == "Incorrect Password"){
+        setPasswordError('Incorrect Password')
+      }
+
+    }else{
+      router.push('/Profile');
     }
-    if(result.error == "Email not found"){
-      setEmailError('Email not found');
-    }
-    else if(result.error == "Incorrect Password"){
-      setPasswordError('Incorrect Password')
-    }
+    
+
     console.log("result?")
     console.log(result);
-    router.push('/Profile');
+    
+
   };
 
   return (
