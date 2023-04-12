@@ -8,15 +8,16 @@ import LoginButton from '../components/LoginButton.jsx'
 import RegisterButton from '../components/RegisterButton.jsx'
 import localFont from '@next/font/local'
 import { useSession, signIn, signOut } from "next-auth/react"
+import { TypeAnimation } from 'react-type-animation';
 
 const inter = Inter({ subsets: ['latin'] })
 
-const satoshi = localFont({
+export const satoshi = localFont({
   src: '../fonts/Satoshi-Regular.otf',
   weight: '200'
 })
 
-const satoshiBold = localFont({
+export const satoshiBold = localFont({
   src: '../fonts/Satoshi-Bold.otf',
   weight: '200'
 })
@@ -37,9 +38,24 @@ export default function Home() {
               <LoginButton/>
               <RegisterButton/>
             </span>
-            <h1 className="text-9xl mt-24 mx-auto font-extrabold">Calculate your<br/>Fuel Quotes</h1>
+            <div>
+                  <TypeAnimation
+                    className="text-9xl mt-14 mx-auto font-extrabold pb-4 absolute"
+                    sequence={[
+                      `Calculate your\nfuel quotes`,
+                      3200,
+                      "Manage your\ncosts",
+                      3200,
+                      "Keep track of your orders",
+                      3200
+                    ]} 
+                    cursor={true}
+                    repeat={Infinity}
+                    speed={25}
+                    deletionSpeed={25}
+                  />
+            </div>
           </div>
-          
       </main>
     </>
   )
