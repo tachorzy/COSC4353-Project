@@ -13,7 +13,7 @@ const Header = () => {
       <div className={satoshi.className}>
         <div className="container">
           <div className="col-3 p-0">
-            <p className="navbar-brand ml-4 pt-0.5">
+            <p className="navbar-brand ml-4 pt-0.5 select-none">
               Placeholder
             </p>
           </div>
