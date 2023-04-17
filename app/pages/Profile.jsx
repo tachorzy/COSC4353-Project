@@ -96,29 +96,35 @@ function Profile() {
     }
 
 
-
+    // bg-gradient-to-r from-black via-purple-600 to-black
     return (
         data && (
-        <div className="bg-cambridgeBlue min-h-screen flex justify-center items-center flex-col 
+        <div className=" bg-gradient-to-r from-[#101d30] via-[#11283c] to-[#1c3c58]
+                        min-h-screen flex justify-center items-center flex-col 
                         text-stone-200 max-sm:p-10">
         
             <div>
                 
                 <div className='flex justify-between items-end px-3'>
-                    <h2 className='text-white text-3xl font-semibold mb-2'>Personal Information</h2>
-                    <button className='mb-2 text-1xl text-white font-semibold bg-cambridgeBlue 
-                                        rounded-full px-5 border border-white 
-                                        transition duration-700 ease-in-out hover:bg-neutral-100 hover:text-black ' 
+                    <h2 className=' bg-gradient-to-r from-[#cbd0ff] via-[#6bbcf1] to-[#adcafb]
+                    bg-clip-text text-transparent  
+                    text-3xl font-semibold mb-2'>
+                    Personal Information</h2>
+                    <button className='mb-2 text-1xl text-black font-semibold bg-white
+                                        rounded-full px-5 border-2 border-white 
+                                        transition duration-700 ease-in-out hover:bg-[#1c3c58] hover:text-white'  
                             onClick={editmenu} >
                             Edit
                     </button>
                 </div>
 
-                <div className="bg-white p-8 rounded-3xl ">
+                <div className="bg-gradient-to-r from-[#1c3c58] via-[#26667a] to-[#153249]
+                                p-8 rounded-3xl border-white border-2">
                     
                     <div className='input-container min-w-full mb-5'>
-                        <p className='text-black mb-1'>Your Email</p>
-                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full  bg-neutral-50' 
+                        <p className='text-white mb-1'>Your Email</p>
+                        <input className='border text-white border-gray-300 p-2 px-4 rounded-full w-full  
+                                          border-white border-2 bg-transparent' 
                             id="email"
                             defaultValue={data?.user?.email}
                             type="text"
@@ -131,9 +137,9 @@ function Profile() {
                     <div className='input-container min-w-full flex gap-3 mb-5 w-full max-sm:flex-col'>
                         
                         <div className='w-full'>
-                            <p className='text-black mb-1'>First Name</p>
-                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full 
-                                              w-full bg-neutral-50' 
+                            <p className='text-white mb-1'>First Name</p>
+                            <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
+                                              w-full border-white border-2 bg-transparent' 
                                 id="firstname"
                                 defaultValue={data.user.personalDetails[0].FirstName}
                                 type="text"
@@ -143,9 +149,9 @@ function Profile() {
                         </div>
 
                         <div className='w-full'>
-                            <p className='text-black mb-1'>Last Name</p>
-                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full 
-                                              w-full bg-neutral-50'
+                            <p className='text-white mb-1'>Last Name</p>
+                            <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
+                                              w-full border-white border-2 bg-transparent'
                                 id="lastname" 
                                 defaultValue={data.user.personalDetails[0].LastName}
                                 type="text"
@@ -159,9 +165,9 @@ function Profile() {
                     <div className='input-container flex gap-3 mb-5 max-w-md max-sm:flex-col'>
                         
                         <div className='w-1/3 max-sm:w-full'>
-                            <p className='text-black mb-1'>City</p>
-                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full 
-                                              w-full  bg-neutral-50'
+                            <p className='text-white mb-1'>City</p>
+                            <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
+                                              w-full  border-white border-2 bg-transparent'
                                 id="city"
                                 defaultValue={data.user.personalDetails[0].city}
                                 type="text"
@@ -171,9 +177,9 @@ function Profile() {
                         </div>
 
                         <div className='w-1/3 max-sm:w-full'>
-                            <p className='text-black mb-1'>State</p>
-                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full 
-                                              w-full  bg-neutral-50' 
+                            <p className='text-white mb-1'>State</p>
+                            <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
+                                              w-full  border-white border-2 bg-transparent' 
                                 id="state"
                                 defaultValue={data.user.personalDetails[0].state}
                                 type="text"
@@ -183,9 +189,9 @@ function Profile() {
                         </div>
 
                         <div className='w-1/3 max-sm:w-full'>
-                            <p className='text-black mb-1'>Zip Code</p>
-                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full 
-                                              w-full  bg-neutral-50' 
+                            <p className='text-white mb-1'>Zip Code</p>
+                            <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
+                                              w-full  border-white border-2 bg-transparent' 
                                 id="zipcode"
                                 defaultValue={data.user.personalDetails[0].zipcode}
                                 type="text"
@@ -197,9 +203,9 @@ function Profile() {
                     </div>
 
                     <div className='input-container min-w-full mb-5'>
-                        <p className='text-black mb-1'>Address 1</p>
-                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full 
-                                          w-full  bg-neutral-50' 
+                        <p className='text-white mb-1'>Address 1</p>
+                        <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
+                                          w-full  border-white border-2 bg-transparent' 
                             id="address1"
                             defaultValue={data.user.personalDetails[0].address1}
                             type="text"
@@ -209,9 +215,9 @@ function Profile() {
                     </div>
 
                     <div className='input-container min-w-full mb-5'>
-                        <p className='text-black mb-1'>Address 2</p>
-                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full
-                                          w-full  bg-neutral-50' 
+                        <p className='text-white mb-1'>Address 2</p>
+                        <input className='border text-white border-gray-300 p-2 px-4 rounded-full
+                                          w-full border-white border-2 bg-transparent' 
                             id="address2"
                             defaultValue={data.user.personalDetails[0].address2}
                             type="text"
@@ -226,15 +232,15 @@ function Profile() {
 
                 <div className={`${hiddenclass} flex justify-center gap-8 items-end px-5 mt-4`}>
                     <button className="mb-2 text-1xl text-black font-semibold bg-neutral-100
-                                        rounded-full px-5 py-1 border border-white 
-                                        transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white"
+                                        rounded-full px-5 py-1 border-2 border-white 
+                                        transition duration-700 ease-in-out hover:bg-[#1c3c58] hover:text-white"
                             onClick={save_editmenu} >
                             Save
                     </button>
 
                     <button className="mb-2 text-1xl text-black font-semibold bg-neutral-100
-                                        rounded-full px-5 py-1 border border-white 
-                                        transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white" 
+                                        rounded-full px-5 py-1 border-2 border-white 
+                                        transition duration-700 ease-in-out hover:bg-[#1c3c58] hover:text-white" 
                             onClick={canceleditmenu} >
                             Cancel
                     </button>
