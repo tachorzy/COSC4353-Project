@@ -59,13 +59,7 @@ function Profile() {
         sethiddenclass("hidden");
     }
 
-   
-
-    
-   
-
     var email = "";
-
 
     const save_editmenu = async (event) =>{
     
@@ -92,7 +86,7 @@ function Profile() {
         const res = await axios.post('/api/updateUser', data);
         
         console.log(res);
-        
+
         sethiddenclass("hidden");
     }
 
@@ -100,15 +94,102 @@ function Profile() {
 
     return (
        
-        <div className="bg-cambridgeBlue h-screen content-center flex flex-col text-stone-200">
-            <div className="ml-24 mt-32">
-                <div className={satoshiBold.className}>
+        <div className="bg-cambridgeBlue min-h-screen flex justify-center items-center text-stone-200">
+
+            <div className="bg-white p-8 rounded-lg ">
+                
+                <div className='input-container min-w-full mb-5'>
+                    <p className='text-black mb-1'>Your Email</p>
+                    <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                        defaultValue="hello"
+                        type="text"
+                    > 
+                    </input>
+                </div>
+
+
+                <div className='input-container min-w-full flex gap-3 mb-5 w-full'>
+                    
+                    <div className='w-full'>
+                        <p className='text-black mb-1'>First Name</p>
+                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                            defaultValue="hello"
+                            type="text"
+                        > 
+                        </input>
+                    </div>
+
+                    <div className='w-full'>
+                        <p className='text-black mb-1'>Last Name</p>
+                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                            defaultValue="hello"
+                            type="text"
+                        > 
+                        </input>
+                    </div>
+
+                </div>
+
+                <div className='input-container flex gap-3 mb-5 max-w-md'>
+                    
+                    <div className='w-1/3'>
+                        <p className='text-black mb-1'>City</p>
+                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                            defaultValue="hello"
+                            type="text"
+                        > 
+                        </input>
+                    </div>
+
+                    <div className='w-1/3'>
+                        <p className='text-black mb-1'>State</p>
+                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                            defaultValue="hello"
+                            type="text"
+                        > 
+                        </input>
+                    </div>
+
+                    <div className='w-1/3'>
+                        <p className='text-black mb-1'>Zip Code</p>
+                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                            defaultValue="hello"
+                            type="text"
+                        > 
+                        </input>
+                    </div>
+
+                </div>
+
+                <div className='input-container min-w-full mb-5'>
+                    <p className='text-black mb-1'>Address 1</p>
+                    <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                        defaultValue="hello"
+                        type="text"
+                    > 
+                    </input>
+                </div>
+
+                <div className='input-container min-w-full mb-5'>
+                    <p className='text-black mb-1'>Address 2</p>
+                    <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                        defaultValue="hello"
+                        type="text"
+                    > 
+                    </input>
+                </div>
+
+
+
+            </div>
+                      
+                {/* <div className={satoshiBold.className}>
                     <h1 className="text-7xl mb-6 font-extrabold">Profile</h1>
                     <button className='mb-2 font-semibold' onClick={editmenu} >Edit</button>
-                </div>
+                </div> */}
                 
                 {/* a popup div for edit menu */}
-                <div className={`${hiddenclass} w-60 bg-blue-200 border-2 border-black text-black   
+                {/* <div className={`${hiddenclass} w-60 bg-blue-200 border-2 border-black text-black   
                                 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
                                 rounded-lg flex flex-col justify-center items-center`}
                 >
@@ -157,9 +238,10 @@ function Profile() {
                     </div>
                     
                     
-                </div>
+                </div> */}
 
-                <div className="w-1/2 text-stone-600">
+
+                {/* <div className="w-1/2 text-stone-600">
                     <div className={FuelQuoteStyle.container}>
                          {data? (
                             <div>
@@ -195,15 +277,11 @@ function Profile() {
                           )}  
                     </div>
 
-                </div>
-            </div>
+                </div> */}
+
+        
         </div>
     )
 }
 
 export default Profile;
-/*Login.getInitialProps = async (ctx) => {
-    const res = await axios.get('/api/user');
-    const user = res.data;
-    return { user };
-};*/
