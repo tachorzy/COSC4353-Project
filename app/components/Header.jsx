@@ -13,9 +13,9 @@ const Header = () => {
       <div className={satoshi.className}>
         <div className="container">
           <div className="col-3 p-0">
-            <p className="navbar-brand ml-4 pt-0.5 select-none">
+            <Link href="/" className="navbar-brand ml-4 pt-0.5 select-none hover:stone-100">
               Placeholder
-            </p>
+            </Link>
           </div>
 
           <div className="col-3 mt-3 mt-md-0 text-center d-flex flex-row">
