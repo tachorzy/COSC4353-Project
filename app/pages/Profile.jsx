@@ -39,6 +39,7 @@ function Profile() {
     // const placeholderZip = "77004"
     
     const [hiddenclass, sethiddenclass] = useState("hidden");
+    const [read , setread] = useState(true);
     const {data} = useSession();
 
     const router = useRouter();
@@ -52,19 +53,14 @@ function Profile() {
 
     
     function editmenu(){
-        sethiddenclass("");
+        setread(false);
+        sethiddenclass("");        
     }
 
     function canceleditmenu(){
         sethiddenclass("hidden");
+        setread(true);
     }
-
-   
-
-    
-   
-
-    var email = "";
 
 
     const save_editmenu = async (event) =>{
@@ -76,6 +72,7 @@ function Profile() {
         const City = document.getElementById("city").value;
         const State = document.getElementById("state").value;
         const Zipcode = document.getElementById("zipcode").value;
+        const email = document.getElementById("email").value;
 
         const data = {
             firstName: FirstName,
@@ -88,122 +85,172 @@ function Profile() {
             zipcode: Zipcode
         }
         
+        console.log(data);
 
         const res = await axios.post('/api/updateUser', data);
         
         console.log(res);
-        
+
+        setread(true);
         sethiddenclass("hidden");
     }
 
 
-
+    // bg-gradient-to-r from-black via-purple-600 to-black
     return (
-       
-        <div className="bg-cambridgeBlue h-screen content-center flex flex-col text-stone-200">
-            <div className="ml-24 mt-32">
-                <div className={satoshiBold.className}>
-                    <h1 className="text-7xl mb-6 font-extrabold">Profile</h1>
-                    <button className='mb-2 font-semibold' onClick={editmenu} >Edit</button>
-                </div>
+        data && (
+        <div className=" bg-gradient-to-r from-[#101d30] via-[#11283c] to-[#1c3c58]
+                        min-h-screen flex justify-center items-center flex-col 
+                        text-stone-200 max-sm:p-10">
+        
+            <div>
                 
-                {/* a popup div for edit menu */}
-                <div className={`${hiddenclass} w-60 bg-blue-200 border-2 border-black text-black   
-                                absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                                rounded-lg flex flex-col justify-center items-center`}
-                >
-                    
-                    <h1 className="text-lg mb-5 font-bold">Edit Menu</h1>
-                
-
-                    <div className='mb-1.5'>
-                        <h1 className="font-semibold">First Name</h1>
-                        <input className="bg-white border border-black pl-2" type="text" name="firstname" id="firstname" placeholder="First Name" />
-                    </div>
-
-                    <div className='mb-1.5'>
-                        <h1 className="font-semibold">Last Name</h1>
-                        <input className="bg-white border border-black pl-2" type="text" name="lastname" id="lastname" placeholder="Last Name" />
-                    </div>
-
-                    <div className='mb-1.5'>
-                        <h1 className="font-semibold">Address 1</h1>
-                        <input className="bg-white border border-black pl-2" type="text" name="address1" id="address1" placeholder="Address 1" />
-                    </div>
-
-                    <div className='mb-1.5'>
-                        <h1 className="font-semibold">Address 2</h1>
-                        <input className="bg-white border border-black pl-2" type="text" name="address2" id="address2" placeholder="Address 2" />
-                    </div>
-
-                    <div className='mb-1.5'>
-                        <h1 className="font-semibold">City</h1>
-                        <input className="bg-white border border-black pl-2" type="text" name="city" id="city" placeholder="City" />
-                    </div>
-
-                    <div className='mb-1.5'>
-                        <h1 className="font-semibold">State</h1>
-                        <input className="bg-white border border-black pl-2" type="text" name="state" id="state" placeholder="State" />
-                    </div>
-
-                    <div className='mb-1.5'>
-                        <h1 className="font-semibold">Zipcode</h1>
-                        <input className="bg-white border border-black pl-2" type="text" name="zipcode" id="zipcode" placeholder="Zipcode" />
-                    </div>
-                    
-                    <div className='flex gap-10 m-5'>
-                        <button className='font-bold' onClick={save_editmenu}>Save</button>
-                        <button className='font-bold' onClick={canceleditmenu}>Cancel</button>
-                    </div>
-                    
-                    
+                <div className='flex justify-between items-end px-3'>
+                    <h2 className=' bg-gradient-to-r from-[#cbd0ff] via-[#6bbcf1] to-[#adcafb]
+                    bg-clip-text text-transparent  
+                    text-3xl font-semibold mb-2'>
+                    Personal Information</h2>
+                    <button className='mb-2 text-1xl text-black font-semibold bg-white
+                                        rounded-full px-5 border-2 border-white 
+                                        transition duration-700 ease-in-out hover:bg-[#1c3c58] hover:text-white'  
+                            onClick={editmenu} >
+                            Edit
+                    </button>
                 </div>
 
-                <div className="w-1/2 text-stone-600">
-                    <div className={FuelQuoteStyle.container}>
-                         {data? (
-                            <div>
-                                {data ? email = data.user.email : null }
-
-                                <div className="flex flex-col">
-                                    <label className="text-lg mb-1.5 font-semibold">Full Name: </label>
-                                    <h2 className="text-xl">{`${data.user.personalDetails[0].FirstName} ${data.user.personalDetails[0].LastName}`}</h2>
-                                </div>
-                                <div>
-                                    <label className="text-lg mb-1.5 font-semibold">Address 1: </label>
-                                    <h2 className="text-xl">{data.user.personalDetails[0].address1}</h2>
-                                    <div>
-                                        <label className="text-lg mb-1.5 font-semibold">Address 2: </label>
-                                        <h2 className="text-xl">{data.user.personalDetails[0].address2 === "" ? "N/A" : data.user.personalDetails[0].address2}</h2>
-                                    </div>
-                                    <div>
-                                        <label className="text-lg mb-1.5 font-semibold">City: </label>
-                                        <h2 className="text-xl">{data.user.personalDetails[0].city}</h2>
-                                    </div>
-                                    <div>
-                                        <label className="text-lg mb-1.5 font-semibold">State: </label>
-                                        <h2 className="text-xl">{data.user.personalDetails[0].state}</h2>
-                                    </div>
-                                    <div>
-                                        <label className="text-lg mb-1.5 font-semibold">Zipcode: </label>
-                                        <h2 className="text-xl">{data.user.personalDetails[0].zipCode}</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        ) : (
-                            <p>Loading data <data className="data"></data></p>
-                          )}  
+                <div className="bg-gradient-to-r from-[#1c3c58] via-[#26667a] to-[#153249]
+                                p-8 rounded-3xl border-white border-2">
+                    
+                    <div className='input-container min-w-full mb-5'>
+                        <p className='text-white mb-1'>Your Email</p>
+                        <input className='border text-white border-gray-300 p-2 px-4 rounded-full w-full  
+                                          border-white border-2 bg-transparent' 
+                            id="email"
+                            defaultValue={data?.user?.email}
+                            type="text"
+                            readOnly
+                        > 
+                        </input>
                     </div>
 
+
+                    <div className='input-container min-w-full flex gap-3 mb-5 w-full max-sm:flex-col'>
+                        
+                        <div className='w-full'>
+                            <p className='text-white mb-1'>First Name</p>
+                            <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
+                                              w-full border-white border-2 bg-transparent' 
+                                id="firstname"
+                                defaultValue={data.user.personalDetails[0].FirstName}
+                                type="text"
+                                readOnly={read}
+                            > 
+                            </input>
+                        </div>
+
+                        <div className='w-full'>
+                            <p className='text-white mb-1'>Last Name</p>
+                            <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
+                                              w-full border-white border-2 bg-transparent'
+                                id="lastname" 
+                                defaultValue={data.user.personalDetails[0].LastName}
+                                type="text"
+                                readOnly={read}
+                            > 
+                            </input>
+                        </div>
+
+                    </div>
+
+                    <div className='input-container flex gap-3 mb-5 max-w-md max-sm:flex-col'>
+                        
+                        <div className='w-1/3 max-sm:w-full'>
+                            <p className='text-white mb-1'>City</p>
+                            <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
+                                              w-full  border-white border-2 bg-transparent'
+                                id="city"
+                                defaultValue={data.user.personalDetails[0].city}
+                                type="text"
+                                readOnly={read}
+                            > 
+                            </input>
+                        </div>
+
+                        <div className='w-1/3 max-sm:w-full'>
+                            <p className='text-white mb-1'>State</p>
+                            <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
+                                              w-full  border-white border-2 bg-transparent' 
+                                id="state"
+                                defaultValue={data.user.personalDetails[0].state}
+                                type="text"
+                                readOnly={read}
+                            > 
+                            </input>
+                        </div>
+
+                        <div className='w-1/3 max-sm:w-full'>
+                            <p className='text-white mb-1'>Zip Code</p>
+                            <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
+                                              w-full  border-white border-2 bg-transparent' 
+                                id="zipcode"
+                                defaultValue={data.user.personalDetails[0].zipcode}
+                                type="text"
+                                readOnly={read}
+                            > 
+                            </input>
+                        </div>
+
+                    </div>
+
+                    <div className='input-container min-w-full mb-5'>
+                        <p className='text-white mb-1'>Address 1</p>
+                        <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
+                                          w-full  border-white border-2 bg-transparent' 
+                            id="address1"
+                            defaultValue={data.user.personalDetails[0].address1}
+                            type="text"
+                            readOnly={read}
+                        > 
+                        </input>
+                    </div>
+
+                    <div className='input-container min-w-full mb-5'>
+                        <p className='text-white mb-1'>Address 2</p>
+                        <input className='border text-white border-gray-300 p-2 px-4 rounded-full
+                                          w-full border-white border-2 bg-transparent' 
+                            id="address2"
+                            defaultValue={data.user.personalDetails[0].address2}
+                            type="text"
+                            readOnly={read}
+                        > 
+                        </input>
+                    </div>
+
+
+
                 </div>
+
+                <div className={`${hiddenclass} flex justify-center gap-8 items-end px-5 mt-4`}>
+                    <button className="mb-2 text-1xl text-black font-semibold bg-neutral-100
+                                        rounded-full px-5 py-1 border-2 border-white 
+                                        transition duration-700 ease-in-out hover:bg-[#1c3c58] hover:text-white"
+                            onClick={save_editmenu} >
+                            Save
+                    </button>
+
+                    <button className="mb-2 text-1xl text-black font-semibold bg-neutral-100
+                                        rounded-full px-5 py-1 border-2 border-white 
+                                        transition duration-700 ease-in-out hover:bg-[#1c3c58] hover:text-white" 
+                            onClick={canceleditmenu} >
+                            Cancel
+                    </button>
+                </div>
+
             </div>
+                      
         </div>
+        )
     )
 }
 
 export default Profile;
-/*Login.getInitialProps = async (ctx) => {
-    const res = await axios.get('/api/user');
-    const user = res.data;
-    return { user };
-};*/
