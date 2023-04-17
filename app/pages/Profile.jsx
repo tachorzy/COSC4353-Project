@@ -93,93 +93,105 @@ function Profile() {
 
 
     return (
-       
-        <div className="bg-cambridgeBlue min-h-screen flex justify-center items-center text-stone-200">
-
-            <div className="bg-white p-8 rounded-lg ">
+        data && (
+        <div className="bg-cambridgeBlue min-h-screen flex justify-center items-center flex-col text-stone-200">
+        
+            <div>
                 
-                <div className='input-container min-w-full mb-5'>
-                    <p className='text-black mb-1'>Your Email</p>
-                    <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
-                        defaultValue="hello"
-                        type="text"
-                    > 
-                    </input>
+                <div className='flex justify-between items-end px-3'>
+                    <h2 className='text-white text-2xl font-semibold mb-2'>Personal Information</h2>
+                    <button className='mb-2 text-1xl text-white font-semibold' 
+                            onClick={editmenu} >
+                            Edit
+                    </button>
                 </div>
 
-
-                <div className='input-container min-w-full flex gap-3 mb-5 w-full'>
+                <div className="bg-white p-8 rounded-3xl ">
                     
-                    <div className='w-full'>
-                        <p className='text-black mb-1'>First Name</p>
+                    <div className='input-container min-w-full mb-5'>
+                        <p className='text-black mb-1'>Your Email</p>
                         <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
-                            defaultValue="hello"
+                            defaultValue={data?.user?.email}
                             type="text"
                         > 
                         </input>
                     </div>
 
-                    <div className='w-full'>
-                        <p className='text-black mb-1'>Last Name</p>
+
+                    <div className='input-container min-w-full flex gap-3 mb-5 w-full'>
+                        
+                        <div className='w-full'>
+                            <p className='text-black mb-1'>First Name</p>
+                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                                defaultValue={data.user.personalDetails[0].FirstName}
+                                type="text"
+                            > 
+                            </input>
+                        </div>
+
+                        <div className='w-full'>
+                            <p className='text-black mb-1'>Last Name</p>
+                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                                defaultValue={data.user.personalDetails[0].LastName}
+                                type="text"
+                            > 
+                            </input>
+                        </div>
+
+                    </div>
+
+                    <div className='input-container flex gap-3 mb-5 max-w-md'>
+                        
+                        <div className='w-1/3'>
+                            <p className='text-black mb-1'>City</p>
+                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                                defaultValue={data.user.personalDetails[0].City}
+                                type="text"
+                            > 
+                            </input>
+                        </div>
+
+                        <div className='w-1/3'>
+                            <p className='text-black mb-1'>State</p>
+                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                                defaultValue={data.user.personalDetails[0].State}
+                                type="text"
+                            > 
+                            </input>
+                        </div>
+
+                        <div className='w-1/3'>
+                            <p className='text-black mb-1'>Zip Code</p>
+                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                                defaultValue={data.user.personalDetails[0].Zipcode}
+                                type="text"
+                            > 
+                            </input>
+                        </div>
+
+                    </div>
+
+                    <div className='input-container min-w-full mb-5'>
+                        <p className='text-black mb-1'>Address 1</p>
                         <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
-                            defaultValue="hello"
+                            defaultValue={data.user.personalDetails[0].Address1}
                             type="text"
                         > 
                         </input>
                     </div>
+
+                    <div className='input-container min-w-full mb-5'>
+                        <p className='text-black mb-1'>Address 2</p>
+                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                            defaultValue={data.user.personalDetails[0].Address2}
+                            type="text"
+                        > 
+                        </input>
+                    </div>
+
+
 
                 </div>
-
-                <div className='input-container flex gap-3 mb-5 max-w-md'>
-                    
-                    <div className='w-1/3'>
-                        <p className='text-black mb-1'>City</p>
-                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
-                            defaultValue="hello"
-                            type="text"
-                        > 
-                        </input>
-                    </div>
-
-                    <div className='w-1/3'>
-                        <p className='text-black mb-1'>State</p>
-                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
-                            defaultValue="hello"
-                            type="text"
-                        > 
-                        </input>
-                    </div>
-
-                    <div className='w-1/3'>
-                        <p className='text-black mb-1'>Zip Code</p>
-                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
-                            defaultValue="hello"
-                            type="text"
-                        > 
-                        </input>
-                    </div>
-
-                </div>
-
-                <div className='input-container min-w-full mb-5'>
-                    <p className='text-black mb-1'>Address 1</p>
-                    <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
-                        defaultValue="hello"
-                        type="text"
-                    > 
-                    </input>
-                </div>
-
-                <div className='input-container min-w-full mb-5'>
-                    <p className='text-black mb-1'>Address 2</p>
-                    <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
-                        defaultValue="hello"
-                        type="text"
-                    > 
-                    </input>
-                </div>
-
-
 
             </div>
                       
@@ -281,6 +293,7 @@ function Profile() {
 
         
         </div>
+        )
     )
 }
 
