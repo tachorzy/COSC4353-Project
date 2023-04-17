@@ -99,7 +99,8 @@ function Profile() {
 
     return (
         data && (
-        <div className="bg-cambridgeBlue min-h-screen flex justify-center items-center flex-col text-stone-200">
+        <div className="bg-cambridgeBlue min-h-screen flex justify-center items-center flex-col 
+                        text-stone-200 max-sm:p-10">
         
             <div>
                 
@@ -127,7 +128,7 @@ function Profile() {
                     </div>
 
 
-                    <div className='input-container min-w-full flex gap-3 mb-5 w-full'>
+                    <div className='input-container min-w-full flex gap-3 mb-5 w-full max-sm:flex-col'>
                         
                         <div className='w-full'>
                             <p className='text-black mb-1'>First Name</p>
@@ -155,9 +156,9 @@ function Profile() {
 
                     </div>
 
-                    <div className='input-container flex gap-3 mb-5 max-w-md'>
+                    <div className='input-container flex gap-3 mb-5 max-w-md max-sm:flex-col'>
                         
-                        <div className='w-1/3'>
+                        <div className='w-1/3 max-sm:w-full'>
                             <p className='text-black mb-1'>City</p>
                             <input className='border text-black border-gray-300 p-2 px-4 rounded-full 
                                               w-full  bg-neutral-50'
@@ -169,7 +170,7 @@ function Profile() {
                             </input>
                         </div>
 
-                        <div className='w-1/3'>
+                        <div className='w-1/3 max-sm:w-full'>
                             <p className='text-black mb-1'>State</p>
                             <input className='border text-black border-gray-300 p-2 px-4 rounded-full 
                                               w-full  bg-neutral-50' 
@@ -181,7 +182,7 @@ function Profile() {
                             </input>
                         </div>
 
-                        <div className='w-1/3'>
+                        <div className='w-1/3 max-sm:w-full'>
                             <p className='text-black mb-1'>Zip Code</p>
                             <input className='border text-black border-gray-300 p-2 px-4 rounded-full 
                                               w-full  bg-neutral-50' 
