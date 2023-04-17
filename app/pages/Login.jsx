@@ -23,7 +23,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const router = useRouter();
+  // const router = useRouter();
 
 
   const handleSubmit = async (event) => {

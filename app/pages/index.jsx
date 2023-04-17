@@ -40,13 +40,13 @@ export default function Home() {
             </span>
             <div>
                   <TypeAnimation
-                    className="text-9xl mt-14 mx-auto font-extrabold pb-4 absolute"
+                    className="text-9xl mt-14 mx-auto font-extrabold pb-4 absolute select-none"
                     sequence={[
-                      `Calculate your\nfuel quotes`,
+                      `Calculate your\nfuel quotes.`,
                       3200,
-                      "Manage your\ncosts",
+                      "Manage your\ncosts.",
                       3200,
-                      "Keep track of your orders",
+                      "Keep track of your orders.",
                       3200
                     ]} 
                     cursor={true}
