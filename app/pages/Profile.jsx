@@ -99,26 +99,25 @@ function Profile() {
     // bg-gradient-to-r from-black via-purple-600 to-black
     return (
         data && (
-        <div className=" bg-gradient-to-r from-[#101d30] via-[#11283c] to-[#1c3c58]
+        <div className="bg-cambridgeBlue
                         min-h-screen flex justify-center items-center flex-col 
                         text-stone-200 max-sm:p-10">
         
             <div>
                 
                 <div className='flex justify-between items-end px-3'>
-                    <h2 className=' bg-gradient-to-r from-[#cbd0ff] via-[#6bbcf1] to-[#adcafb]
-                    bg-clip-text text-transparent  
+                    <h2 className='text-stone-200
                     text-3xl font-semibold mb-2'>
                     Personal Information</h2>
                     <button className='mb-2 text-1xl text-black font-semibold bg-white
                                         rounded-full px-5 border-2 border-white 
-                                        transition duration-700 ease-in-out hover:bg-[#1c3c58] hover:text-white'  
+                                        transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white'  
                             onClick={editmenu} >
                             Edit
                     </button>
                 </div>
 
-                <div className="bg-gradient-to-r from-[#1c3c58] via-[#26667a] to-[#153249]
+                <div className="bg-cambridgeBlue
                                 p-8 rounded-3xl border-white border-2">
                     
                     <div className='input-container min-w-full mb-5'>
@@ -233,14 +232,14 @@ function Profile() {
                 <div className={`${hiddenclass} flex justify-center gap-8 items-end px-5 mt-4`}>
                     <button className="mb-2 text-1xl text-black font-semibold bg-neutral-100
                                         rounded-full px-5 py-1 border-2 border-white 
-                                        transition duration-700 ease-in-out hover:bg-[#1c3c58] hover:text-white"
+                                        transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white"
                             onClick={save_editmenu} >
                             Save
                     </button>
 
                     <button className="mb-2 text-1xl text-black font-semibold bg-neutral-100
                                         rounded-full px-5 py-1 border-2 border-white 
-                                        transition duration-700 ease-in-out hover:bg-[#1c3c58] hover:text-white" 
+                                        transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white" 
                             onClick={canceleditmenu} >
                             Cancel
                     </button>
