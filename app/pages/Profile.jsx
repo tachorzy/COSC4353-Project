@@ -39,6 +39,7 @@ function Profile() {
     // const placeholderZip = "77004"
     
     const [hiddenclass, sethiddenclass] = useState("hidden");
+    const [read , setread] = useState(true);
     const {data} = useSession();
 
     const router = useRouter();
@@ -52,14 +53,15 @@ function Profile() {
 
     
     function editmenu(){
-        sethiddenclass("");
+        setread(false);
+        sethiddenclass("");        
     }
 
     function canceleditmenu(){
         sethiddenclass("hidden");
+        setread(true);
     }
 
-    var email = "";
 
     const save_editmenu = async (event) =>{
     
@@ -70,6 +72,7 @@ function Profile() {
         const City = document.getElementById("city").value;
         const State = document.getElementById("state").value;
         const Zipcode = document.getElementById("zipcode").value;
+        const email = document.getElementById("email").value;
 
         const data = {
             firstName: FirstName,
@@ -82,11 +85,13 @@ function Profile() {
             zipcode: Zipcode
         }
         
+        console.log(data);
 
         const res = await axios.post('/api/updateUser', data);
         
         console.log(res);
 
+        setread(true);
         sethiddenclass("hidden");
     }
 
@@ -111,8 +116,10 @@ function Profile() {
                     <div className='input-container min-w-full mb-5'>
                         <p className='text-black mb-1'>Your Email</p>
                         <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                            id="email"
                             defaultValue={data?.user?.email}
                             type="text"
+                            readOnly
                         > 
                         </input>
                     </div>
@@ -123,17 +130,21 @@ function Profile() {
                         <div className='w-full'>
                             <p className='text-black mb-1'>First Name</p>
                             <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                                id="firstname"
                                 defaultValue={data.user.personalDetails[0].FirstName}
                                 type="text"
+                                readOnly={read}
                             > 
                             </input>
                         </div>
 
                         <div className='w-full'>
                             <p className='text-black mb-1'>Last Name</p>
-                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full'
+                                id="lastname" 
                                 defaultValue={data.user.personalDetails[0].LastName}
                                 type="text"
+                                readOnly={read}
                             > 
                             </input>
                         </div>
@@ -144,9 +155,11 @@ function Profile() {
                         
                         <div className='w-1/3'>
                             <p className='text-black mb-1'>City</p>
-                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
-                                defaultValue={data.user.personalDetails[0].City}
+                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full'
+                                id="city"
+                                defaultValue={data.user.personalDetails[0].city}
                                 type="text"
+                                readOnly={read}
                             > 
                             </input>
                         </div>
@@ -154,8 +167,10 @@ function Profile() {
                         <div className='w-1/3'>
                             <p className='text-black mb-1'>State</p>
                             <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
-                                defaultValue={data.user.personalDetails[0].State}
+                                id="state"
+                                defaultValue={data.user.personalDetails[0].state}
                                 type="text"
+                                readOnly={read}
                             > 
                             </input>
                         </div>
@@ -163,8 +178,10 @@ function Profile() {
                         <div className='w-1/3'>
                             <p className='text-black mb-1'>Zip Code</p>
                             <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
-                                defaultValue={data.user.personalDetails[0].Zipcode}
+                                id="zipcode"
+                                defaultValue={data.user.personalDetails[0].zipcode}
                                 type="text"
+                                readOnly={read}
                             > 
                             </input>
                         </div>
@@ -174,8 +191,10 @@ function Profile() {
                     <div className='input-container min-w-full mb-5'>
                         <p className='text-black mb-1'>Address 1</p>
                         <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
-                            defaultValue={data.user.personalDetails[0].Address1}
+                            id="address1"
+                            defaultValue={data.user.personalDetails[0].address1}
                             type="text"
+                            readOnly={read}
                         > 
                         </input>
                     </div>
@@ -183,14 +202,28 @@ function Profile() {
                     <div className='input-container min-w-full mb-5'>
                         <p className='text-black mb-1'>Address 2</p>
                         <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
-                            defaultValue={data.user.personalDetails[0].Address2}
+                            id="address2"
+                            defaultValue={data.user.personalDetails[0].address2}
                             type="text"
+                            readOnly={read}
                         > 
                         </input>
                     </div>
 
 
 
+                </div>
+
+                <div className={`${hiddenclass} flex justify-center gap-5 items-end px-5 mt-2`}>
+                    <button className='mb-2 text-1xl text-white font-semibold' 
+                            onClick={save_editmenu} >
+                            Save
+                    </button>
+
+                    <button className='mb-2 text-1xl text-white font-semibold' 
+                            onClick={canceleditmenu} >
+                            Cancel
+                    </button>
                 </div>
 
             </div>
