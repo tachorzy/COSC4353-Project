@@ -104,8 +104,10 @@ function Profile() {
             <div>
                 
                 <div className='flex justify-between items-end px-3'>
-                    <h2 className='text-white text-2xl font-semibold mb-2'>Personal Information</h2>
-                    <button className='mb-2 text-1xl text-white font-semibold' 
+                    <h2 className='text-white text-3xl font-semibold mb-2'>Personal Information</h2>
+                    <button className='mb-2 text-1xl text-white font-semibold bg-cambridgeBlue 
+                                        rounded-full px-5 border border-white 
+                                        transition duration-700 ease-in-out hover:bg-neutral-100 hover:text-black ' 
                             onClick={editmenu} >
                             Edit
                     </button>
@@ -115,7 +117,7 @@ function Profile() {
                     
                     <div className='input-container min-w-full mb-5'>
                         <p className='text-black mb-1'>Your Email</p>
-                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full  bg-neutral-50' 
                             id="email"
                             defaultValue={data?.user?.email}
                             type="text"
@@ -129,7 +131,8 @@ function Profile() {
                         
                         <div className='w-full'>
                             <p className='text-black mb-1'>First Name</p>
-                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full 
+                                              w-full bg-neutral-50' 
                                 id="firstname"
                                 defaultValue={data.user.personalDetails[0].FirstName}
                                 type="text"
@@ -140,7 +143,8 @@ function Profile() {
 
                         <div className='w-full'>
                             <p className='text-black mb-1'>Last Name</p>
-                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full'
+                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full 
+                                              w-full bg-neutral-50'
                                 id="lastname" 
                                 defaultValue={data.user.personalDetails[0].LastName}
                                 type="text"
@@ -155,7 +159,8 @@ function Profile() {
                         
                         <div className='w-1/3'>
                             <p className='text-black mb-1'>City</p>
-                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full'
+                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full 
+                                              w-full  bg-neutral-50'
                                 id="city"
                                 defaultValue={data.user.personalDetails[0].city}
                                 type="text"
@@ -166,7 +171,8 @@ function Profile() {
 
                         <div className='w-1/3'>
                             <p className='text-black mb-1'>State</p>
-                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full 
+                                              w-full  bg-neutral-50' 
                                 id="state"
                                 defaultValue={data.user.personalDetails[0].state}
                                 type="text"
@@ -177,7 +183,8 @@ function Profile() {
 
                         <div className='w-1/3'>
                             <p className='text-black mb-1'>Zip Code</p>
-                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                            <input className='border text-black border-gray-300 p-2 px-4 rounded-full 
+                                              w-full  bg-neutral-50' 
                                 id="zipcode"
                                 defaultValue={data.user.personalDetails[0].zipcode}
                                 type="text"
@@ -190,7 +197,8 @@ function Profile() {
 
                     <div className='input-container min-w-full mb-5'>
                         <p className='text-black mb-1'>Address 1</p>
-                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full 
+                                          w-full  bg-neutral-50' 
                             id="address1"
                             defaultValue={data.user.personalDetails[0].address1}
                             type="text"
@@ -201,7 +209,8 @@ function Profile() {
 
                     <div className='input-container min-w-full mb-5'>
                         <p className='text-black mb-1'>Address 2</p>
-                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full w-full' 
+                        <input className='border text-black border-gray-300 p-2 px-4 rounded-full
+                                          w-full  bg-neutral-50' 
                             id="address2"
                             defaultValue={data.user.personalDetails[0].address2}
                             type="text"
@@ -214,13 +223,17 @@ function Profile() {
 
                 </div>
 
-                <div className={`${hiddenclass} flex justify-center gap-5 items-end px-5 mt-2`}>
-                    <button className='mb-2 text-1xl text-white font-semibold' 
+                <div className={`${hiddenclass} flex justify-center gap-8 items-end px-5 mt-4`}>
+                    <button className="mb-2 text-1xl text-black font-semibold bg-neutral-100
+                                        rounded-full px-5 py-1 border border-white 
+                                        transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white"
                             onClick={save_editmenu} >
                             Save
                     </button>
 
-                    <button className='mb-2 text-1xl text-white font-semibold' 
+                    <button className="mb-2 text-1xl text-black font-semibold bg-neutral-100
+                                        rounded-full px-5 py-1 border border-white 
+                                        transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white" 
                             onClick={canceleditmenu} >
                             Cancel
                     </button>
@@ -228,103 +241,6 @@ function Profile() {
 
             </div>
                       
-                {/* <div className={satoshiBold.className}>
-                    <h1 className="text-7xl mb-6 font-extrabold">Profile</h1>
-                    <button className='mb-2 font-semibold' onClick={editmenu} >Edit</button>
-                </div> */}
-                
-                {/* a popup div for edit menu */}
-                {/* <div className={`${hiddenclass} w-60 bg-blue-200 border-2 border-black text-black   
-                                absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                                rounded-lg flex flex-col justify-center items-center`}
-                >
-                    
-                    <h1 className="text-lg mb-5 font-bold">Edit Menu</h1>
-                
-
-                    <div className='mb-1.5'>
-                        <h1 className="font-semibold">First Name</h1>
-                        <input className="bg-white border border-black pl-2" type="text" name="firstname" id="firstname" placeholder="First Name" />
-                    </div>
-
-                    <div className='mb-1.5'>
-                        <h1 className="font-semibold">Last Name</h1>
-                        <input className="bg-white border border-black pl-2" type="text" name="lastname" id="lastname" placeholder="Last Name" />
-                    </div>
-
-                    <div className='mb-1.5'>
-                        <h1 className="font-semibold">Address 1</h1>
-                        <input className="bg-white border border-black pl-2" type="text" name="address1" id="address1" placeholder="Address 1" />
-                    </div>
-
-                    <div className='mb-1.5'>
-                        <h1 className="font-semibold">Address 2</h1>
-                        <input className="bg-white border border-black pl-2" type="text" name="address2" id="address2" placeholder="Address 2" />
-                    </div>
-
-                    <div className='mb-1.5'>
-                        <h1 className="font-semibold">City</h1>
-                        <input className="bg-white border border-black pl-2" type="text" name="city" id="city" placeholder="City" />
-                    </div>
-
-                    <div className='mb-1.5'>
-                        <h1 className="font-semibold">State</h1>
-                        <input className="bg-white border border-black pl-2" type="text" name="state" id="state" placeholder="State" />
-                    </div>
-
-                    <div className='mb-1.5'>
-                        <h1 className="font-semibold">Zipcode</h1>
-                        <input className="bg-white border border-black pl-2" type="text" name="zipcode" id="zipcode" placeholder="Zipcode" />
-                    </div>
-                    
-                    <div className='flex gap-10 m-5'>
-                        <button className='font-bold' onClick={save_editmenu}>Save</button>
-                        <button className='font-bold' onClick={canceleditmenu}>Cancel</button>
-                    </div>
-                    
-                    
-                </div> */}
-
-
-                {/* <div className="w-1/2 text-stone-600">
-                    <div className={FuelQuoteStyle.container}>
-                         {data? (
-                            <div>
-                                {data ? email = data.user.email : null }
-
-                                <div className="flex flex-col">
-                                    <label className="text-lg mb-1.5 font-semibold">Full Name: </label>
-                                    <h2 className="text-xl">{`${data.user.personalDetails[0].FirstName} ${data.user.personalDetails[0].LastName}`}</h2>
-                                </div>
-                                <div>
-                                    <label className="text-lg mb-1.5 font-semibold">Address 1: </label>
-                                    <h2 className="text-xl">{data.user.personalDetails[0].address1}</h2>
-                                    <div>
-                                        <label className="text-lg mb-1.5 font-semibold">Address 2: </label>
-                                        <h2 className="text-xl">{data.user.personalDetails[0].address2 === "" ? "N/A" : data.user.personalDetails[0].address2}</h2>
-                                    </div>
-                                    <div>
-                                        <label className="text-lg mb-1.5 font-semibold">City: </label>
-                                        <h2 className="text-xl">{data.user.personalDetails[0].city}</h2>
-                                    </div>
-                                    <div>
-                                        <label className="text-lg mb-1.5 font-semibold">State: </label>
-                                        <h2 className="text-xl">{data.user.personalDetails[0].state}</h2>
-                                    </div>
-                                    <div>
-                                        <label className="text-lg mb-1.5 font-semibold">Zipcode: </label>
-                                        <h2 className="text-xl">{data.user.personalDetails[0].zipCode}</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        ) : (
-                            <p>Loading data <data className="data"></data></p>
-                          )}  
-                    </div>
-
-                </div> */}
-
-        
         </div>
         )
     )
