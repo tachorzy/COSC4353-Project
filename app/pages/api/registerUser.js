@@ -22,7 +22,7 @@ export default async function registerUser(req, res) {
         const lastName = nameArr[nameArr.length - 1];
         const newUser = await Client.create({
             email: email,
-            password: password,
+            password: encryptedPassword,
             profileSet: false,
             personalDetails: [{
                 FirstName: firstName,
