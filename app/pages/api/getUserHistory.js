@@ -21,6 +21,6 @@ export default async function getUserHistory(req, res){
         res.status(200).json(result.quoteHistory)
     }
     else {
-        res.status(405).json(message: "Method Not Allowed")
+        res.status(405).json({message: "Method Not Allowed"})
     }  
 }
