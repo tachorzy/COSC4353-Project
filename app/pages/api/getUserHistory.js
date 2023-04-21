@@ -1,6 +1,5 @@
 import dbConnect from '../../__database/dbConnect.js'
 import History from '../../__models/history.js'
-import bcrypt from 'bcryptjs';
 
 export default async function getUserHistory(req, res){
     if (req.method === "GET"){
