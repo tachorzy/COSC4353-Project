@@ -101,12 +101,12 @@ function Profile() {
         data && (
         <div className="bg-cambridgeBlue
                         min-h-screen flex justify-center items-center flex-col 
-                        text-stone-200 max-sm:p-10">
+                        text-stone-100 max-sm:p-10">
         
             <div>
                 
                 <div className='flex justify-between items-end px-3'>
-                    <h2 className='text-stone-200
+                    <h2 className='text-stone-100
                     text-3xl font-semibold mb-2'>
                     Personal Information</h2>
                     <button className='mb-2 text-1xl text-black font-semibold bg-white
