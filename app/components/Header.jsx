@@ -10,20 +10,20 @@ const Header = () => {
     console.log(data);
     
   return (
-    <nav className="justify-center bg-cambridgeBlue text-stone-200 text-2xl align-baseline top-0 w-screen absolute">
+    <nav className="justify-center bg-cambridgeBlue text-stone-100 text-2xl align-baseline top-0 w-screen absolute">
       <div className={satoshi.className}>
         <div className="flex flex-row justify-center py-6">
           <div className="flex flex-row justify-center gap-x-12 w-screen text-lg">
-            <Link href="/" className="select-none hover:stone-50 hover:font-bold hover:border-solid border-stone-200 hover:border-b-2 rounded-sm">
+            <Link href="/" className="select-none hover:stone-50 hover:font-semibold hover:border-solid border-stone-200 hover:border-b-2 rounded-sm">
               Home
             </Link>
-            <Link href="/Profile" className="select-none hover:stone-50 hover:font-bold hover:border-solid border-stone-200 hover:border-b-2 rounded-sm">
+            <Link href="/Profile" className="select-none hover:stone-50 hover:font-semibold hover:border-solid border-stone-200 hover:border-b-2 rounded-sm">
               Profile
             </Link>
-            <Link href="/History" className="select-none hover:stone-50 hover:font-bold hover:border-solid border-stone-200 hover:border-b-2 rounded-sm">
+            <Link href="/History" className="select-none hover:stone-50 hover:font-semibold hover:border-solid border-stone-200 hover:border-b-2 rounded-sm">
               History
             </Link>
-            <Link href="/FuelQuote" className="select-none hover:stone-50 hover:font-bold hover:border-solid border-stone-200 hover:border-b-2 rounded-sm">
+            <Link href="/FuelQuote" className="select-none hover:stone-50 hover:font-semibold hover:border-solid border-stone-200 hover:border-b-2 rounded-sm">
               Calculate Quotes
             </Link>
           </div>
