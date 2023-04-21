@@ -10,10 +10,10 @@ const Header = () => {
     console.log(data);
     
   return (
-    <nav className="justify-center bg-cambridgeBlue text-stone-100 text-2xl align-baseline top-0 w-screen absolute">
+    <nav className="justify-center bg-cambridgeBlue text-stone-100 text-2xl align-baseline top-0 w-screen absolute h-8">
       <div className={satoshi.className}>
         <div className="flex flex-row justify-center py-6">
-          <div className="flex flex-row justify-center gap-x-12 w-screen text-lg">
+          <div className="flex flex-row justify-center gap-x-12 px-10 w-screen text-lg">
             <Link href="/" className="select-none hover:stone-50 hover:font-semibold hover:border-solid border-stone-200 hover:border-b-2 rounded-sm">
               Home
             </Link>
@@ -28,7 +28,7 @@ const Header = () => {
             </Link>
           </div>
 
-          <div className="mr-10 text-center flex gap-x-1 flex-row absolute right-0 text-base font-medium">
+          <div className="mr-40 text-center flex gap-x-1 flex-row absolute right-0 text-base font-medium">
             {data? (
               <>
                 <span>

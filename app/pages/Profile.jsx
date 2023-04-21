@@ -101,7 +101,7 @@ function Profile() {
         data && (
         <div className="bg-cambridgeBlue
                         min-h-screen flex justify-center items-center flex-col 
-                        text-stone-100 max-sm:p-10">
+                        text-stone-100 max-sm:p-10 pt-16">
         
             <div>
                 
@@ -109,7 +109,7 @@ function Profile() {
                     <h2 className='text-stone-100
                     text-3xl font-semibold mb-2'>
                     Personal Information</h2>
-                    <button className='mb-2 text-1xl text-black font-semibold bg-white
+                    <button className='mb-2 text-1xl text-stone-500 font-semibold bg-white
                                         rounded-full px-5 border-2 border-white 
                                         transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white'  
                             onClick={editmenu} >
@@ -122,8 +122,7 @@ function Profile() {
                     
                     <div className='input-container min-w-full mb-5'>
                         <p className='text-white mb-1'>Your Email</p>
-                        <input className='border text-white border-gray-300 p-2 px-4 rounded-full w-full  
-                                          border-white border-2 bg-transparent' 
+                        <input className='border-2 text-white outline-stone-100 p-2 px-4 rounded-full w-full border-white bg-transparent' 
                             id="email"
                             defaultValue={data?.user?.email}
                             type="text"
@@ -137,8 +136,8 @@ function Profile() {
                         
                         <div className='w-full'>
                             <p className='text-white mb-1'>First Name</p>
-                            <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
-                                              w-full border-white border-2 bg-transparent' 
+                            <input className='border-2 text-white outline-stone-100 p-2 px-4 rounded-full 
+                                              w-full border-white bg-transparent' 
                                 id="firstname"
                                 defaultValue={data.user.personalDetails[0].FirstName}
                                 type="text"
@@ -149,8 +148,8 @@ function Profile() {
 
                         <div className='w-full'>
                             <p className='text-white mb-1'>Last Name</p>
-                            <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
-                                              w-full border-white border-2 bg-transparent'
+                            <input className='border-2 text-white outline-stone-100 p-2 px-4 rounded-full 
+                                              w-full border-white bg-transparent'
                                 id="lastname" 
                                 defaultValue={data.user.personalDetails[0].LastName}
                                 type="text"
@@ -165,8 +164,8 @@ function Profile() {
                         
                         <div className='w-1/3 max-sm:w-full'>
                             <p className='text-white mb-1'>City</p>
-                            <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
-                                              w-full  border-white border-2 bg-transparent'
+                            <input className='border-2 text-white outline-stone-100 p-2 px-4 rounded-full 
+                                              w-full  border-white bg-transparent'
                                 id="city"
                                 defaultValue={data.user.personalDetails[0].city}
                                 type="text"
@@ -177,8 +176,8 @@ function Profile() {
 
                         <div className='w-1/3 max-sm:w-full'>
                             <p className='text-white mb-1'>State</p>
-                            <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
-                                              w-full  border-white border-2 bg-transparent' 
+                            <input className='border-2 text-white outline-stone-100 p-2 px-4 rounded-full 
+                                              w-full  border-white bg-transparent' 
                                 id="state"
                                 defaultValue={data.user.personalDetails[0].state}
                                 type="text"
@@ -189,8 +188,8 @@ function Profile() {
 
                         <div className='w-1/3 max-sm:w-full'>
                             <p className='text-white mb-1'>Zip Code</p>
-                            <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
-                                              w-full  border-white border-2 bg-transparent' 
+                            <input className='border-2 text-white outline-stone-100 p-2 px-4 rounded-full 
+                                              w-full  border-white bg-transparent' 
                                 id="zipcode"
                                 defaultValue={data.user.personalDetails[0].zipcode}
                                 type="text"
@@ -203,8 +202,8 @@ function Profile() {
 
                     <div className='input-container min-w-full mb-5'>
                         <p className='text-white mb-1'>Address 1</p>
-                        <input className='border text-white border-gray-300 p-2 px-4 rounded-full 
-                                          w-full  border-white border-2 bg-transparent' 
+                        <input className='border-2 text-white outline-stone-100 p-2 px-4 rounded-full 
+                                          w-full  border-white bg-transparent' 
                             id="address1"
                             defaultValue={data.user.personalDetails[0].address1}
                             type="text"
@@ -215,8 +214,8 @@ function Profile() {
 
                     <div className='input-container min-w-full mb-5'>
                         <p className='text-white mb-1'>Address 2</p>
-                        <input className='border text-white border-gray-300 p-2 px-4 rounded-full
-                                          w-full border-white border-2 bg-transparent' 
+                        <input className='border-2 text-white outline-stone-100 p-2 px-4 rounded-full
+                                          w-full border-white bg-transparent' 
                             id="address2"
                             defaultValue={data.user.personalDetails[0].address2}
                             type="text"
