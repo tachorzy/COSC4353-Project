@@ -26,12 +26,13 @@ module.exports = NextAuth({
           throw new Error("Email not found");
         }
         
-        // const isPasswordMatched = await bcrypt.compare(password, user.password);
-        const encryptedUserPassword = bcrypt.hashSync(password);    
 
-        console.log(`password: ${password} and encryptedUserPassword ${encryptedUserPassword} and encrypted password in the databse ${user.password}`)
+        const isPasswordMatched = await bcrypt.compare(password, user.password);
 
-        if (encryptedUserPassword != user.password) {
+        console.log(`password: ${password} and user.password: ${user.password}`)
+        console.log(isPasswordMatched)
+        
+        if (!isPasswordMatched) {
           throw new Error("Incorrect Password");
         }
         console.log(user);
