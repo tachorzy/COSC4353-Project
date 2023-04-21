@@ -15,8 +15,7 @@ export default async function registerUser(req, res) {
             res.status(409).json('User already exists under this email.');
         }
         else{
-        const salt = bcrypt.genSaltSync(10);
-        const encryptedPassword = bcrypt.hashSync(password, salt);
+        const encryptedPassword = bcrypt.hashSync(password);
         const nameArr = name.split(' ');
         const firstName = nameArr[0];
         const lastName = nameArr[nameArr.length - 1];
