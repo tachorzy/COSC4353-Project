@@ -18,8 +18,7 @@ module.exports = NextAuth({
       async authorize(credentials, req) {
         dbConnect();
         const { email, password } = credentials;
-        console.log(email, password);
-
+        
         const user = await Client.findOne({ email });
         
         if (!user) {
@@ -29,9 +28,6 @@ module.exports = NextAuth({
 
         const isPasswordMatched = await bcrypt.compare(password, user.password);
 
-        console.log(`password: ${password} and user.password: ${user.password}`)
-        console.log(isPasswordMatched)
-        
         if (!isPasswordMatched) {
           throw new Error("Incorrect Password");
         }

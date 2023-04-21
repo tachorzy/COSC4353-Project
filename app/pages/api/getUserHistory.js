@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 
 export default async function getUserHistory(req, res){
     if (req.method === "GET"){
-        const session = await getsession({ req }),
+        const session = await getsession({ req });
 
         if(!session){
             return res.status(401).json({message: "Unauthorized"})
