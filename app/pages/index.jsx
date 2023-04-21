@@ -34,7 +34,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
           <div className={satoshiBold.className}>
-            <span className="font-semibold">
+            <span className="font-semibold mt-12">
               <LoginButton/>
               <RegisterButton/>
             </span>

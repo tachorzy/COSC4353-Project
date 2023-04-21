@@ -10,16 +10,25 @@ const Header = () => {
     console.log(data);
     
   return (
-    <nav className="navbar navbar-light bg-light row justify-content-center sticky-top bg-cambridgeBlue text-stone-200 text-2xl align-baseline">
+    <nav className="justify-center bg-cambridgeBlue text-stone-200 text-2xl align-baseline top-0 w-screen absolute">
       <div className={satoshi.className}>
-        <div className="container">
-          <div className="col-3 p-0">
-            <Link href="/" className="navbar-brand ml-4 mt-3 pt-0.5 select-none hover:stone-100">
-              
+        <div className="flex flex-row justify-center py-6">
+          <div className="flex flex-row justify-center gap-x-12 w-screen text-lg">
+            <Link href="/" className="select-none hover:stone-50 hover:font-bold hover:border-solid border-stone-200 hover:border-b-2 rounded-sm">
+              Home
+            </Link>
+            <Link href="/Profile" className="select-none hover:stone-50 hover:font-bold hover:border-solid border-stone-200 hover:border-b-2 rounded-sm">
+              Profile
+            </Link>
+            <Link href="/History" className="select-none hover:stone-50 hover:font-bold hover:border-solid border-stone-200 hover:border-b-2 rounded-sm">
+              History
+            </Link>
+            <Link href="/FuelQuote" className="select-none hover:stone-50 hover:font-bold hover:border-solid border-stone-200 hover:border-b-2 rounded-sm">
+              Calculate Quotes
             </Link>
           </div>
 
-          <div className="col-3 mr-10 mt-md-0 text-center flex gap-x-1 flex-row absolute right-0 text-base font-medium">
+          <div className="mr-10 text-center flex gap-x-1 flex-row absolute right-0 text-base font-medium">
             {data? (
               <>
                 <span>
@@ -35,7 +44,7 @@ const Header = () => {
                 </span>
               </>
             ) : (
-              <span className="mr-4 flex flex-row gap-x-1">
+              <span className="mr-4 flex flex-row gap-x-1 align-baseline">
                 {" "}
                 <span>
                   <Image src="/user.svg" width={20} height={20} alt="" className="select-none"></Image>
