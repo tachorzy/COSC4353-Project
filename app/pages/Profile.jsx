@@ -30,14 +30,6 @@ const satoshiBold = localFont({
 })
 
 function Profile() {
-    // const placeholderName = "Raj Singh"
-    // const placeholderNumber = "+1 (713)-789-4353"
-    // const placeholderAddress = "3551 Cullen Blvd"
-    // const placeholderAddress2 = ""
-    // const placeholderCity = "Houston"
-    // const placeholderState = "Texas"
-    // const placeholderZip = "77004"
-    
     const [hiddenclass, sethiddenclass] = useState("hidden");
     const [read , setread] = useState(true);
     const {data} = useSession();
@@ -104,7 +96,7 @@ function Profile() {
                 <div className='flex justify-between items-end px-3'>
                     <h2 className='text-stone-100 text-3xl font-semibold mb-2'>
                     Personal Information</h2>
-                    <button className='mb-2 text-1xl text-stone-500 font-semibold bg-white
+                    <button className='mb-2 text-1xl text-cambridgeBlue font-semibold bg-white
                                         rounded-full px-5 border-2 border-white 
                                         transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white'  
                             onClick={editmenu} >
@@ -115,7 +107,7 @@ function Profile() {
                 <div className="bg-neutral-100 bg-opacity-10 p-8 rounded-3xl shadow-r-lg">
                     <div className='input-container min-w-full mb-5'>
                         <p className='text-white mb-1'>Your Email</p>
-                        <input className='border-2 text-white outline-stone-100 p-2 px-4 rounded-full w-full border-white bg-transparent' 
+                        <input className='border-2 text-cambridgeBlue font-medium outline-stone-100 p-2 px-4 rounded-full w-full border-white bg-white' 
                             id="email"
                             defaultValue={data?.user?.email}
                             type="text"
@@ -129,8 +121,9 @@ function Profile() {
                         
                         <div className='w-full'>
                             <p className='text-white mb-1'>First Name</p>
-                            <input className='border-2 text-white outline-stone-100 p-2 px-4 rounded-full 
-                                              w-full border-white bg-transparent' 
+                            <input className='border-2 outline-stone-100 p-2 px-4 rounded-full
+                            text-cambridgeBlue font-medium
+                                w-full border-white bg-white' 
                                 id="firstname"
                                 defaultValue={data.user.personalDetails[0].FirstName}
                                 type="text"
@@ -141,8 +134,8 @@ function Profile() {
 
                         <div className='w-full'>
                             <p className='text-white mb-1'>Last Name</p>
-                            <input className='border-2 text-white outline-stone-100 p-2 px-4 rounded-full 
-                                              w-full border-white bg-transparent'
+                            <input 
+                                className='border-2 text-cambridgeBlue font-medium outline-stone-100 p-2 px-4 rounded-full w-full border-white bg-white'
                                 id="lastname" 
                                 defaultValue={data.user.personalDetails[0].LastName}
                                 type="text"
@@ -153,50 +146,9 @@ function Profile() {
 
                     </div>
 
-                    <div className='input-container flex gap-3 mb-5 max-w-md max-sm:flex-col'>
-                        
-                        <div className='w-1/3 max-sm:w-full'>
-                            <p className='text-white mb-1'>City</p>
-                            <input className='border-2 text-white outline-stone-100 p-2 px-4 rounded-full 
-                                              w-full  border-white bg-transparent'
-                                id="city"
-                                defaultValue={data.user.personalDetails[0].city}
-                                type="text"
-                                readOnly={read}
-                            > 
-                            </input>
-                        </div>
-
-                        <div className='w-1/3 max-sm:w-full'>
-                            <p className='text-white mb-1'>State</p>
-                            <input className='border-2 text-white outline-stone-100 p-2 px-4 rounded-full 
-                                              w-full  border-white bg-transparent' 
-                                id="state"
-                                defaultValue={data.user.personalDetails[0].state}
-                                type="text"
-                                readOnly={read}
-                            > 
-                            </input>
-                        </div>
-
-                        <div className='w-1/3 max-sm:w-full'>
-                            <p className='text-white mb-1'>Zip Code</p>
-                            <input className='border-2 text-white outline-stone-100 p-2 px-4 rounded-full 
-                                              w-full  border-white bg-transparent' 
-                                id="zipcode"
-                                defaultValue={data.user.personalDetails[0].zipcode}
-                                type="text"
-                                readOnly={read}
-                            > 
-                            </input>
-                        </div>
-
-                    </div>
-
                     <div className='input-container min-w-full mb-5'>
                         <p className='text-white mb-1'>Address 1</p>
-                        <input className='border-2 text-white outline-stone-100 p-2 px-4 rounded-full 
-                                          w-full  border-white bg-transparent' 
+                        <input className='border-2 text-cambridgeBlue font-medium outline-stone-100 p-2 px-4 rounded-full w-full  border-white bg-white' 
                             id="address1"
                             defaultValue={data.user.personalDetails[0].address1}
                             type="text"
@@ -207,8 +159,7 @@ function Profile() {
 
                     <div className='input-container min-w-full mb-5'>
                         <p className='text-white mb-1'>Address 2</p>
-                        <input className='border-2 text-white outline-stone-100 p-2 px-4 rounded-full
-                                          w-full border-white bg-transparent' 
+                        <input className='border-2 text-cambridgeBlue font-medium outline-stone-100 p-2 px-4 rounded-full w-full border-white bg-white' 
                             id="address2"
                             defaultValue={data.user.personalDetails[0].address2}
                             type="text"
@@ -217,20 +168,57 @@ function Profile() {
                         </input>
                     </div>
 
+                    <div className='input-container flex gap-3 mb-5 max-w-md max-sm:flex-col'>
+                        
+                        <div className='w-1/3 max-sm:w-full'>
+                            <p className='text-white mb-1'>City</p>
+                            <input 
+                                className='border-2 text-cambridgeBlue font-medium outline-stone-100 p-2 px-4 rounded-full 
+                                w-full  border-white bg-white'
+                                id="city"
+                                defaultValue={data.user.personalDetails[0].city}
+                                type="text"
+                                readOnly={read}
+                            > 
+                            </input>
+                        </div>
 
+                        <div className='w-1/3 max-sm:w-full'>
+                            <p className='text-white mb-1'>State</p>
+                            <input 
+                                className='border-2 text-cambridgeBlue font-medium outline-stone-100 p-2 px-4 rounded-full w-full  border-white bg-white' 
+                                id="state"
+                                defaultValue={data.user.personalDetails[0].state}
+                                type="text"
+                                readOnly={read}
+                            > 
+                            </input>
+                        </div>
+
+                        <div className='w-1/3 max-sm:w-full'>
+                            <p className='text-white mb-1'>Zip Code</p>
+                            <input className='border-2 text-cambridgeBlue font-mediumoutline-stone-100 p-2 px-4 rounded-full w-full  border-white bg-white' 
+                                id="zipcode"
+                                defaultValue={data.user.personalDetails[0].zipcode}
+                                type="text"
+                                readOnly={read}
+                            > 
+                            </input>
+                        </div>
+
+                    </div>
 
                 </div>
 
                 <div className={`${hiddenclass} flex justify-center gap-8 items-end px-5 mt-4`}>
-                    <button className="mb-2 text-1xl text-black font-semibold bg-neutral-100
-                                        rounded-full px-5 py-1 border-2 border-white 
-                                        transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white"
-                            onClick={save_editmenu} >
-                            Save
+                    <button 
+                        className="mb-2 text-1xl text-cambridgeBlue font-semibold bg-neutral-100 rounded-full px-5 py-1 border-2 border-white transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white"
+                        onClick={save_editmenu} >
+                        Save
                     </button>
 
-                    <button className="mb-2 text-1xl text-black font-semibold bg-neutral-100
-                                        rounded-full px-5 py-1 border-2 border-white 
+                    <button className="mb-2 text-1xl text-cambridgeBlue font-semibold bg-neutral-100
+                                        rounded-full px-5 py-1 border-2     border-white 
                                         transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white" 
                             onClick={canceleditmenu} >
                             Cancel
