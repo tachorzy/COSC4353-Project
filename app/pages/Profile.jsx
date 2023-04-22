@@ -94,7 +94,7 @@ function Profile() {
         <div className="bg-cambridgeBlue min-h-screen flex justify-center items-center flex-col text-stone-100 max-sm:p-10 pt-16">
             <div>
                 <div className='flex justify-between items-end px-3'>
-                    <h2 className='text-stone-100 text-3xl font-semibold mb-2'>
+                    <h2 className='text-stone-100 text-3xl font-semibold mb-2 ml-2'>
                     Personal Information</h2>
                     <button 
                         className='mb-2 text-1xl text-cambridgeBlue font-semibold bg-white rounded-full px-5 border-2 border-white transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white outline-teal-300'  
