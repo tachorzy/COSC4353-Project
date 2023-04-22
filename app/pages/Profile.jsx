@@ -96,11 +96,10 @@ function Profile() {
                 <div className='flex justify-between items-end px-3'>
                     <h2 className='text-stone-100 text-3xl font-semibold mb-2'>
                     Personal Information</h2>
-                    <button className='mb-2 text-1xl text-cambridgeBlue font-semibold bg-white
-                                        rounded-full px-5 border-2 border-white 
-                                        transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white'  
-                            onClick={editmenu} >
-                            Edit
+                    <button 
+                        className='mb-2 text-1xl text-cambridgeBlue font-semibold bg-white rounded-full px-5 border-2 border-white transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white outline-teal-300'  
+                        onClick={editmenu} >
+                        Edit
                     </button>
                 </div>
 
@@ -212,16 +211,15 @@ function Profile() {
 
                 <div className={`${hiddenclass} flex justify-center gap-8 items-end px-5 mt-4`}>
                     <button 
-                        className="mb-2 text-1xl text-cambridgeBlue font-semibold bg-neutral-100 rounded-full px-5 py-1 border-2 border-white transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white"
+                        className="mb-2 text-1xl text-cambridgeBlue font-semibold bg-neutral-100 rounded-full px-5 py-1 border-2 border-white transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white outline-teal-300"
                         onClick={save_editmenu} >
                         Save
                     </button>
 
-                    <button className="mb-2 text-1xl text-cambridgeBlue font-semibold bg-neutral-100
-                                        rounded-full px-5 py-1 border-2     border-white 
-                                        transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white" 
-                            onClick={canceleditmenu} >
-                            Cancel
+                    <button 
+                        className="mb-2 text-1xl text-cambridgeBlue font-semibold bg-neutral-100 rounded-full px-5 py-1 border-2 border-white transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white outline-teal-300" 
+                        onClick={canceleditmenu} >
+                        Cancel
                     </button>
                 </div>
 

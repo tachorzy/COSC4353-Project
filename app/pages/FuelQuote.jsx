@@ -7,8 +7,7 @@ import { Inter } from '@next/font/google'
 import { Combo, Roboto, Rubik } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import localFont from '@next/font/local'
-import FuelQuoteStyle from '../styles/FuelQuoteStyle.module.css'
-import FuelQuoteHistory from '../components/FuelQuoteHistory.jsx'
+import { TypeAnimation } from 'react-type-animation';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -71,42 +70,48 @@ export default function FuelQuote() {
               className= "bg-stone-100 bg-opacity-20 grid grid-cols-2 grid-rows-2 gap-y-5 rounded-3xl m-auto pb-11 pt-10 px-5 text-sm" 
               onSubmit={handleFormSubmit}
             >
-                <h2 className="text-stone-100 font-semibold col-span-2 text-3xl text-center">The Current rate is <b>{PPG}</b></h2>
+              <div className="col-span-2">
+                <h2 className="text-stone-100 font-semibold col-span-1 text-lg text-left mx-5">
+                    <TypeAnimation
+                        className=""
+                        sequence={[
+                          `The current rate is: ${PPG}`,
+                          3200,
+                        ]} 
+                        cursor={true}
+                        repeat={false}
+                        speed={25}
+                        deletionSpeed={25}
+                      />                
+                  </h2>
+              </div>
 
-                <input type="date" className="h-12 mx-5 w-10/12 p-2 py-2 border-transparent rounded-xl font-medium text-stone-400" placeholder={"Delivery Date"} name="delivery-date" onChange={(event) => setSelectedDate(event.target.value)}/>
+              <input type="date" className="h-12 mx-5 w-10/12 p-2 py-2 border-transparent rounded-xl font-medium text-stone-400" placeholder={"Delivery Date"} name="delivery-date" onChange={(event) => setSelectedDate(event.target.value)}/>
 
-                <div className="w-full">
-                  <Image src='/gallon.svg' width={18} height={18} className="absolute ml-40 mt-3.5" alt="gallon"></Image>
-                  <input className="h-12 mx-5 w-10/12 p-2 py-2 border-transparent rounded-xl font-medium text-stone-400" placeholder={"Gallons"} name="gallons-requested" onChange={(event) => setSelectedGallons(event.target.value)}/>
-                </div>
+              <div className="w-full">
+                <Image src='/gallon.svg' width={18} height={18} className="absolute ml-40 mt-3.5" alt="gallon"></Image>
+                <input className="h-12 mx-5 w-10/12 p-2 py-2 border-transparent rounded-xl font-medium text-stone-400" placeholder={"Gallons"} name="gallons-requested" onChange={(event) => setSelectedGallons(event.target.value)}/>
+              </div>
 
-                <div className="w-full col-span-2">
-                  <div className="h-12 mx-5 w-11/12 p-2 py-2 border-transparent rounded-xl font-medium bg-stone-100 text-stone-400">
-                    
-                  </div>
-                </div>
-
-                <buttton 
-                  className="bg-stone-300 text-neutral-500 text-center col-span-1 font-semibold h-12 mt-2 mx-5 w-10/12 p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center"
-                >
-                  Calculate Your Quote!
-                </buttton>  
+              <div className="w-full col-span-2">
+                <h2 className="text-white font-medium text-3xl"></h2>
+                <div className="h-12 mx-5 w-11/12 p-2 py-2 border-transparent rounded-xl font-medium bg-stone-100 text-stone-400">
                 
-                <buttton 
-                  className="bg-stone-300 text-neutral-500 text-center col-span-1 font-semibold h-12 mt-2 mx-5 w-10/12 p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center gap-x-1"
-                >
-                  {"Submit"}
-                  <Image src="/link.svg" width={18} height={18} alt=""></Image>
-                </buttton> 
-                {/* <div className={FuelQuoteStyle.inputContainer}>
-                  <div className="flex flex-row">
-                    <buttton className={FuelQuoteStyle.calculateButton}>Calculate Your Quote!</buttton>  
-                    <buttton className={FuelQuoteStyle.calculateButton}>
-                      {"Submit"}
-                      <Image src="/link.svg" width={28} height={28} alt=""></Image>
-                    </buttton> 
-                  </div>
-                </div> */}
+                </div>
+              </div>
+
+              <buttton 
+                className="bg-stone-300 text-neutral-500 text-center col-span-1 font-semibold h-12 mt-2 mx-5 w-10/12 p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center"
+              >
+                Calculate Your Quote!
+              </buttton>  
+              
+              <buttton 
+                className="bg-stone-300 text-neutral-500 text-center col-span-1 font-semibold h-12 mt-2 mx-5 w-10/12 p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center gap-x-1"
+              >
+                {"Submit"}
+                <Image src="/link.svg" width={18} height={18} alt=""></Image>
+              </buttton> 
             </form>
           </div>
       </main>
