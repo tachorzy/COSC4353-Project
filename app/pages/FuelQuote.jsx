@@ -22,19 +22,25 @@ const satoshi = localFont({
 })
 
 export default function FuelQuote() {
-  var locationFactor = 0.04
-  var rateHistory = .01
-  var requestFactor = .03
-  var CPF = .1
+  // totPrice = (fuelMultiplier + PPG) * gallonsRequested 
+  let suggestedPrice = PPG + fuelMultiplier
+  const [selectDate, setSelectedDate] = useState('')
+  const [selectGallons, setSelectedGallons] = useState('')
+  const [suggestedPPG, setSuggestedPPG] = useState('$0.00')
+
+  let locationFactor = 0.04
+  let rateHistory = .01
+  let requestFactor = .03
+  let CPF = .1
+  let totPrice = 0
   // Some checks to change the first 3 variables go below here
 
   // Actual calculation
   var gallonsRequested
   const PPG = 1.5
   const fuelMultiplier = locationFactor - rateHistory + requestFactor + CPF
-  const totPrice = (fuelMultiplier + PPG) * gallonsRequested 
-  const [selectDate, setSelectedDate] = useState('')
-  const [selectGallons, setSelectedGallons] = useState('')
+
+
 
   const router = useRouter();
 
@@ -53,6 +59,7 @@ export default function FuelQuote() {
       console.error(error)
     }
   };
+
 
   return (
     <>
@@ -76,7 +83,7 @@ export default function FuelQuote() {
                     <TypeAnimation
                         className=""
                         sequence={[
-                          `The current rate is: ${PPG}`,
+                          `The current rate is: $${PPG} per gallon.`,
                           3200,
                         ]} 
                         cursor={true}
@@ -89,7 +96,7 @@ export default function FuelQuote() {
                     <TypeAnimation
                         className=""
                         sequence={[
-                          `Location factor policy:\nClients from Texas\n are charged a 2% location factor.\nOut of state clients will be charged 4%`,
+                          `Location factor policy:\nClients from Texas\n are charged a 2% location factor.\nWhile out of state clients will be charged 4%.`,
                           3200,
                         ]} 
                         cursor={true}
@@ -113,13 +120,14 @@ export default function FuelQuote() {
               <div className="w-full col-span-1">
                 <h2 className="text-white font-medium text-sm mx-5 pl-1 pb-1.5">Suggested Price per Gallon</h2>
                 <div className="h-12 mx-5 w-10/12 p-2 py-2 border-transparent rounded-xl font-medium bg-stone-100 text-cambridgeBlue text-right">
+                  <p className="text-neutral-500 py-1.5 pr-3">${suggestedPrice.toFixed(2)}</p>
                 </div>
               </div>
 
               <div className="w-full col-span-1">
                 <h2 className="text-white font-medium text-sm mx-5 pl-1 pb-1.5">Estimated Total Price:</h2>
                 <div className="h-12 mx-5 w-10/12 p-2 py-2 rounded-xl font-medium bg-stone-100 text-cambridgeBlue text-right mb-2">
-                  <p className="text-neutral-500"></p>
+                  <p className="text-neutral-500 py-1.5 pr-3">${totPrice.toFixed(2)}</p>
                 </div>
               </div>
 
@@ -127,7 +135,7 @@ export default function FuelQuote() {
                 <buttton 
                   className="bg-stone-300 text-stone-500 text-center col-span-1 font-semibold h-12 mt-2 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center"
                 >
-                  Calculate Your Quote!
+                  Get Quote!
                 </buttton>  
                 
                 <buttton 
