@@ -67,21 +67,46 @@ export default function FuelQuote() {
       </Head>
       <main className={styles.main}>
         <div className={satoshi.className}>
-            <form className={FuelQuoteStyle.container} onSubmit={handleFormSubmit}>
-                <h2 className=" text-stone-700 font-semibold col-span-2 text-3xl text-center">The Current rate is <b>{PPG}</b></h2>
+            <form 
+              className= "bg-stone-100 bg-opacity-20 grid grid-cols-2 grid-rows-2 gap-y-5 rounded-3xl m-auto pb-11 pt-10 px-5 text-sm" 
+              onSubmit={handleFormSubmit}
+            >
+                <h2 className="text-stone-100 font-semibold col-span-2 text-3xl text-center">The Current rate is <b>{PPG}</b></h2>
 
-                <div className={FuelQuoteStyle.inputContainer}>
-                    <div className={FuelQuoteStyle.logoInputContainer}>
-                        <input type="date" className={FuelQuoteStyle.standardInputBox} placeholder={"Delivery Date"} name="delivery-date" onChange={(event) => setSelectedDate(event.target.value)}/>
-                    </div>
+                <input type="date" className="h-12 mx-5 w-10/12 p-2 py-2 border-transparent rounded-xl font-medium text-stone-400" placeholder={"Delivery Date"} name="delivery-date" onChange={(event) => setSelectedDate(event.target.value)}/>
+
+                <div className="w-full">
+                  <Image src='/gallon.svg' width={18} height={18} className="absolute ml-40 mt-3.5" alt="gallon"></Image>
+                  <input className="h-12 mx-5 w-10/12 p-2 py-2 border-transparent rounded-xl font-medium text-stone-400" placeholder={"Gallons"} name="gallons-requested" onChange={(event) => setSelectedGallons(event.target.value)}/>
                 </div>
-                <div className={FuelQuoteStyle.splitContainer}>
-                    <div className={FuelQuoteStyle.logoInputContainer}>
-                        <input className={FuelQuoteStyle.standardInputBox} placeholder={"Gallons"} name="gallons-requested" onChange={(event) => setSelectedGallons(event.target.value)}/>
-                        <Image src='/gallon.svg' width={28} height={28} className={FuelQuoteStyle.gallonLogo} alt="gallon"></Image>
-                    </div>
+
+                <div className="w-full col-span-2">
+                  <div className="h-12 mx-5 w-11/12 p-2 py-2 border-transparent rounded-xl font-medium bg-stone-100 text-stone-400">
+                    
+                  </div>
                 </div>
-                <buttton className={FuelQuoteStyle.calculateButton}>Calculate Your Quote!</buttton>  
+
+                <buttton 
+                  className="bg-stone-300 text-neutral-500 text-center col-span-1 font-semibold h-12 mt-2 mx-5 w-10/12 p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center"
+                >
+                  Calculate Your Quote!
+                </buttton>  
+                
+                <buttton 
+                  className="bg-stone-300 text-neutral-500 text-center col-span-1 font-semibold h-12 mt-2 mx-5 w-10/12 p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center gap-x-1"
+                >
+                  {"Submit"}
+                  <Image src="/link.svg" width={18} height={18} alt=""></Image>
+                </buttton> 
+                {/* <div className={FuelQuoteStyle.inputContainer}>
+                  <div className="flex flex-row">
+                    <buttton className={FuelQuoteStyle.calculateButton}>Calculate Your Quote!</buttton>  
+                    <buttton className={FuelQuoteStyle.calculateButton}>
+                      {"Submit"}
+                      <Image src="/link.svg" width={28} height={28} alt=""></Image>
+                    </buttton> 
+                  </div>
+                </div> */}
             </form>
           </div>
       </main>

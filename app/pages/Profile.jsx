@@ -99,15 +99,10 @@ function Profile() {
     // bg-gradient-to-r from-black via-purple-600 to-black
     return (
         data && (
-        <div className="bg-cambridgeBlue
-                        min-h-screen flex justify-center items-center flex-col 
-                        text-stone-100 max-sm:p-10 pt-16">
-        
+        <div className="bg-cambridgeBlue min-h-screen flex justify-center items-center flex-col text-stone-100 max-sm:p-10 pt-16">
             <div>
-                
                 <div className='flex justify-between items-end px-3'>
-                    <h2 className='text-stone-100
-                    text-3xl font-semibold mb-2'>
+                    <h2 className='text-stone-100 text-3xl font-semibold mb-2'>
                     Personal Information</h2>
                     <button className='mb-2 text-1xl text-stone-500 font-semibold bg-white
                                         rounded-full px-5 border-2 border-white 
@@ -117,9 +112,7 @@ function Profile() {
                     </button>
                 </div>
 
-                <div className="bg-cambridgeBlue
-                                p-8 rounded-3xl border-white border-2">
-                    
+                <div className="bg-neutral-100 bg-opacity-10 p-8 rounded-3xl shadow-r-lg">
                     <div className='input-container min-w-full mb-5'>
                         <p className='text-white mb-1'>Your Email</p>
                         <input className='border-2 text-white outline-stone-100 p-2 px-4 rounded-full w-full border-white bg-transparent' 

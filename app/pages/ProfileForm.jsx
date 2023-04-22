@@ -110,7 +110,9 @@ export default function ProfileForm() {
                             ))}
                         </select>       
                 </div>
-                  <buttton type="submit" className={FuelQuoteStyle.calculateButton} name="calculate">{"Register Your Details!"}</buttton>
+                  <buttton type="submit" className={FuelQuoteStyle.calculateButton} name="calculate"> 
+                    {"Register Your Details!"}
+                  </buttton>
               </form>  
             </div>
           </div>
