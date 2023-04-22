@@ -4,6 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import clientPromise from "../../../__database/mongodb"
 import Client from '@/__models/client.js'
 import dbConnect from '@/__database/dbConnect'
+import bcrypt from 'bcryptjs';
 
 module.exports = NextAuth({
   name: 'Credentials',
@@ -17,15 +18,17 @@ module.exports = NextAuth({
       async authorize(credentials, req) {
         dbConnect();
         const { email, password } = credentials;
-        console.log(email, password);
+        
         const user = await Client.findOne({ email });
+        
         if (!user) {
           throw new Error("Email not found");
         }
+        
 
-        // const isPasswordMatched = await bcrypt.compare(password, user.password);
+        const isPasswordMatched = await bcrypt.compare(password, user.password);
 
-        if (password != user.password) {
+        if (!isPasswordMatched) {
           throw new Error("Incorrect Password");
         }
         console.log(user);

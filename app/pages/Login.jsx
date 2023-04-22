@@ -31,11 +31,14 @@ function Login() {
     event.preventDefault();
     setEmailError('');
     setPasswordError('');
-    if (!email || !password) {
-      if (!email) setEmailError('Email is required');
-      if (!password) setPasswordError('Password is required');
-      return;
-    }
+
+    if (!email) 
+      return setEmailError('Email is required');
+    if (!password) 
+      return setPasswordError('Password is required');
+
+    console.log(`password: ${password}`)
+
     const result = await signIn('credentials', {
       email,
       password,

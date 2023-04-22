@@ -4,7 +4,7 @@ const historySchema = new Schema({
     id: Number,
     email: String,
     quoteHistory: [{
-        deliverDate: String,
+        deliveryDate: String,
         city: String,
         address1: String,
         address2: String,

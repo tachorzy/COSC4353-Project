@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-import Link from 'next/link'
 import React, { useState } from 'react';
 import bcrypt from 'bcryptjs';
 import { useRouter } from 'next/router';
@@ -57,30 +56,6 @@ export default function Register() {
       }
     }
   };
-    // Check if password and confirm password match
-    /*
-
-    
-  const saltRounds = 10;
-  const salt = await bcrypt.genSalt(saltRounds);
-  const hashedPassword = await bcrypt.hash(password, salt);
-
-  const response = await fetch('/api/auth/register', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ name, email, password }),
-  });
-
-  if (response.ok) {
-    router.push('/login');
-  } else {
-    const data = await response.json();
-    const message = data?.message || 'An error occurred';
-    setErrorMsg(message);
-  }*/
-  
 
   return (
     <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12">
