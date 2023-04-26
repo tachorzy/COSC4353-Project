@@ -1,6 +1,6 @@
-
 import Client from '@/__models/client.js'
 import dbConnect from '@/__database/dbConnect'
+
 export default async function updateUser(req, res){  
     
     dbConnect().catch(err => console.log(err));
@@ -23,11 +23,4 @@ export default async function updateUser(req, res){
     if(req.method === 'GET') {
         res.status(200).json(result)
     }
-
-    /*
-    if(req.method === 'POST') {
-        result.save()
-        res.status(200).json(result)
-    }*/
 }
-

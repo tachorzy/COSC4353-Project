@@ -81,6 +81,7 @@ function Profile() {
 
         const res = await axios.post('/api/updateUser', data);
         
+        
         console.log(res);
 
         setread(true);

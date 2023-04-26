@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import FuelQuoteForm from '../components/FuelQuoteForm.jsx'
 import { Inter } from '@next/font/google'
@@ -8,6 +8,8 @@ import { Combo, Roboto, Rubik } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import localFont from '@next/font/local'
 import { TypeAnimation } from 'react-type-animation';
+import Client from '../__models/client.js'
+import { useSession } from 'next-auth/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,25 +24,46 @@ const satoshi = localFont({
 })
 
 export default function FuelQuote() {
+  const {data} = useSession();
   const [selectDate, setSelectedDate] = useState('')
   const [selectGallons, setSelectedGallons] = useState('')
   //Could make a hook out of this but posisbly not, I'll have to look into it and decide whether or not what I'm thinking is sensible - Tariq
   const [suggestedPPG, setSuggestedPPG] = useState('$0.00')
 
   let locationFactor = 0.04
-  let rateHistory = .01
+  let rateHistory = 0
   let requestFactor = .03
   let CPF = .1
   let totPrice = 0 //making sure it's initalized to 0.
   // Some checks to change the first 3 variables go below here
-
+  if(selectGallons > 1000){
+    requestFactor = .02
+  }
+  const [userHistory, setUserHistory] = useState('')
+  useEffect(() => {
+    fetch('http://localhost:3000/api/getUserHistory')
+        .then((response) => response.json())
+        .then((data) => {
+        setUserHistory(data);
+        console.log(data.quoteHistory)
+        console.log(data)
+        console.log(data.user.email)
+        });
+    }, []);
+  if( userHistory != "" ){
+    rateHistory = 0.1
+  }
+  if(data.user.personalDetails[0].state == "TX" || data.user.personalDetails[0].state == "Texas"){
+    locationFactor = .02
+  }
   // Actual calculation
   //Move this to a function that can get called when we click the button - Tariq
   var gallonsRequested
   const PPG = 1.5
-  const fuelMultiplier = locationFactor - rateHistory + requestFactor + CPF
-  // totPrice = (fuelMultiplier + PPG) * gallonsRequested 
+  let fuelMultiplier = locationFactor - rateHistory + requestFactor + CPF
   let suggestedPrice = PPG + fuelMultiplier
+  totPrice = suggestedPrice * gallonsRequested
+
 
   const router = useRouter();
 

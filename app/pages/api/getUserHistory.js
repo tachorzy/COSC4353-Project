@@ -1,9 +1,10 @@
 import dbConnect from '../../__database/dbConnect.js'
 import History from '../../__models/history.js'
+import { getSession } from "next-auth/react"
 
 export default async function getUserHistory(req, res){
     if (req.method === "GET"){
-        const session = await getsession({ req });
+        const session = await getSession({ req });
 
         if(!session){
             return res.status(401).json({message: "Unauthorized"})
