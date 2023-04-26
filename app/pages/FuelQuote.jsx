@@ -38,6 +38,7 @@ export default function FuelQuote() {
   // Some checks to change the first 3 variables go below here
   if(selectGallons > 1000){
     requestFactor = .02
+    console.log(data.user.personalDetails[0].state)
   }
   const [userHistory, setUserHistory] = useState('')
   useEffect(() => {
@@ -51,11 +52,10 @@ export default function FuelQuote() {
         });
     }, []);
   if( userHistory != "" ){
-    rateHistory = 0.1
+    rateHistory = 0.5
   }
-  if(data.user.personalDetails[0].state == "TX" || data.user.personalDetails[0].state == "Texas"){
+  if(data.user.personalDetails[0].state == "TX" || data.user.personalDetails[0].state == "Texas")
     locationFactor = .02
-  }
   // Actual calculation
   //Move this to a function that can get called when we click the button - Tariq
   var gallonsRequested
