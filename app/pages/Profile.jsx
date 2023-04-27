@@ -37,9 +37,6 @@ function Profile() {
     const [city, setCity] = useState();
     const [zipCode, setZipCode] = useState();
 
-
-
-
     const [hiddenclass, sethiddenclass] = useState("hidden");
     const [read , setread] = useState(true);
     const {data} = useSession();
@@ -59,6 +56,7 @@ function Profile() {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 if(data !== null){
                     setAddress1(data.address1);
                     setAddress2(data.address2);
@@ -102,7 +100,7 @@ function Profile() {
         }
     
         const res = await axios.post('/api/updateUser', data);
-        
+        console.log("Update complete")
         setread(true);
         sethiddenclass("hidden");
     }
@@ -169,7 +167,7 @@ function Profile() {
                         <p className='text-white mb-1'>Address 1</p>
                         <input className='border-2 text-cambridgeBlue font-medium outline-stone-100 p-2 px-4 rounded-full w-full  border-white bg-white' 
                             id="address1"
-                            defaultValue={data.user.personalDetails[0].address1}
+                            defaultValue={address1}
                             type="text"
                             readOnly={read}
                         > 
@@ -180,7 +178,7 @@ function Profile() {
                         <p className='text-white mb-1'>Address 2</p>
                         <input className='border-2 text-cambridgeBlue font-medium outline-stone-100 p-2 px-4 rounded-full w-full border-white bg-white' 
                             id="address2"
-                            defaultValue={data.user.personalDetails[0].address2}
+                            defaultValue={address2}
                             type="text"
                             readOnly={read}
                         > 
@@ -216,7 +214,7 @@ function Profile() {
 
                         <div className='w-1/3 max-sm:w-full'>
                             <p className='text-white mb-1'>Zip Code</p>
-                            <input className='border-2 text-cambridgeBlue font-mediumoutline-stone-100 p-2 px-4 rounded-full w-full  border-white bg-white' 
+                            <input className='border-2 text-cambridgeBlue font-medium outline-stone-100 p-2 px-4 rounded-full w-full  border-white bg-white' 
                                 id="zipcode"
                                 defaultValue={zipCode}
                                 type="text"

@@ -1,6 +1,7 @@
 
 import Client from '@/__models/client.js'
 import dbConnect from '@/__database/dbConnect'
+
 export default async function updateUser(req, res){  
     
     dbConnect().catch(err => console.log(err));

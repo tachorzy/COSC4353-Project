@@ -1,21 +1,22 @@
 import dbConnect from '../../__database/dbConnect.js'
 import Client from '../../__models/client.js'
+import { getSession } from "next-auth/react";
 
 export default async function getUserDetails(req, res){
-    if (req.method === "GET"){
-        const session = await getsession({ req });
+    const session = await getSession({ req });
 
-        if(!session){
-            return res.status(401).json({message: "Unauthorized"})
-        }
+    if(!session){
+        return res.status(401).json({message: "Unauthorized"})
+    }
 
-        dbConnect.catch(err => console.error(err));
-        
-        const result = await Client.findOne({
-            email: session.user.email,
-        })
+    dbConnect().catch(err => console.error(err));
     
-        res.status(200).json(result.personalDetails)
+    const result = await Client.findOne({
+        email: session.user.email,
+    })
+
+    if (req.method === "GET"){
+        res.status(200).json(result.personalDetails[0])
 
         console.log(result.personalDetails)
     }
