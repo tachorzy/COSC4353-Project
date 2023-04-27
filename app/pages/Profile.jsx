@@ -56,13 +56,13 @@ function Profile() {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                console.log(`Profile data ${data}`)
                 if(data !== null){
                     setAddress1(data.address1);
                     setAddress2(data.address2);
                     setState(data.state);
                     setCity(data.city);
-                    setZipCode(data.zipcode);
+                    setZipCode(data.zip);
                 }
             })
     }, []);

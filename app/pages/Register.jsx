@@ -61,7 +61,7 @@ export default function Register() {
     <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12">
       <Head>
         <title>Sign Up</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/pipeline.svg" />
       </Head>
 
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
