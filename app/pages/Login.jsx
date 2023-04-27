@@ -59,8 +59,6 @@ function Login() {
       const data = await getSession();
       if (data) {
         if (!data.user.profileSet) {
-          router.push('/ProfileForm');
-        } else {
           router.push('/Profile');
         }
       } 

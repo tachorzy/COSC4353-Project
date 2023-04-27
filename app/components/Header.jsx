@@ -29,7 +29,7 @@ const Header = () => {
           </div>
 
           <div className="mr-40 text-center flex gap-x-1 flex-row absolute right-0 text-base font-medium">
-            {data? (
+            {data ? (
               <>
                 <span>
                   <Image src="/user.svg" width={20} height={20} alt="" className="select-none"></Image>
