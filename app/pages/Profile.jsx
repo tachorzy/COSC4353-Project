@@ -216,7 +216,7 @@ function Profile() {
                             <p className='text-white mb-1'>Zip Code</p>
                             <input className='border-2 text-cambridgeBlue font-medium outline-stone-100 p-2 px-4 rounded-full w-full  border-white bg-white' 
                                 id="zipcode"
-                                defaultValue={zipCode}
+                                defaultValue={zipcode}
                                 type="text"
                                 readOnly={read}
                             > 

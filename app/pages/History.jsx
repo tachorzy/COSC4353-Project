@@ -9,7 +9,7 @@ export default function History() {
 
   useEffect(() => {
   fetch('http://localhost:3000/api/getUserHistory')
-      .then((response) => response.json())
+      .then((response) => response?.json())
       .then((data) => {
       setQuoteData(data);
       console.log(data.gallonsRequest)
