@@ -30,6 +30,16 @@ const satoshiBold = localFont({
 })
 
 function Profile() {
+
+    const [address1, setAddress1] = useState();
+    const [address2, setAddress2] = useState();
+    const [state, setState] = useState();
+    const [city, setCity] = useState();
+    const [zipCode, setZipCode] = useState();
+
+
+
+
     const [hiddenclass, sethiddenclass] = useState("hidden");
     const [read , setread] = useState(true);
     const {data} = useSession();
@@ -43,6 +53,21 @@ function Profile() {
         }}
     }, []);
 
+    useEffect(() => {
+        fetch('http://localhost:3000/api/getUserDetails', {
+            method: "GET"
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data !== null){
+                    setAddress1(data.address1);
+                    setAddress2(data.address2);
+                    setState(data.state);
+                    setCity(data.city);
+                    setZipCode(data.zipCode);
+                }
+            })
+    }, []);
     
     function editmenu(){
         setread(false);
@@ -54,35 +79,30 @@ function Profile() {
         setread(true);
     }
 
-
     const save_editmenu = async (event) =>{
     
-        const FirstName = document.getElementById("firstname").value;
-        const LastName = document.getElementById("lastname").value;
-        const Address1 = document.getElementById("address1").value;
-        const Address2 = document.getElementById("address2").value;
-        const City = document.getElementById("city").value;
-        const State = document.getElementById("state").value;
-        const Zipcode = document.getElementById("zipcode").value;
+        const firstName = document.getElementById("firstname").value;
+        const lastName = document.getElementById("lastname").value;
+        const address1 = document.getElementById("address1").value;
+        const address2 = document.getElementById("address2").value;
+        const city = document.getElementById("city").value;
+        const state = document.getElementById("state").value;
+        const zipcode = document.getElementById("zipcode").value;
         const email = document.getElementById("email").value;
 
         const data = {
-            firstName: FirstName,
-            lastName: LastName,
-            address1: Address1,
-            address2: Address2,
+            firstName: firstName,
+            lastName: lastName,
+            address1: address1,
+            address2: address2,
             email: email,
-            city: City,
-            state: State,
-            zipcode: Zipcode
+            city: city,
+            state: state,
+            zipcode: zipcode
         }
-        
-        console.log(data);
-
+    
         const res = await axios.post('/api/updateUser', data);
         
-        console.log(res);
-
         setread(true);
         sethiddenclass("hidden");
     }
@@ -175,7 +195,7 @@ function Profile() {
                                 className='border-2 text-cambridgeBlue font-medium outline-stone-100 p-2 px-4 rounded-full 
                                 w-full  border-white bg-white'
                                 id="city"
-                                defaultValue={data.user.personalDetails[0].city}
+                                defaultValue={city}
                                 type="text"
                                 readOnly={read}
                             > 
@@ -187,7 +207,7 @@ function Profile() {
                             <input 
                                 className='border-2 text-cambridgeBlue font-medium outline-stone-100 p-2 px-4 rounded-full w-full  border-white bg-white' 
                                 id="state"
-                                defaultValue={data.user.personalDetails[0].state}
+                                defaultValue={state}
                                 type="text"
                                 readOnly={read}
                             > 
@@ -198,7 +218,7 @@ function Profile() {
                             <p className='text-white mb-1'>Zip Code</p>
                             <input className='border-2 text-cambridgeBlue font-mediumoutline-stone-100 p-2 px-4 rounded-full w-full  border-white bg-white' 
                                 id="zipcode"
-                                defaultValue={data.user.personalDetails[0].zipcode}
+                                defaultValue={zipCode}
                                 type="text"
                                 readOnly={read}
                             > 

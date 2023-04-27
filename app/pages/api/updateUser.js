@@ -16,10 +16,10 @@ export default async function updateUser(req, res){
         res.status(200).json(result)
     }
 
-    /*
     if(req.method === 'POST') {
+        console.log('Post request received')
         result.save()
         res.status(200).json(result)
-    }*/
+    }
 }
 
