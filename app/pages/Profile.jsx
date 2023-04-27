@@ -62,7 +62,7 @@ function Profile() {
                     setAddress2(data.address2);
                     setState(data.state);
                     setCity(data.city);
-                    setZipCode(data.zipCode);
+                    setZipCode(data.zipcode);
                 }
             })
     }, []);
@@ -216,7 +216,7 @@ function Profile() {
                             <p className='text-white mb-1'>Zip Code</p>
                             <input className='border-2 text-cambridgeBlue font-medium outline-stone-100 p-2 px-4 rounded-full w-full  border-white bg-white' 
                                 id="zipcode"
-                                defaultValue={zipcode}
+                                defaultValue={zipCode}
                                 type="text"
                                 readOnly={read}
                             > 
