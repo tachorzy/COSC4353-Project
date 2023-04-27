@@ -59,8 +59,6 @@ function Login() {
       const data = await getSession();
       if (data) {
         if (!data.user.profileSet) {
-          router.push('/ProfileForm');
-        } else {
           router.push('/Profile');
         }
       } 
@@ -72,7 +70,7 @@ function Login() {
     <div className="min-h-screen bg-cambridgeBlue py-6 flex flex-col justify-center sm:py-12">
       <Head>
         <title>Login</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/pipeline.svg" />
       </Head>
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
         <div className="relative px-4 py-10 bg-stone-200 mx-8 md:mx-0 shadow-lg rounded-3xl sm:p-10">

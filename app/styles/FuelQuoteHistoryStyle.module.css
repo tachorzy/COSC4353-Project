@@ -11,7 +11,7 @@
 }
   
 .table {
-  @apply w-full border-collapse border-spacing-0 rounded-2xl gap-x-4
+  @apply w-full border-collapse border-spacing-0 rounded-2xl gap-x-24
 }
   
   .th,

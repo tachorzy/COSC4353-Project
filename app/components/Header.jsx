@@ -29,7 +29,7 @@ const Header = () => {
           </div>
 
           <div className="mr-40 text-center flex gap-x-1 flex-row absolute right-0 text-base font-medium">
-            {data? (
+            {data ? (
               <>
                 <span>
                   <Image src="/user.svg" width={20} height={20} alt="" className="select-none"></Image>
@@ -38,7 +38,7 @@ const Header = () => {
                   Hi, {data.user.personalDetails[0].FirstName}
                 </span>
 
-                <span className="cursor-pointer font-semibold hover:bg-stone-200 hover:bg-opacity-25 px-2 rounded-2xl" onClick={() => signOut()}>
+                <span className="cursor-pointer font-semibold select-none hover:bg-stone-200 hover:bg-opacity-25 px-2 rounded-2xl" onClick={() => signOut()}>
                   {" "}
                   Logout
                 </span>
@@ -49,7 +49,7 @@ const Header = () => {
                 <span>
                   <Image src="/user.svg" width={20} height={20} alt="" className="select-none"></Image>
                 </span>
-                <Link className="nav-link cursor-pointer font-semibold hover:bg-stone-200 hover:bg-opacity-25 px-2 rounded-2xl" href="/Login">
+                <Link className="nav-link cursor-pointer font-semibold select-none hover:bg-stone-200 hover:bg-opacity-25 px-2 rounded-2xl" href="/Login">
                   Login
                 </Link>
               </span>
