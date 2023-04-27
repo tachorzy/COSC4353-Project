@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import FuelQuoteHistoryStyle from '../styles/FuelQuoteHistoryStyle.module.css'
+import FuelQuoteButton from '../components/FuelQuoteButton'
 import { useState, useEffect } from 'react';
 import React from 'react';
 
@@ -9,22 +10,23 @@ export default function History() {
 
   useEffect(() => {
     fetch('http://localhost:3000/api/getUserHistory')
-        .then((response) => response?.json())
-        .then((data) => {
+      .then((response) =>  {
+        return response.json()
+      })
+      .then((data) => {
         setQuoteData(data);
-        console.log(data.gallonsRequest)
-        console.log(data)
-        });
+      });
   }, []);
 
   return (
-    <div className="bg-cambridgeBlue h-screen m-auto justify-center content-center flex flex-col">
-      <div className="ml-48 mb-16">
+    <div className="bg-cambridgeBlue h-screen m-auto flex flex-col">
+      <div className="mt-24 ml-24 justify-center content-center">
         <div className={FuelQuoteHistoryStyle.container}>
+        {quoteData?.length != 0 && quoteData !== undefined ? (  
+          <>    
           <table className={FuelQuoteHistoryStyle.table}>
-
               <thead>
-                <tr>
+                <tr className="gap-x-16">
                   <th scope="col">Delivery Date</th>
                   <th scope="col">Address 1</th>
                   <th scope="col">Address 2</th>
@@ -38,6 +40,7 @@ export default function History() {
               </thead>
               {/**/}
               <tbody>
+          
                 {quoteData.map((quote) => (
                   <tr>
                     <td>{quote.date}</td>
@@ -53,6 +56,13 @@ export default function History() {
                 ))}
               </tbody>
             </table>
+            </>
+          ) : (
+            <div className="ml-48 mt-12 w-screen">
+              <h1 className="font-semibold text-6xl pb-6">No history found<br/>on your account.</h1>
+              <FuelQuoteButton></FuelQuoteButton>
+            </div>
+          )}
           </div>
       </div>
     </div>

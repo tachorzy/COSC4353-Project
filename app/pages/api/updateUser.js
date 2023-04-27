@@ -9,7 +9,7 @@ export default async function updateUser(req, res){
     const { firstName, lastName, address1, address2, email, zipcode, city, state } = req.body
     
     const emailSearchFilter = {email: email}
-    const updatedDetails = {personalDetails: [{ firstName, lastName, address1, address2, state, city, zipcode }], profileSet: true}
+    const updatedDetails = {personalDetails: [{ firstName, lastName, address1, address2, state, city, zip: zipcode }], profileSet: true}
 
     const result = await Client.findOneAndUpdate(emailSearchFilter, updatedDetails)
 
