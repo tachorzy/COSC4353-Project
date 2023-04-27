@@ -16,9 +16,9 @@ export default async function getUserHistory(req, res){
             email: session.user.email,
         })
 
-        result.quoteHistory.sort((h1, h2) => (h1.deliveryDate < h2.deliveryDate) ? 1 : -1)
+        result?.quoteHistory.sort((h1, h2) => (h1.deliveryDate < h2.deliveryDate) ? 1 : -1)
     
-        res.status(200).json(result.quoteHistory)
+        res.status(200).json(result?.quoteHistory)
     }
     else {
         res.status(405).json({message: "Method Not Allowed"})
