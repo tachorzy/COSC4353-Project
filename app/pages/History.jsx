@@ -8,8 +8,8 @@ export default function History() {
   //we need hooks from useSession() for the user session in NextAuth
 
   useEffect(() => {
-  fetch('http://localhost:3000/api/getHistoryData')
-      .then((response) => response.json())
+  fetch('http://localhost:3000/api/getUserHistory')
+      .then((response) => response?.json())
       .then((data) => {
       setQuoteData(data);
       console.log(data.gallonsRequest)

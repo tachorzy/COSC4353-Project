@@ -1,33 +1,26 @@
 
 import Client from '@/__models/client.js'
 import dbConnect from '@/__database/dbConnect'
+
 export default async function updateUser(req, res){  
     
     dbConnect().catch(err => console.log(err));
-    console.log('connected to database')
 
-    const { FirstName, LastName, Email, address1, address2, zipCode, city, state } = req.body
+    const { firstName, lastName, address1, address2, email, zipcode, city, state } = req.body
     
-    const result = await Client.findOne({Email})
+    const emailSearchFilter = {email: email}
+    const updatedDetails = {personalDetails: [{ firstName, lastName, address1, address2, state, city, zipcode }], profileSet: true}
 
-    console.log(`logging user with email: ${Email}`)
-
-    result.personalDetails[0].FirstName = FirstName
-    result.personalDetails[0].LastName = LastName
-    result.personalDetails[0].address1 = address1
-    result.personalDetails[0].address2 = address2
-    result.personalDetails[0].state = state
-    result.personalDetails[0].city = city
-    result.personalDetails[0].zip = zipCode
+    const result = await Client.findOneAndUpdate(emailSearchFilter, updatedDetails)
 
     if(req.method === 'GET') {
         res.status(200).json(result)
     }
 
-    /*
     if(req.method === 'POST') {
+        console.log('Post request received')
         result.save()
         res.status(200).json(result)
-    }*/
+    }
 }
 
