@@ -24,8 +24,8 @@ export default async function registerUser(req, res) {
             password: encryptedPassword,
             profileSet: false,
             personalDetails: [{
-                FirstName: firstName,
-                LastName: lastName,
+                firstName: firstName,
+                lastName: lastName,
                 address1: "",
                 address2: "",
                 state: "",

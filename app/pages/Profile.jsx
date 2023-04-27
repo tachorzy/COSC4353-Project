@@ -30,7 +30,8 @@ const satoshiBold = localFont({
 })
 
 function Profile() {
-
+    const [firstname, setFirstName] = useState();
+    const [lastName, setLastName] = useState();
     const [address1, setAddress1] = useState();
     const [address2, setAddress2] = useState();
     const [state, setState] = useState();
@@ -58,6 +59,8 @@ function Profile() {
             .then(data => {
                 console.log(`Profile data ${data}`)
                 if(data !== null){
+                    setFirstName(data.firstName);
+                    setLastName(data.lastName);
                     setAddress1(data.address1);
                     setAddress2(data.address2);
                     setState(data.state);
@@ -100,6 +103,7 @@ function Profile() {
         }
     
         const res = await axios.post('/api/updateUser', data);
+        console.log(firstName);
         console.log("Update complete")
         setread(true);
         sethiddenclass("hidden");
@@ -142,7 +146,7 @@ function Profile() {
                             text-cambridgeBlue font-medium
                                 w-full border-white bg-white' 
                                 id="firstname"
-                                defaultValue={data.user.personalDetails[0].FirstName}
+                                defaultValue={data.user.personalDetails[0].firstName}
                                 type="text"
                                 readOnly={read}
                             > 
@@ -154,7 +158,7 @@ function Profile() {
                             <input 
                                 className='border-2 text-cambridgeBlue font-medium outline-stone-100 p-2 px-4 rounded-full w-full border-white bg-white'
                                 id="lastname" 
-                                defaultValue={data.user.personalDetails[0].LastName}
+                                defaultValue={data.user.personalDetails[0].lastName}
                                 type="text"
                                 readOnly={read}
                             > 
