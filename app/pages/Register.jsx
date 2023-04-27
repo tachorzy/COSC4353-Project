@@ -50,7 +50,7 @@ export default function Register() {
       router.push('/Login');
       console.log(data);
     } catch (error) {
-      if(error.response.status ==409){
+      if(error.response.status === 409){
         setEmailError('User already exists under this email.');
         return;
       }

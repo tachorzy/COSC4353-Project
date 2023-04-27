@@ -9,12 +9,12 @@ export default function History() {
 
   useEffect(() => {
     fetch('http://localhost:3000/api/getUserHistory')
-        .then((response) => response?.json())
-        .then((data) => {
+      .then((response) =>  {
+        return response.json()
+      })
+      .then((data) => {
         setQuoteData(data);
-        console.log(data.gallonsRequest)
-        console.log(data)
-        });
+      });
   }, []);
 
   return (
@@ -22,7 +22,6 @@ export default function History() {
       <div className="ml-48 mb-16">
         <div className={FuelQuoteHistoryStyle.container}>
           <table className={FuelQuoteHistoryStyle.table}>
-
               <thead>
                 <tr>
                   <th scope="col">Delivery Date</th>
@@ -38,6 +37,8 @@ export default function History() {
               </thead>
               {/**/}
               <tbody>
+              {quoteData?.length != 0 && quoteData !== undefined ? (  
+                <>              
                 {quoteData.map((quote) => (
                   <tr>
                     <td>{quote.date}</td>
@@ -51,6 +52,10 @@ export default function History() {
                     <td>${quote.totalAmount.toFixed(2)}</td>
                   </tr>
                 ))}
+                </>
+              ) : (
+                <tr></tr>
+              )}
               </tbody>
             </table>
           </div>
