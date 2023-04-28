@@ -72,7 +72,7 @@ export default function FuelQuote() {
                     <TypeAnimation
                         className=""
                         sequence={[
-                          `The current rate is: $1.50 per gallon.`,
+                          `Welcome, please take note of our policy:`,
                           3200,
                         ]} 
                         cursor={true}
