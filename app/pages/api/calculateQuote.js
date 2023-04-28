@@ -13,15 +13,11 @@ export default async function registerUser(req, res) {
         let rateHistory = .01
         let requestFactor = .03
         let companyProfitFactor = .1
-        let totalPrice = 0 //making sure it's initalized to 0.
-        // Some checks to change the first 3 variables go below here
-        
-        // Actual calculation
-        //Move this to a function that can get called when we click the button - Tariq
-        const pricePerGallon = 1.5
-        // totPrice = (fuelMultiplier + PPG) * gallonsRequested 
-        let suggestedPrice = pricePerGallon + fuelMultiplier
+        let totalPrice = 0
 
+        const basePricePerGallon = 1.5 
+        const pricePerGallon = basePricePerGallon
+        
         const { deliveryDate, gallonsRequested } = req.query;
 
         //finding a user under the currently logged in email
@@ -56,8 +52,7 @@ export default async function registerUser(req, res) {
         const userHistory = await History.findOne({
             email: session.user.email
         })
-
-            
+ 
         const newQuote = { 
             deliveryDate: String,
             city: String,
