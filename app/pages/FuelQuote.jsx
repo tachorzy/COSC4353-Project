@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import FuelQuoteForm from '../components/FuelQuoteForm.jsx'
 import { Inter } from '@next/font/google'
@@ -8,7 +8,9 @@ import { Combo, Roboto, Rubik } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import localFont from '@next/font/local'
 import { TypeAnimation } from 'react-type-animation';
-import { useSession, getSession } from "next-auth/react";
+import Client from '../__models/client.js'
+import { useSession } from 'next-auth/react'
+import axios from 'axios'
 
 const satoshi = localFont({
   src: '../fonts/Satoshi-Regular.otf',
@@ -96,7 +98,7 @@ export default function FuelQuote() {
               </h2>            
             <form 
               className= "bg-stone-100 bg-opacity-20 grid grid-cols-2 grid-rows-2 gap-y-1 rounded-3xl m-auto pb-11 pt-10 px-5 text-sm w-[30rem]" 
-              onSubmit={handleFormSubmit}
+             // onSubmit={handleFormSubmit1}
             >
               <div className="col-span-2 h-28">
                 <h2 className="text-stone-100 font-semibold col-span-1 text-lg text-left mx-5">
@@ -160,13 +162,13 @@ export default function FuelQuote() {
                   className="bg-stone-300 text-stone-500 text-center col-span-1 font-semibold h-12 mt-2 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center" onClick={handleFormSubmit}
                 >
                   Get Quote!
-                </buttton>  
+                </button>  
                 
                 <buttton 
                   className="bg-stone-300 text-stone-500 text-center col-span-1 font-semibold h-12 mt-2 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center gap-x-1" onClick={handleQuoteSubmit}
                 >
                   {"Submit"}
-                </buttton> 
+                </button> 
               </div>
              
             </form>

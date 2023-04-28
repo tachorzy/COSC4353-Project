@@ -25,6 +25,7 @@ describe("updateUser", () => {
             email: "test123@gmail.com",
             password: "testpassword",
             profileSet: true,
+            hasHistory: false,
             personalDetails: [{
                 address1: "test",
                 address2: "test",
