@@ -11,7 +11,7 @@ import axios from 'axios'
 
 
 export default function Register() {
-  const[name, setName] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -26,13 +26,24 @@ export default function Register() {
     setPasswordError('');
     setEmailError('');
     setConfirmPasswordError('');
-    if (!email || !password || !name || (password != confirmPassword)) {
-      if (!email) setEmailError('Email is required');
-      if (!password) setPasswordError('Password is required');
-      if (!name) setNameError('Name is required');
-      if(password != confirmPassword) setConfirmPasswordError('Passwords do not match');
+
+    if (!email) {
+      setEmailError('Email is required');
       return;
     }
+    if (!password) {
+      setPasswordError('Password is required');
+      return;
+    }
+    if (!name) {
+      setNameError('Name is required');
+      return;
+    }
+    if (password != confirmPassword) {
+      setConfirmPasswordError('Passwords do not match');
+      return;
+    }
+
     if (password.length < 5) {
       setPasswordError('Password need at least 5 character');
       return;
@@ -43,14 +54,14 @@ export default function Register() {
         email,
         password,
       });
-      if(data.status === 409){
+      if (data.status === 409) {
         setErrorEmail('User already exists under this email.');
         return;
       }
       router.push('/Login');
       console.log(data);
     } catch (error) {
-      if(error.response.status === 409){
+      if (error.response.status === 409) {
         setEmailError('User already exists under this email.');
         return;
       }
@@ -79,7 +90,7 @@ export default function Register() {
                       id="name"
                       placeholder="Name"
                       className="form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                      value = {name} onChange={e => setName(e.target.value)}
+                      value={name} onChange={e => setName(e.target.value)}
                     />
                     {nameError && <p className="text-red-500">{nameError}</p>}
                   </div>
@@ -118,7 +129,7 @@ export default function Register() {
                   <button
                     type="submit"
                     className="w-full bg-stone-400 hover:bg-stone-500 text-white py-3 rounded-md transition duration-150 ease-in-out sm:py-4 sm:text-sm sm:leading-5"
-                    
+
                   >
                     Sign Up
                   </button>
