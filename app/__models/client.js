@@ -9,14 +9,16 @@ const clientSchema = new Schema({
     password: String,
     profileSet: Boolean,
     personalDetails: [{
-        FirstName: String,
-        LastName: String,
+        firstName: String,
+        lastName: String,
         address1: String,
         address2: String,
         state: String,
         city: String,
         zip: String,
-    }]
+    }],
+    
+    
 })
 
 
