@@ -103,13 +103,26 @@ function Profile() {
         setCityError('');
         setZipError('');
         setEmailError('');
-        if(!firstName || !lastName || !address1 || !city || !zipcode || !email ){
-            if (!firstName) setFirstNameError('First name is required');
-            if (!lastName) setLastNameError('Last name is required');
-            if (!address1) setAddressError('Address1 is required');
-            if (!city) setCityError('City is required');
-            if (!zipcode) setZipError('Zipcode is required');
-            if (!email) setEmailError('Email is required');
+        if (!firstName){
+        setFirstNameError('First name is required');
+        return;
+        }
+        if (!lastName){ setLastNameError('Last name is required');
+        return;
+        }
+        if (!address1){ setAddressError('Address1 is required');        
+        return;
+        }
+        if (!city) {
+            setCityError('City is required');
+            return;
+        }
+        if (!zipcode) {
+            setZipError('Zipcode is required');
+            return;
+        }
+        if (!email) {
+            setEmailError('Email is required');
             return;
         }
         if(zipcode.length < 5 ) {
