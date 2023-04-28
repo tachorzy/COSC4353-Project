@@ -9,13 +9,6 @@ import styles from '@/styles/Home.module.css'
 import localFont from '@next/font/local'
 import { TypeAnimation } from 'react-type-animation';
 
-const inter = Inter({ subsets: ['latin'] })
-
-const roboto = Roboto({ 
-  subsets: ['latin'], 
-  weight: '400' 
-})
-
 const satoshi = localFont({
   src: '../fonts/Satoshi-Regular.otf',
   weight: '200'
@@ -27,20 +20,11 @@ export default function FuelQuote() {
   //Could make a hook out of this but posisbly not, I'll have to look into it and decide whether or not what I'm thinking is sensible - Tariq
   const [suggestedPPG, setSuggestedPPG] = useState('$0.00')
 
-  let locationFactor = 0.04
-  let rateHistory = .01
-  let requestFactor = .03
-  let CPF = .1
-  let totPrice = 0 //making sure it's initalized to 0.
-  // Some checks to change the first 3 variables go below here
-
-  // Actual calculation
-  //Move this to a function that can get called when we click the button - Tariq
-  var gallonsRequested
+  //use a GET request to retrieve these from the calculation api endpoint (lines 24-26)
   const PPG = 1.5
-  const fuelMultiplier = locationFactor - rateHistory + requestFactor + CPF
-  // totPrice = (fuelMultiplier + PPG) * gallonsRequested 
-  let suggestedPrice = PPG + fuelMultiplier
+  let totPrice = 0 //making sure it's initalized to 0.
+  let suggestedPrice = 0
+
 
   const router = useRouter();
 
@@ -52,13 +36,17 @@ export default function FuelQuote() {
 
     try{
       router.push({
-        pathname: '/api/calculate', //rename this to whatever actual api endpoint we'll end up having
+        pathname: '/api/calculateQuote', //rename this to whatever actual api endpoint we'll end up having
         query: { date: selectDate, numOfGallons: selectGallons }, 
       })
-    } catch(error){
+    } catch(error) {
       console.error(error)
-      }
+    }
   };
+
+  const handleQuoteSubmit = async (event) => {
+  
+  }
 
   return (
     <>
@@ -132,13 +120,13 @@ export default function FuelQuote() {
 
               <div className= "col-span-2 mx-5 border-t-2 border-white border-inherit border-spacing-6 pt-2 mt-2 ">
                 <buttton 
-                  className="bg-stone-300 text-stone-500 text-center col-span-1 font-semibold h-12 mt-2 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center"
+                  className="bg-stone-300 text-stone-500 text-center col-span-1 font-semibold h-12 mt-2 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center" onClick={handleFormSubmit}
                 >
                   Get Quote!
                 </buttton>  
                 
                 <buttton 
-                  className="bg-stone-300 text-stone-500 text-center col-span-1 font-semibold h-12 mt-2 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center gap-x-1"
+                  className="bg-stone-300 text-stone-500 text-center col-span-1 font-semibold h-12 mt-2 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center gap-x-1" onClick={handleQuoteSubmit}
                 >
                   {"Submit"}
                 </buttton> 
