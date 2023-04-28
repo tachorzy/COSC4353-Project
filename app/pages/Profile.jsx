@@ -164,17 +164,21 @@ function Profile() {
     // bg-gradient-to-r from-black via-purple-600 to-black
     return (
         data && (
-            <div className="bg-cambridgeBlue min-h-screen flex justify-center items-center flex-col text-stone-100 max-sm:p-10 pt-16">
-                <div>
-                    <div className='flex justify-between items-end px-3'>
-                        <h2 className='text-stone-100 text-3xl font-semibold mb-2 ml-2'>
-                            Personal Information</h2>
-                        <button
-                            className='mb-2 text-1xl text-cambridgeBlue font-semibold bg-white rounded-full px-5 border-2 border-white transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white outline-teal-300'
-                            onClick={editmenu} >
-                            Edit
-                        </button>
-                    </div>
+        <div className="bg-cambridgeBlue min-h-screen flex justify-center items-center flex-col text-stone-100 max-sm:p-10 pt-16">
+            <div>
+                <Head>
+                    <title>{`${data.user.personalDetails[0].FirstName}'s profile`}</title>
+                    <link rel="icon" href="/pipeline.svg" />    
+                </Head>
+                <div className='flex justify-between items-end px-3'>
+                    <h2 className='text-stone-100 text-3xl font-semibold mb-2 ml-2'>
+                    Personal Information</h2>
+                    <button 
+                        className='mb-2 text-1xl text-cambridgeBlue font-semibold bg-white rounded-full px-5 border-2 border-white transition duration-700 ease-in-out hover:bg-cambridgeBlue hover:text-white outline-teal-300'  
+                        onClick={editmenu} >
+                        Edit
+                    </button>
+                </div>
 
                     <div className="bg-neutral-100 bg-opacity-20 p-8 rounded-3xl shadow-r-lg">
                         <div className='input-container min-w-full mb-5'>
