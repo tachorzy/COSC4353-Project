@@ -31,6 +31,7 @@ export default function FuelQuote() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    console.log(`handling form submission....`)
     if (selectDate === "mm/dd/yyy" || selectGallons === "")
       return;
 

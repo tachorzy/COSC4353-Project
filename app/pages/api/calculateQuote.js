@@ -16,19 +16,23 @@ export default async function registerUser(req, res) {
         let totalPrice = 0
 
         const basePricePerGallon = 1.5 
-        const pricePerGallon = basePricePerGallon
+        let pricePerGallon = basePricePerGallon
 
         const { deliveryDate, gallonsRequested } = req.query;
         console.log(deliveryDate, gallonsRequested)
         //finding a user under the currently logged in email
-        const result = await Client.findOne({
+        const user = await Client.findOne({
+            email: session.user.email
+        })
+
+        const userHistory = await History.findOne({
             email: session.user.email
         })
 
         if(user.personalDetails[0].state === "TX" || user.personalDetails[0].state.toLowerCase() === "texas")
             locationFactor = 0.2;
 
-        if(!result) //if a client has no history they aren't charged.
+        if(!userHistory) //if a client has no history they aren't charged.
             rateHistory = 0;
 
         if(gallonsRequested > 1000)
