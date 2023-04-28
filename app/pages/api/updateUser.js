@@ -4,7 +4,7 @@ import dbConnect from '@/__database/dbConnect'
 
 export default async function updateUser(req, res){  
     
-    dbConnect().catch(err => console.log(err));
+    dbConnect().catch(err => console.error(err));
 
     const { firstName, lastName, address1, address2, email, zipcode, city, state } = req.body
     

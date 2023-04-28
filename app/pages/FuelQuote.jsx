@@ -12,57 +12,76 @@ import Client from '../__models/client.js'
 import { useSession } from 'next-auth/react'
 import axios from 'axios'
 
-
-const inter = Inter({ subsets: ['latin'] })
-
-const roboto = Roboto({ 
-  subsets: ['latin'], 
-  weight: '400' 
-})
-
 const satoshi = localFont({
   src: '../fonts/Satoshi-Regular.otf',
   weight: '200'
 })
 
 export default function FuelQuote() {
-  const {data} = useSession();
+  const { data: session, status } = useSession();
+
   const [selectDate, setSelectedDate] = useState('')
   const [selectGallons, setSelectedGallons] = useState('')
-  //Could make a hook out of this but posisbly not, I'll have to look into it and decide whether or not what I'm thinking is sensible - Tariq
-  const [suggestedPPG, setSuggestedPPG] = useState('$0.00')
-  const[totPrice, setTotPrice] = useState('')
-  const[suggestedPrice, setSuggestedPrice] = useState('')
+
+  const [pricePerGallon, setPricePerGallon] = useState('1.50')
+  const [suggestedGallons, setSuggestedGallons] = useState('1.50')
+  const [totalPrice, setTotalPrice] = useState('0.00')
+
+
   const router = useRouter();
-  const handleFormSubmit1 = async (event) => {
+
+  let pricingData; 
+
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     if (selectDate === "mm/dd/yyy" || selectGallons === "")
       return;
-    let locationFactor = 0.04
-    let rateHistory = 0
-    let requestFactor = .03
-    let CPF = .1
-    // Some checks to change the first 3 variables go below here
-    if(selectGallons > 1000){
-        requestFactor = .02
-    }
-    if( data.user.hasHistory == true ){
-        rateHistory = .01
-    }
-    if(data.user.personalDetails[0].state == "TX" || data.user.personalDetails[0].state == "Texas")
-        locationFactor = .02
-    // Actual calculation
-    //Move this to a function that can get called when we click the button - Tariq
-    const PPG = 1.5
-    let fuelMultiplier = locationFactor - rateHistory + requestFactor + CPF
-    setSuggestedPrice((PPG + fuelMultiplier).toFixed(2))
-    setTotPrice((suggestedPrice * selectGallons).toFixed(2))
+
+    const response = await fetch(
+      `http://localhost:3000/api/calculateQuote?deliveryDate=${selectDate}&gallonsRequested=${selectGallons}`,
+      {
+        method: "GET",
+      }
+    )
+  
+    pricingData = await response.json()
+    setPricePerGallon(pricingData.pricePerGallon)
+    setSuggestedGallons(pricingData.suggestedPrice)
+    setTotalPrice(pricingData.totalAmount)
   };
 
-  const handleFormSubmit2 = async (event) => {
+  const handleQuoteSubmit = async (event) => {
+    event.preventDefault();
 
-  };
+    const _deliveryDate = new Date(selectDate)
+    
+    //We can change these edge cases later and make them message the user on the screen (maybe with TypeAnimations but idk ab that because they're memoized and can only change when the page refreshs)
+    if(!_deliveryDate || selectGallons === "" || totalPrice === "0.00")
+      return
+
+    const historyData = {
+      email: session.user.email,
+      deliveryDate: _deliveryDate,
+      gallonsRequested: selectGallons,
+      pricePerGallon: pricePerGallon,
+      totalAmount: totalPrice,
+    }
+
+    const response = await fetch(
+      `http://localhost:3000/api/calculateQuote`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(historyData),
+      });
+
+    const data = await response.json()
+    console.log(data)
+    router.push('/History')
+  }
 
   return (
     <>
@@ -86,7 +105,7 @@ export default function FuelQuote() {
                     <TypeAnimation
                         className=""
                         sequence={[
-                          `The current rate is: $${totPrice} per gallon.`,
+                          `Welcome, please take note of our policy:`,
                           3200,
                         ]} 
                         cursor={true}
@@ -123,26 +142,30 @@ export default function FuelQuote() {
               <div className="w-full col-span-1">
                 <h2 className="text-white font-medium text-sm mx-5 pl-1 pb-1.5">Suggested Price per Gallon</h2>
                 <div className="h-12 mx-5 w-10/12 p-2 py-2 border-transparent rounded-xl font-medium bg-stone-100 text-cambridgeBlue text-right">
-                  <p className="text-neutral-500 py-1.5 pr-3">${suggestedPrice}</p>
+                  <p className="text-neutral-500 py-1.5 pr-3">
+                      {`$${suggestedGallons}`}
+                  </p>
                 </div>
               </div>
 
               <div className="w-full col-span-1">
                 <h2 className="text-white font-medium text-sm mx-5 pl-1 pb-1.5">Estimated Total Price:</h2>
                 <div className="h-12 mx-5 w-10/12 p-2 py-2 rounded-xl font-medium bg-stone-100 text-cambridgeBlue text-right mb-2">
-                  <p className="text-neutral-500 py-1.5 pr-3">${totPrice}</p>
+                  <p className="text-neutral-500 py-1.5 pr-3">
+                    {`$${totalPrice}`}
+                  </p>
                 </div>
               </div>
 
               <div className= "col-span-2 mx-5 border-t-2 border-white border-inherit border-spacing-6 pt-2 mt-2 ">
-                <button 
-                  className="bg-stone-300 text-stone-500 text-center col-span-1 font-semibold h-12 mt-2 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center" onClick={handleFormSubmit1}
+                <buttton 
+                  className="bg-stone-300 text-stone-500 text-center col-span-1 font-semibold h-12 mt-2 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center" onClick={handleFormSubmit}
                 >
                   Get Quote!
                 </button>  
                 
-                <button 
-                  className="bg-stone-300 text-stone-500 text-center col-span-1 font-semibold h-12 mt-2 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center gap-x-1" onClick={handleFormSubmit2}
+                <buttton 
+                  className="bg-stone-300 text-stone-500 text-center col-span-1 font-semibold h-12 mt-2 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center gap-x-1" onClick={handleQuoteSubmit}
                 >
                   {"Submit"}
                 </button> 
