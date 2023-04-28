@@ -34,7 +34,7 @@ export default function Register() {
       return;
     }
     if (password.length < 5) {
-      setPasswordError('Password is need at least 5 character');
+      setPasswordError('Password need at least 5 character');
       return;
     }
     try {

@@ -16,7 +16,9 @@ const clientSchema = new Schema({
         state: String,
         city: String,
         zip: String,
-    }]
+    }],
+    
+    
 })
 
 
