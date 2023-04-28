@@ -62,9 +62,9 @@ export default async function registerUser(req, res) {
         const userHistory = await History.findOne({
             email: email
         })
- 
+        const delivery = new Date(deliveryDate);
+        const formattedDate = delivery.toLocaleDateString();
         console.log(`Total Price: ${totalAmount}`)
-
         const newQuote = { 
             deliveryDate: formattedDate,
             city: user.personalDetails[0].city,
