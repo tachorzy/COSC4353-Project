@@ -37,7 +37,7 @@ export default function FuelQuote() {
     try{
       router.push({
         pathname: '/api/calculateQuote', //rename this to whatever actual api endpoint we'll end up having
-        query: { date: selectDate, numOfGallons: selectGallons }, 
+        query: { deliveryDate: selectDate, gallonsRequested: selectGallons }, 
       })
     } catch(error) {
       console.error(error)

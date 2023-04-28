@@ -17,9 +17,9 @@ export default async function registerUser(req, res) {
 
         const basePricePerGallon = 1.5 
         const pricePerGallon = basePricePerGallon
-        
-        const { deliveryDate, gallonsRequested } = req.query;
 
+        const { deliveryDate, gallonsRequested } = req.query;
+        console.log(deliveryDate, gallonsRequested)
         //finding a user under the currently logged in email
         const result = await Client.findOne({
             email: session.user.email
@@ -40,7 +40,7 @@ export default async function registerUser(req, res) {
         
         totalPrice = pricePerGallon * gallonsRequested
 
-        res.status(200).json({pricePerGallon: pricePerGallon, totalAmountDue: totalAmountDue})
+        res.status(200).json({ pricePerGallon: basePricePerGallon, suggestedPrice: pricePerGallon, totalAmountDue: totalPrice})
     }
     else if(req.method === "POST"){
         const { deliveryDate, gallonsRequested, pricePerGallon, totalPrice } = req.body;
@@ -54,12 +54,12 @@ export default async function registerUser(req, res) {
         })
  
         const newQuote = { 
-            deliveryDate: String,
-            city: String,
-            address1: String,
-            address2: String,
-            state: String,
-            zipCode: String,
+            deliveryDate: deliveryDate,
+            city: user.personalDetails[0].city,
+            address1: user.personalDetails[0].address1,
+            address2: user.personalDetails[0].address2,
+            state: user.personalDetails[0].state,
+            zipCode: user.personalDetails[0].zip,
             gallonsRequested: gallonsRequested,
             pricePerGallon: pricePerGallon,
             totalAmount: totalPrice
@@ -72,7 +72,6 @@ export default async function registerUser(req, res) {
         if(!userHistory)
             await History.create({
                 email: email,
-                //add the quote history array with the new quote data that is turned into JSON
                 quoteHistory: newQuote
             })
         else
