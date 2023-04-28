@@ -7,6 +7,16 @@ import React from 'react';
 
 export default function History() {
   const [quoteData, setQuoteData] = useState([]);
+  const {data} = useSession();
+
+    const router = useRouter();
+
+    useEffect(() => {
+        if(!data){  
+        if (typeof window !== 'undefined') {
+            router.push('/Login');
+        }}
+    }, []);
   //we need hooks from useSession() for the user session in NextAuth
 
   useEffect(() => {
