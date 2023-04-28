@@ -17,6 +17,7 @@ const satoshi = localFont({
   weight: '200'
 })
 
+
 export default function FuelQuote() {
   const { data: session, status } = useSession();
 
@@ -29,8 +30,39 @@ export default function FuelQuote() {
 
 
   const router = useRouter();
-
-  let pricingData; 
+  
+  function setButtonActivity(_selectDate, _selectGallons){
+    if(_selectDate === '' || _selectGallons === '')
+        return(
+          <span>     
+            <button 
+              className=" bg-stone-300 text-stone-500 text-center col-span-1 font-semibold h-12 mt-2 w-full p-2 py-3 border-transparent rounded-xl hover:cursor-pointer flex flex-row items-center justify-center" onClick={handleFormSubmit}
+            >
+              {"Get Quote!"}
+            </button>
+            <button 
+              className=" bg-stone-300 text-stone-500 text-center col-span-1 font-semibold h-12 mt-2 w-full p-2 py-3 border-transparent rounded-xl hover:cursor-pointer flex flex-row items-center justify-center gap-x-1" onClick={handleQuoteSubmit}
+            >
+              {"Submit"}
+            </button> 
+          </span>
+        );
+    else
+        return(
+          <span>     
+            <button 
+              className="bg-stone-300 text-stone-500 text-center col-span-1 font-semibold h-12 mt-2 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center" onClick={handleFormSubmit}
+            >
+              {"Get Quote!"}
+            </button>
+            <button 
+              className="bg-stone-300 text-stone-500 text-center col-span-1 font-semibold h-12 mt-2 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center gap-x-1" onClick={handleQuoteSubmit}
+            >
+              {"Submit"}
+            </button> 
+          </span>
+        );
+  }
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -45,7 +77,7 @@ export default function FuelQuote() {
       }
     )
   
-    pricingData = await response.json()
+    const pricingData = await response.json()
     setPricePerGallon(pricingData.pricePerGallon)
     setSuggestedGallons(pricingData.suggestedPrice)
     setTotalPrice(pricingData.totalAmount)
@@ -158,16 +190,7 @@ export default function FuelQuote() {
               </div>
 
               <div className= "col-span-2 mx-5 border-t-2 border-white border-inherit border-spacing-6 pt-2 mt-2 ">
-                <button 
-                  className="bg-stone-300 text-stone-500 text-center col-span-1 font-semibold h-12 mt-2 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center" onClick={handleFormSubmit}
-                >
-                  {"Get Quote!"}
-                </button>                
-                <button 
-                  className="bg-stone-300 text-stone-500 text-center col-span-1 font-semibold h-12 mt-2 w-full p-2 py-3 border-transparent rounded-xl hover:bg-stone-400 hover:text-stone-600 hover:cursor-pointer flex flex-row items-center justify-center gap-x-1" onClick={handleQuoteSubmit}
-                >
-                  {"Submit"}
-                </button> 
+                {setButtonActivity(selectDate, selectGallons)}
               </div>
              
             </form>
