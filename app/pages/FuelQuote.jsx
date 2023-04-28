@@ -96,9 +96,11 @@ export default function FuelQuote() {
       email: session.user.email,
       deliveryDate: _deliveryDate,
       gallonsRequested: selectGallons,
-      pricePerGallon: pricePerGallon,
+      pricePerGallon: suggestedGallons,
       totalAmount: totalPrice,
     }
+
+    console.log(historyData.pricePerGallon)
 
     const response = await fetch(
       `http://localhost:3000/api/calculateQuote`,
