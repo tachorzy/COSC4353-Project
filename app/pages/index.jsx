@@ -23,6 +23,11 @@ export const satoshiBold = localFont({
 })
 
 export default function Home() {
+
+  //check if user logged in
+  const { data: session, status } = useSession();
+
+
   return (
     <>
       <Head>
@@ -33,10 +38,28 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
           <div className={satoshiBold.className}>
-            <span className="font-semibold mt-12">
-              <LoginButton/>
-              <RegisterButton/>
-            </span>
+            
+            {session ? (
+             
+             <span className="font-semibold mt-12">
+                <div className="max-w-full grid grid-cols-4 ">
+                  <div>
+                    <h1 className="text-3xl font-bold mt-12"> Welcome back, {session.user.personalDetails[0].FirstName}</h1>
+                    <h1 className="text-1xl font-bold mt-2 opacity-60"> Let's Calculate Quote</h1>
+                  </div>
+                </div>
+              </span>
+              
+
+            ) : (
+
+              <span className="font-semibold mt-12">
+                <LoginButton/>
+                <RegisterButton/>
+              </span>
+
+            )}
+
             <div>
                   <TypeAnimation
                     className="text-9xl mt-14 mx-auto font-extrabold pb-4 absolute select-none"
