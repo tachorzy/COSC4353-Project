@@ -29,7 +29,6 @@ export default function FuelQuote() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(`handling form submission....`)
     if (selectDate === "mm/dd/yyy" || selectGallons === "")
       return;
 
@@ -41,13 +40,39 @@ export default function FuelQuote() {
     )
   
     pricingData = await response.json()
-    console.log(pricingData)
     setSuggestedGallons(pricingData.suggestedPrice)
     setTotalPrice(pricingData.totalAmount)
   };
 
   const handleQuoteSubmit = async (event) => {
-  
+    event.preventDefault();
+
+    const _deliveryDate = new Date(deliveryDate)
+    
+    //We can change these edge cases later and make them message the user on the screen (maybe with TypeAnimations but idk ab that because they're memoized and can only change when the page refreshs)
+    if(!_deliveryDate || totalPrice === "0.00")
+      return
+
+    const historyData = {
+      email: session.user.email,
+      gallonsRequested: gallonsRequested,
+      deliveryDate: _deliveryDate,
+      pricePerGallon: pricePerGallon,
+      totalAmount: totalPrice,
+    }
+
+    const response = await fetch(
+      `http://localhost:3000/api/calculateQuote?deliveryDate=${selectDate}&gallonsRequested=${selectGallons}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(historyData),
+      }
+    );
+    const data = await response.json()
+    router.push('/History')
   }
 
   return (

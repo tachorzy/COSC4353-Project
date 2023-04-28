@@ -70,7 +70,7 @@ export default async function registerUser(req, res) {
             totalAmount: totalPrice
         }
 
-        await dbConnect().catch(err => console.log(err));   
+        await dbConnect().catch(err => console.error(err));   
 
         const emailSearchFilter = {email: email}
 

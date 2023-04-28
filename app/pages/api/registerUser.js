@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 
 export default async function registerUser(req, res) {
     if (req.method === 'POST') {
-        await dbConnect().catch(err => console.log(err));
+        await dbConnect().catch(err => console.error(err));
 
         const { name, email, password } = req.body;
 
