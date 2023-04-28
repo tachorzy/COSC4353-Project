@@ -8,7 +8,6 @@ const clientSchema = new Schema({
     email: String,
     password: String,
     profileSet: Boolean,
-    hasHistory: Boolean,
     personalDetails: [{
         FirstName: String,
         LastName: String,
