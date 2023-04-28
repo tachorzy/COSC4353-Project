@@ -18,8 +18,8 @@ export default function FuelQuote() {
   const [selectDate, setSelectedDate] = useState('')
   const [selectGallons, setSelectedGallons] = useState('')
 
-  const [suggestedGallons, setSuggestedGallons] = useState('$1.50')
-  const [totalPrice, setTotalPrice] = useState('$0.00')
+  const [suggestedGallons, setSuggestedGallons] = useState('1.50')
+  const [totalPrice, setTotalPrice] = useState('0.00')
 
 
   const router = useRouter();
