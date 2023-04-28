@@ -78,7 +78,7 @@ export default async function registerUser(req, res) {
             await History.create({
                 email: email,
                 //add the quote history array with the new quote data that is turned into JSON
-                quoteHistory: newQuoteData
+                quoteHistory: newQuote
             })
         else
             await History.findOneAndUpdate(emailSearchFilter, {$push: {quoteHistory: newQuote} })
