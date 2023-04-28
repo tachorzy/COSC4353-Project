@@ -63,6 +63,8 @@ export default async function registerUser(req, res) {
             email: email
         })
  
+        console.log(`Total Price: ${totalPrice}`)
+
         const newQuote = { 
             deliveryDate: deliveryDate,
             city: user.personalDetails[0].city,
@@ -72,13 +74,15 @@ export default async function registerUser(req, res) {
             zipCode: user.personalDetails[0].zip,
             gallonsRequested: gallonsRequested,
             pricePerGallon: pricePerGallon,
-            totalAmount: totalPrice
+            totalAmount: totalPrice //bug can be because its te wrong type (Schema wants a Number)
         }
+
+        console.log(`New Quote total amount: ${newQuote.totalAmount}`)
 
         await dbConnect().catch(err => console.error(err));   
 
         const emailSearchFilter = {email: email}
-        console.log(`Email: ${email}`)
+
         if(!userHistory)
             await History.create({
                 email: email,
