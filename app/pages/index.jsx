@@ -45,7 +45,7 @@ export default function Home() {
                 <div className="max-w-full grid grid-cols-4 ">
                   <div className="ml-3.5">
                     <h1 className="text-3xl font-bold mt-12 mx-auto"> Welcome back, {session.user.personalDetails[0].FirstName}</h1>
-                    <h1 className="text-1xl font-bold mt-2 opacity-60">to your fuel quote dashboard.</h1>
+                    <h1 className="text-1xl font-bold mt-2 opacity-60">to your digital fuel quote dashboard.</h1>
                   </div>
                 </div>
               </span>

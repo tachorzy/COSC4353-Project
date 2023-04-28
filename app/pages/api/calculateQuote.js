@@ -52,6 +52,7 @@ export default async function registerUser(req, res) {
         const { email, deliveryDate, gallonsRequested, pricePerGallon, totalPrice } = req.body;
         const delivery = new Date(deliveryDate);
         const formattedDate = delivery.toLocaleDateString();
+
         const user = await Client.findOne({
             email: email
         })
@@ -64,7 +65,7 @@ export default async function registerUser(req, res) {
             email: email
         })
  
-        console.log(`Total Price: ${totalPrice}`)
+        console.log(`Total Price: ${totalAmount}`)
 
         const newQuote = { 
             deliveryDate: formattedDate,
@@ -75,11 +76,12 @@ export default async function registerUser(req, res) {
             zipCode: user.personalDetails[0].zip,
             gallonsRequested: gallonsRequested,
             pricePerGallon: pricePerGallon,
-            totalAmount: totalPrice //bug can be because its te wrong type (Schema wants a Number)
+            totalAmount: totalAmount //bug can be because its te wrong type (Schema wants a Number)
         }
 
-        console.log(`New Quote total amount: ${newQuote.totalAmount}`)
-
+        console.log(`PPG: ${newQuote.pricePerGallon}`)
+        console.log(typeof newQuote.pricePerGallon)
+        
         await dbConnect().catch(err => console.error(err));   
 
         const emailSearchFilter = {email: email}
@@ -87,7 +89,7 @@ export default async function registerUser(req, res) {
         if(!userHistory)
             await History.create({
                 email: email,
-                quoteHistory: newQuote
+                quoteHistory: {newQuote}
             })
         else
             await History.findOneAndUpdate(emailSearchFilter, {$push: {quoteHistory: newQuote} })              
