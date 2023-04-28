@@ -17,16 +17,14 @@ const satoshi = localFont({
 export default function FuelQuote() {
   const [selectDate, setSelectedDate] = useState('')
   const [selectGallons, setSelectedGallons] = useState('')
-  //Could make a hook out of this but posisbly not, I'll have to look into it and decide whether or not what I'm thinking is sensible - Tariq
-  const [suggestedPPG, setSuggestedPPG] = useState('$0.00')
 
-  //use a GET request to retrieve these from the calculation api endpoint (lines 24-26)
-  const PPG = 1.5
-  let totPrice = 0 //making sure it's initalized to 0.
-  let suggestedPrice = 0
+  const [suggestedGallons, setSuggestedGallons] = useState('$1.50')
+  const [totalPrice, setTotalPrice] = useState('$0.00')
 
 
   const router = useRouter();
+
+  let pricingData; 
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -35,14 +33,16 @@ export default function FuelQuote() {
     if (selectDate === "mm/dd/yyy" || selectGallons === "")
       return;
 
-    try{
-      router.push({
-        pathname: '/api/calculateQuote', //rename this to whatever actual api endpoint we'll end up having
-        query: { deliveryDate: selectDate, gallonsRequested: selectGallons }, 
-      })
-    } catch(error) {
-      console.error(error)
-    }
+    const response = await fetch(
+      `http://localhost:3000/api/calculateQuote?deliveryDate=${selectDate}&gallonsRequested=${selectGallons}`,
+      {
+        method: "GET",
+      }
+    )
+  
+    pricingData = await response.json()
+    setSuggestedGallons(pricingData.suggestedGallons)
+    setTotalPrice(pricingData.totalPrice)
   };
 
   const handleQuoteSubmit = async (event) => {
@@ -71,7 +71,7 @@ export default function FuelQuote() {
                     <TypeAnimation
                         className=""
                         sequence={[
-                          `The current rate is: $${PPG} per gallon.`,
+                          `The current rate is: $1.50 per gallon.`,
                           3200,
                         ]} 
                         cursor={true}
@@ -108,14 +108,18 @@ export default function FuelQuote() {
               <div className="w-full col-span-1">
                 <h2 className="text-white font-medium text-sm mx-5 pl-1 pb-1.5">Suggested Price per Gallon</h2>
                 <div className="h-12 mx-5 w-10/12 p-2 py-2 border-transparent rounded-xl font-medium bg-stone-100 text-cambridgeBlue text-right">
-                  <p className="text-neutral-500 py-1.5 pr-3">${suggestedPrice.toFixed(2)}</p>
+                  <p className="text-neutral-500 py-1.5 pr-3">
+                      {suggestedGallons}
+                  </p>
                 </div>
               </div>
 
               <div className="w-full col-span-1">
                 <h2 className="text-white font-medium text-sm mx-5 pl-1 pb-1.5">Estimated Total Price:</h2>
                 <div className="h-12 mx-5 w-10/12 p-2 py-2 rounded-xl font-medium bg-stone-100 text-cambridgeBlue text-right mb-2">
-                  <p className="text-neutral-500 py-1.5 pr-3">${totPrice.toFixed(2)}</p>
+                  <p className="text-neutral-500 py-1.5 pr-3">
+                    {totalPrice}
+                  </p>
                 </div>
               </div>
 
