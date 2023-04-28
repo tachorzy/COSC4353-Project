@@ -30,7 +30,7 @@ export default function History() {
       <div className="mt-24 ml-24 justify-center content-center">
         <div className={FuelQuoteHistoryStyle.container}>
         {quoteData?.length != 0 && quoteData !== undefined ? (  
-          <>    
+          <>   
           <table className={FuelQuoteHistoryStyle.table}>
               <thead>
                 <tr className="gap-x-16">
@@ -47,18 +47,21 @@ export default function History() {
               </thead>
               {/**/}
               <tbody>
-          
+
+                {console.log(`Quote Data:`)}
+                {console.log(quoteData[0].deliveryDate)}
+
                 {quoteData.map((quote) => (
                   <tr>
-                    <td>{quote.date}</td>
+                    <td>{quote.deliveryDate}</td>
                     <td>{quote.address1}</td>
                     <td>{quote.address2}</td>
                     <td>{quote.city}</td>
                     <td>{quote.state}</td>
                     <td>{quote.zipCode}</td>
-                    <td>{quote.gallonsRequest.toFixed(2)}</td>
-                    <td>{quote.pricePerGallon}</td>
-                    <td>${quote.totalAmount.toFixed(2)}</td>
+                    <td>{quote.gallonsRequested.toFixed(2)}</td>
+                    {/* <td>{quote[0].pricePerGallon}</td> */}
+                    <td>${quote.totalAmount?.toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>

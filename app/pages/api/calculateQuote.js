@@ -47,15 +47,20 @@ export default async function registerUser(req, res) {
         console.log(`PPG: ${basePricePerGallon} suggested price: ${pricePerGallon} total amount: ${totalPrice}`)
         res.status(200).json({ pricePerGallon: basePricePerGallon, suggestedPrice: pricePerGallon, totalAmount: totalPrice})
     }
-    else if(req.method === "POST"){
-        const { deliveryDate, gallonsRequested, pricePerGallon, totalPrice } = req.body;
+    else if(req.method === 'POST'){
+
+        const { email, deliveryDate, gallonsRequested, pricePerGallon, totalPrice } = req.body;
 
         const user = await Client.findOne({
-            email: session.user.email
+            email: email
         })
+
+        if(!user){
+            return res.status(404).json({message: "User could not be found."})
+        }
         
         const userHistory = await History.findOne({
-            email: session.user.email
+            email: email
         })
  
         const newQuote = { 
@@ -73,16 +78,24 @@ export default async function registerUser(req, res) {
         await dbConnect().catch(err => console.error(err));   
 
         const emailSearchFilter = {email: email}
-
+        console.log(`Email: ${email}`)
         if(!userHistory)
             await History.create({
                 email: email,
                 quoteHistory: newQuote
             })
         else
-            await History.findOneAndUpdate(emailSearchFilter, {$push: {quoteHistory: newQuote} })
+            await History.findOneAndUpdate(emailSearchFilter, {$push: {quoteHistory: newQuote} })              
+            .exec()
+                .then((updatedHistory) => {
+                res.status(200).json({ message: "Quote history updated" });
+                })
+                .catch((err) => {
+                console.error(err);
+                res.status(500).json({ message: "Server error" });
+                });
         
-        res.status(200).json({ message: "New quote updated in client history" });
+        res.status(200).json({ message: "New quote updated in client history" }, { new: true });
     }
     else{ 
         res.status(405).json({message: "Method Not Allowed"})

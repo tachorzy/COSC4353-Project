@@ -8,6 +8,7 @@ import { Combo, Roboto, Rubik } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import localFont from '@next/font/local'
 import { TypeAnimation } from 'react-type-animation';
+import { useSession, getSession } from "next-auth/react";
 
 const satoshi = localFont({
   src: '../fonts/Satoshi-Regular.otf',
@@ -15,9 +16,12 @@ const satoshi = localFont({
 })
 
 export default function FuelQuote() {
+  const { data: session, status } = useSession();
+
   const [selectDate, setSelectedDate] = useState('')
   const [selectGallons, setSelectedGallons] = useState('')
 
+  const [pricePerGallon, setPricePerGallon] = useState('1.50')
   const [suggestedGallons, setSuggestedGallons] = useState('1.50')
   const [totalPrice, setTotalPrice] = useState('0.00')
 
@@ -40,6 +44,7 @@ export default function FuelQuote() {
     )
   
     pricingData = await response.json()
+    setPricePerGallon(pricingData.pricePerGallon)
     setSuggestedGallons(pricingData.suggestedPrice)
     setTotalPrice(pricingData.totalAmount)
   };
@@ -47,31 +52,32 @@ export default function FuelQuote() {
   const handleQuoteSubmit = async (event) => {
     event.preventDefault();
 
-    const _deliveryDate = new Date(deliveryDate)
+    const _deliveryDate = new Date(selectDate)
     
     //We can change these edge cases later and make them message the user on the screen (maybe with TypeAnimations but idk ab that because they're memoized and can only change when the page refreshs)
-    if(!_deliveryDate || totalPrice === "0.00")
+    if(!_deliveryDate || selectGallons === "" || totalPrice === "0.00")
       return
 
     const historyData = {
       email: session.user.email,
-      gallonsRequested: gallonsRequested,
       deliveryDate: _deliveryDate,
+      gallonsRequested: selectGallons,
       pricePerGallon: pricePerGallon,
       totalAmount: totalPrice,
     }
 
     const response = await fetch(
-      `http://localhost:3000/api/calculateQuote?deliveryDate=${selectDate}&gallonsRequested=${selectGallons}`,
+      `http://localhost:3000/api/calculateQuote`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(historyData),
-      }
-    );
+      });
+
     const data = await response.json()
+    console.log(data)
     router.push('/History')
   }
 
