@@ -41,8 +41,9 @@ export default function FuelQuote() {
     )
   
     pricingData = await response.json()
-    setSuggestedGallons(pricingData.suggestedGallons)
-    setTotalPrice(pricingData.totalPrice)
+    console.log(pricingData)
+    setSuggestedGallons(pricingData.suggestedPrice)
+    setTotalPrice(pricingData.totalAmount)
   };
 
   const handleQuoteSubmit = async (event) => {
@@ -109,7 +110,7 @@ export default function FuelQuote() {
                 <h2 className="text-white font-medium text-sm mx-5 pl-1 pb-1.5">Suggested Price per Gallon</h2>
                 <div className="h-12 mx-5 w-10/12 p-2 py-2 border-transparent rounded-xl font-medium bg-stone-100 text-cambridgeBlue text-right">
                   <p className="text-neutral-500 py-1.5 pr-3">
-                      {suggestedGallons}
+                      {`$${suggestedGallons}`}
                   </p>
                 </div>
               </div>
@@ -118,7 +119,7 @@ export default function FuelQuote() {
                 <h2 className="text-white font-medium text-sm mx-5 pl-1 pb-1.5">Estimated Total Price:</h2>
                 <div className="h-12 mx-5 w-10/12 p-2 py-2 rounded-xl font-medium bg-stone-100 text-cambridgeBlue text-right mb-2">
                   <p className="text-neutral-500 py-1.5 pr-3">
-                    {totalPrice}
+                    {`$${totalPrice}`}
                   </p>
                 </div>
               </div>

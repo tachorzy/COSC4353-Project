@@ -43,8 +43,9 @@ export default async function registerUser(req, res) {
         pricePerGallon += fuelMultiplier;
         
         totalPrice = pricePerGallon * gallonsRequested
-
-        res.status(200).json({ pricePerGallon: basePricePerGallon, suggestedPrice: pricePerGallon, totalAmountDue: totalPrice})
+        
+        console.log(`PPG: ${basePricePerGallon} suggested price: ${pricePerGallon} total amount: ${totalPrice}`)
+        res.status(200).json({ pricePerGallon: basePricePerGallon, suggestedPrice: pricePerGallon, totalAmount: totalPrice})
     }
     else if(req.method === "POST"){
         const { deliveryDate, gallonsRequested, pricePerGallon, totalPrice } = req.body;
