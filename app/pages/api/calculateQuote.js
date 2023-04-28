@@ -48,9 +48,10 @@ export default async function registerUser(req, res) {
         res.status(200).json({ pricePerGallon: basePricePerGallon, suggestedPrice: pricePerGallon, totalAmount: totalPrice})
     }
     else if(req.method === 'POST'){
-
+        
         const { email, deliveryDate, gallonsRequested, pricePerGallon, totalPrice } = req.body;
-
+        const delivery = new Date(deliveryDate);
+        const formattedDate = delivery.toLocaleDateString();
         const user = await Client.findOne({
             email: email
         })
@@ -66,7 +67,7 @@ export default async function registerUser(req, res) {
         console.log(`Total Price: ${totalPrice}`)
 
         const newQuote = { 
-            deliveryDate: deliveryDate,
+            deliveryDate: formattedDate,
             city: user.personalDetails[0].city,
             address1: user.personalDetails[0].address1,
             address2: user.personalDetails[0].address2,
