@@ -31,6 +31,10 @@ export default function Register() {
       setEmailError('Email is required');
       return;
     }
+    if (!email.endsWith(".com")) {
+      setEmailError('Email need to be valid');
+      return;
+    }
     if (!password) {
       setPasswordError('Password is required');
       return;
