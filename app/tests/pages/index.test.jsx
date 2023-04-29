@@ -17,11 +17,11 @@ describe('Home', () => {
     })
 })
 
-it('Input fields should not be left empty', () =>{
+// it('Input fields should not be left empty', () =>{
     
-})
+// })
 
-it('The entered user information should exist in our database', () => {
+// it('The entered user information should exist in our database', () => {
 
-})
+// })
 
