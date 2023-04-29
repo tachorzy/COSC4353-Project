@@ -27,8 +27,8 @@ export default function FuelQuote() {
   const [pricePerGallon, setPricePerGallon] = useState('1.50')
   const [suggestedGallons, setSuggestedGallons] = useState('1.50')
   const [totalPrice, setTotalPrice] = useState('0.00')
-
-
+  const [deliveryError, setDeliveryError] = useState('');
+  const today = new Date();
   const router = useRouter();
   
   function setButtonActivity(_selectDate, _selectGallons){
@@ -66,10 +66,19 @@ export default function FuelQuote() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    setDeliveryError("");
+    const selectedDate = new Date(selectDate)
     if (selectDate === "mm/dd/yyy" || selectGallons === "")
       return;
-
+      if(selectedDate < today){
+        console.log("past");
+        setDeliveryError("Incorrect date");
+        return;
+      }
+  
+      console.log(today);
+      console.log("here");
+      console.log(selectedDate);
     const response = await fetch(
       `http://localhost:3000/api/calculateQuote?deliveryDate=${selectDate}&gallonsRequested=${selectGallons}`,
       {
@@ -87,11 +96,12 @@ export default function FuelQuote() {
     event.preventDefault();
 
     const _deliveryDate = new Date(selectDate)
-    
+
     //We can change these edge cases later and make them message the user on the screen (maybe with TypeAnimations but idk ab that because they're memoized and can only change when the page refreshs)
     if(!_deliveryDate || selectGallons === "" || totalPrice === "0.00")
       return
 
+    
     const historyData = {
       email: session.user.email,
       deliveryDate: _deliveryDate,
@@ -166,6 +176,7 @@ export default function FuelQuote() {
                 <h3 className="text-white font-base font-semibold mx-5 pl-1 pb-1.5">Delivery Date</h3>
                 <input type="date" className="h-12 mx-5 w-10/12 p-2 py-2 border-transparent rounded-xl font-medium text-stone-400" placeholder={"Delivery Date"} name="delivery-date" onChange={(event) => setSelectedDate(event.target.value)}/>
               </div> 
+              {deliveryError && <p className="text-red-500">{deliveryError}</p>}
 
               <div className="w-full">
                 <h3 className="text-white font-base font-semibold mx-5 pl-1 pb-1.5">Amount of gallons</h3>
