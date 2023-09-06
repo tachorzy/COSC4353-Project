@@ -57,6 +57,8 @@ export default function History() {
                     <td>{quote?.zipCode}</td>
                     <td>{quote?.gallonsRequested?.toFixed(2) ?? '-'}</td>
                     <td>${quote?.pricePerGallon}</td> 
+                    <td>{quote?.gallonsRequested?.toFixed(2)}</td>
+                    <td>${quote?.pricePerGallon?.toFixed(2)}</td>
                     <td>${quote?.totalAmount?.toFixed(2)}</td>
                   </tr>
                 ))}

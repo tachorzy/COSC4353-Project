@@ -107,7 +107,7 @@ export default function FuelQuote() {
       totalAmount: totalPrice,
     }
 
-    console.log(historyData.pricePerGallon)
+    console.log(historyData.pricePerGallon  )
 
     const response = await fetch(
       `http://localhost:3000/api/calculateQuote`,

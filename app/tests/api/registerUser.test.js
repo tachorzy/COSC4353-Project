@@ -11,13 +11,13 @@ describe('registerUser API endpoint', () => {
         const { req, res } = createMocks({
             method: "POST",
             body: {
-                email: "test@gmail.com",
+                email: "uniqueuser@gmail.com",
                 password: "testpassword"
             },
         });
         
         Client.findOne.mockResolvedValue({ 
-            email: 'test@gmail.com'
+            email: 'uniqueuser@gmail.com'
         })
 
         dbConnect.mockResolvedValue(true);

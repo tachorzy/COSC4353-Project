@@ -4,7 +4,7 @@ import History from '../../__models/history.js'
 import Client from '../../__models/client.js'
 import { SessionContext, getSession } from "next-auth/react";
 
-export default async function registerUser(req, res) {
+export default async function calculateQuote(req, res) {
     if (req.method === 'GET') {
         await dbConnect().catch(err => console.log(err));
         const session = await getSession({ req });
