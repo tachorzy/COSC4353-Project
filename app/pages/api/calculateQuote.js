@@ -49,7 +49,7 @@ export default async function registerUser(req, res) {
     }
     else if(req.method === 'POST'){
         
-        const { email, deliveryDate, gallonsRequested, pricePerGallon, totalPrice } = req.body;
+        const { email, deliveryDate, gallonsRequested, pricePerGallon, totalAmount } = req.body;
         const delivery = new Date(deliveryDate);
         const formattedDate = delivery.toLocaleDateString();
 
@@ -64,7 +64,7 @@ export default async function registerUser(req, res) {
         const userHistory = await History.findOne({
             email: email
         })
-        console.log(`Total Price: ${totalAmount}`)
+        console.log(`Total Price: ${gallonsRequested}`)
         const newQuote = { 
             deliveryDate: formattedDate,
             city: user.personalDetails[0].city,

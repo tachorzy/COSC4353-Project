@@ -28,7 +28,6 @@ export default function FuelQuote() {
   const [suggestedGallons, setSuggestedGallons] = useState('1.50')
   const [totalPrice, setTotalPrice] = useState('0.00')
   const [deliveryError, setDeliveryError] = useState('');
-  const today = new Date();
   const router = useRouter();
   
   function setButtonActivity(_selectDate, _selectGallons){
@@ -68,17 +67,14 @@ export default function FuelQuote() {
     event.preventDefault();
     setDeliveryError("");
     const selectedDate = new Date(selectDate)
+    const today = new Date();
     if (selectDate === "mm/dd/yyy" || selectGallons === "")
       return;
-      if(selectedDate < today){
-        console.log("past");
+    if(selectedDate < today){
         setDeliveryError("Incorrect date");
         return;
-      }
+    }
   
-      console.log(today);
-      console.log("here");
-      console.log(selectedDate);
     const response = await fetch(
       `http://localhost:3000/api/calculateQuote?deliveryDate=${selectDate}&gallonsRequested=${selectGallons}`,
       {
@@ -90,6 +86,7 @@ export default function FuelQuote() {
     setPricePerGallon(pricingData.pricePerGallon)
     setSuggestedGallons(pricingData.suggestedPrice)
     setTotalPrice(pricingData.totalAmount)
+    console.log(selectGallons);
   };
 
   const handleQuoteSubmit = async (event) => {

@@ -26,25 +26,24 @@ export default function Register() {
     setPasswordError('');
     setEmailError('');
     setConfirmPasswordError('');
+    if (!email || !password || !name || !password != confirmPassword) {
+      if (!email) {
+        setEmailError('Email is required');
 
-    if (!email) {
-      setEmailError('Email is required');
-      return;
-    }
-    if (!email.endsWith(".com")) {
-      setEmailError('Email need to be valid');
-      return;
-    }
-    if (!password) {
-      setPasswordError('Password is required');
-      return;
-    }
-    if (!name) {
-      setNameError('Name is required');
-      return;
-    }
-    if (password != confirmPassword) {
-      setConfirmPasswordError('Passwords do not match');
+      }
+      if (!email.endsWith(".com")) {
+        setEmailError('Email need to be valid');
+      }
+      if (!password) {
+        setPasswordError('Password is required');
+      }
+      if (!name) {
+        setNameError('Name is required');
+
+      }
+      if (password != confirmPassword) {
+        setConfirmPasswordError('Passwords do not match');
+      }
       return;
     }
 
